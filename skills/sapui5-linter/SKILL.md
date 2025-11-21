@@ -738,13 +738,37 @@ ui5lint --perf > perf-$(date +%Y%m%d).txt
 
 ## Reference Documentation
 
-**Comprehensive references** (loaded on demand):
+**Core References** (loaded on demand):
 
 1. **rules-complete.md** - All 19 rules in detail with examples
 2. **autofix-complete.md** - Complete autofix capabilities and limitations
 3. **cli-options.md** - All CLI flags and options with examples
 4. **configuration.md** - Advanced configuration patterns and troubleshooting
 5. **performance.md** - Benchmarks, optimization tips, and best practices
+
+**Extended References**:
+
+6. **contributing.md** - How to contribute to UI5 Linter project
+   - Issue reporting guidelines and templates
+   - Bug report requirements
+   - Feature request process
+   - Code contribution workflow
+   - Developer Certificate of Origin
+   - RFC process for major proposals
+
+7. **support-and-community.md** - Getting help and community resources
+   - StackOverflow (ui5-tooling tag)
+   - OpenUI5 Slack (#tooling channel)
+   - When to use each support channel
+   - Troubleshooting checklist
+   - Response time expectations
+
+8. **advanced-ci-cd.md** - Advanced CI/CD integration patterns
+   - UI5 Linter's own CI workflow (real-world example)
+   - Multi-platform testing, coverage reporting
+   - License and dependency checking
+   - Security scanning, artifact management
+   - GitLab CI, Jenkins, monorepo integration
 
 **Templates**:
 - `ui5lint.config.mjs` - ESM configuration template
@@ -788,9 +812,11 @@ ui5lint --perf > perf-$(date +%Y%m%d).txt
 **Next Review**: 2026-02-21
 
 **For Issues or Questions**:
+- **See** `references/support-and-community.md` for complete support guide
 - UI5 Linter Issues: https://github.com/UI5/linter/issues
+- StackOverflow: https://stackoverflow.com/questions/tagged/ui5-tooling (ui5-tooling tag)
+- OpenUI5 Slack: https://ui5-slack-invite.cfapps.eu10.hana.ondemand.com (#tooling channel)
 - UI5 Community: https://community.sap.com/
-- Stack Overflow: Tag `sapui5` or `openui5`
 
 ---
 
