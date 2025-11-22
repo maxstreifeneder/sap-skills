@@ -23,6 +23,7 @@ SAP Business Application Studio is a cloud-based IDE on SAP BTP built on Code-OS
 **Deploying applications?** → See [Build & Deploy](#build--deploy)
 **Working with Git?** → See `references/git-operations.md`
 **Project creation/development?** → See `references/development-workflow.md`
+**Service Center/Extensions?** → See `references/service-center-and-tools.md`
 **Troubleshooting?** → See `references/connectivity-guide.md`
 
 ---
@@ -199,6 +200,7 @@ Configure SAP HANA Cloud to allow BAS IP addresses. See [Availability](https://h
 - `references/setup-checklist.md` - Detailed setup procedures
 - `references/git-operations.md` - Git commands, stash, authentication, Gerrit
 - `references/development-workflow.md` - Project creation, UI development, debugging, CI/CD
+- `references/service-center-and-tools.md` - Service providers, extensions, IDE features
 - `references/PROGRESS_TRACKING.md` - Documentation source tracking
 
 ## Templates

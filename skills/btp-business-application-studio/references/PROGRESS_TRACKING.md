@@ -255,7 +255,8 @@ skills/btp-business-application-studio/
 │   ├── service-plans.md          # Plans and restrictions
 │   ├── setup-checklist.md        # Setup procedures
 │   ├── git-operations.md         # Git commands, stash, auth, Gerrit
-│   └── development-workflow.md   # Project creation, UI, debugging, CI/CD
+│   ├── development-workflow.md   # Project creation, UI, debugging, CI/CD
+│   └── service-center-and-tools.md # Service providers, extensions, IDE tools
 └── templates/
     ├── destination-config.md     # Destination configuration
     └── dev-space-setup.md        # Dev space creation
@@ -263,5 +264,41 @@ skills/btp-business-application-studio/
 
 ---
 
+## Additional Topics Covered (Second Review)
+
+### Service Providers ✅ COMPLETE
+- [x] SAP System Service Provider (ABAP catalog, CDS views, RFC support)
+- [x] Developer Hub Service Provider (destination config, products)
+- [x] Unified Customer Landscape (S/4HANA Cloud integration)
+- [x] SAP Business Accelerator Hub (products, packages, events)
+
+### Additional Extensions ✅ COMPLETE
+- [x] Scenario extensions (Work Zone, HTML5, Workflow)
+- [x] Tool extensions (Java, Python, Docker, HANA XS, Launchpad)
+- [x] Runtime capabilities (Audit, Change Tracking, Attachments, Telemetry)
+- [x] Custom extension creation and deployment (wex CLI)
+
+### IDE Features ✅ COMPLETE
+- [x] Guide Center (step-by-step guidance)
+- [x] Search (file and project-wide, glob patterns)
+- [x] Problems View (error aggregation)
+- [x] Application Preview (ports, notifications)
+- [x] Template Wizard (Yeoman generators)
+
+### Advanced Development ✅ COMPLETE
+- [x] Multi-subaccount development (design-time vs runtime)
+- [x] Running in incognito mode (multi-user testing)
+- [x] Building and deploying MTAs (all methods)
+- [x] VS Code remote access
+- [x] File backup and recovery
+
+### Troubleshooting ✅ COMPLETE
+- [x] Webview issues (Firefox, Kaspersky, AdBlock)
+- [x] File backup issues
+
+---
+
 **Extraction Completed**: 2025-11-22
+**Second Review Completed**: 2025-11-22
 **Next Review**: 2026-02-22 (Quarterly)
+**Total Reference Files**: 8

@@ -49,6 +49,12 @@ template wizard, Yeoman generator, Layout Editor, data binding, Task Explorer, r
 ### Security
 malware scan, encryption, CMK, customer managed key, audit log
 
+### Service Providers
+Service Center, Developer Hub, Unified Customer Landscape, SAP Business Accelerator Hub, SAP System Service Provider, RFC, OData catalog
+
+### IDE Features
+Guide Center, search, Problems view, application preview, ports, incognito mode, multi-subaccount, remote access
+
 ## Quick Links
 
 - [SKILL.md](SKILL.md) - Core instructions and quick reference
@@ -58,6 +64,7 @@ malware scan, encryption, CMK, customer managed key, audit log
 - [references/setup-checklist.md](references/setup-checklist.md) - Setup procedures
 - [references/git-operations.md](references/git-operations.md) - Git commands, stash, auth, Gerrit
 - [references/development-workflow.md](references/development-workflow.md) - Project creation, UI, debugging, CI/CD
+- [references/service-center-and-tools.md](references/service-center-and-tools.md) - Service providers, extensions, IDE tools
 - [templates/destination-config.md](templates/destination-config.md) - Destination templates
 - [templates/dev-space-setup.md](templates/dev-space-setup.md) - Dev space creation guide
 
