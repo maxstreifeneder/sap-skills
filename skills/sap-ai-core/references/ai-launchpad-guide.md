@@ -112,14 +112,14 @@ SAP AI Launchpad is a multitenant SaaS application on SAP BTP that provides:
 |------|--------------|
 | `ailaunchpad_admin` | Full administrative access |
 | `ailaunchpad_connections_editor` | Manage connections |
-| `ailaunchpad_workspaces_admin` | Manage workspaces |
+| `ailaunchpad_aicore_admin` | SAP AI Core integration management |
 
 ### ML Operations Roles
 
 | Role | Capabilities |
 |------|--------------|
-| `mloperations_viewer` | View ML operations |
-| `mloperations_editor` | Full ML operations access |
+| `ailaunchpad_mloperations_viewer` | View ML operations |
+| `ailaunchpad_mloperations_editor` | Full ML operations access |
 
 ### Generative AI Hub Roles
 
@@ -129,8 +129,15 @@ SAP AI Launchpad is a multitenant SaaS application on SAP BTP that provides:
 | `genai_experimenter` | Prompt experimentation only |
 | `prompt_manager` | Manage saved prompts |
 | `prompt_experimenter` | Use saved prompts |
-| `prompt_media_executor` | Upload images |
-| `orchestration_executor` | Execute orchestration workflows |
+
+### Functions Explorer Roles
+
+| Role | Capabilities |
+|------|--------------|
+| `ailaunchpad_functions_explorer_editor_v2` | Edit functions explorer |
+| `ailaunchpad_functions_explorer_viewer_v2` | View functions explorer |
+
+**Note:** Role names `prompt_media_executor` and `orchestration_executor` may be deprecated. Verify current role names in SAP documentation.
 
 ---
 
@@ -241,6 +248,10 @@ Use `{{variable_name}}` for placeholders with definitions section.
 | 6 | Model Configuration | **Mandatory** |
 | 7 | Output Filtering | Optional |
 | 8 | Output Translation | Optional |
+
+**Required Modules Explained:**
+- **Templating**: Constructs the actual prompt/messages sent to the LLM using input variables and context
+- **Model Configuration**: Specifies which LLM model to use and its parameters (temperature, max_tokens, etc.)
 
 ### Building Workflows
 

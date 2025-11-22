@@ -213,11 +213,13 @@ curl -X POST "$AI_API_URL/v2/lm/groundingCollections" \
   -d '{
     "name": "custom-knowledge-base",
     "embeddingConfig": {
-      "model": "text-embedding-3-large",
+      "model": "text-embedding-3-small",
       "dimensions": 1536
     }
   }'
 ```
+
+**Note:** Use `text-embedding-3-small` for 1536 dimensions or `text-embedding-3-large` with 3072 dimensions. Ensure model and dimensions align with OpenAI/SAP AI Core specifications.
 
 #### Add Documents
 

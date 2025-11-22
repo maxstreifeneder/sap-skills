@@ -376,21 +376,26 @@ curl -X POST "$AI_API_URL/v2/lm/executionSchedules" \
 
 ### Cron Expression Format
 
+SAP AI Core uses 5-field cron expressions with **3-letter day-of-week names**:
+
 ```
 ┌───────── minute (0-59)
 │ ┌─────── hour (0-23)
 │ │ ┌───── day of month (1-31)
 │ │ │ ┌─── month (1-12)
-│ │ │ │ ┌─ day of week (0-6, Sunday=0)
+│ │ │ │ ┌─ day of week (mon, tue, wed, thu, fri, sat, sun)
 │ │ │ │ │
 * * * * *
 ```
 
 Examples:
 - `0 0 * * *` - Daily at midnight
-- `0 0 * * 0` - Weekly on Sunday
+- `0 0 * * sun` - Weekly on Sunday
+- `0 0 * * fri` - Weekly on Friday
 - `0 0 1 * *` - Monthly on 1st
 - `0 */6 * * *` - Every 6 hours
+
+**Note:** Using `* * * * *` treats the schedule as "Run Always" (continuous check), which differs from standard cron behavior. Minimum interval for pipeline schedules is 1 hour.
 
 ### List Schedules
 

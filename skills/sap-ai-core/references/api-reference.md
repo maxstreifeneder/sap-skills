@@ -8,10 +8,10 @@ Complete API reference for SAP AI Core.
 
 ## Authentication
 
-### Get OAuth Token
+### OAuth Token Endpoint
 
 ```bash
-curl -X POST "$AUTH_URL/oauth/token" \
+curl -X POST "https://<id-zone>.authentication.<region>.hana.ondemand.com/oauth/token" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=client_credentials&client_id=$CLIENT_ID&client_secret=$CLIENT_SECRET"
 ```
@@ -30,8 +30,20 @@ curl -X POST "$AUTH_URL/oauth/token" \
 
 | Environment | URL Pattern |
 |-------------|-------------|
-| AI API | `https://<subdomain>.ml.hana.ondemand.com` |
-| Orchestration | `https://<deployment-id>.api.ai.prod.us-east-1.aws.ml.hana.ondemand.com` |
+| AI API | `https://api.ai.prod.<region>.hana.ondemand.com` |
+| Inference | `https://api.ai.prod.<region>.hana.ondemand.com/v2/inference/deployments/<deployment-id>` |
+| OAuth | `https://<id-zone>.authentication.<region>.hana.ondemand.com/oauth/token` |
+
+**Regions:** `eu10`, `eu11`, `us10`, `us21`, `jp10`, `ap10`, `ap11`
+
+---
+
+## API Versioning
+
+All endpoints use the `/v2/*` versioned routes:
+- `/v2/lm/*` - Language model operations
+- `/v2/inference/*` - Inference deployments
+- `/v2/admin/*` - Administrative operations (secrets, repositories)
 
 ---
 
@@ -177,7 +189,8 @@ POST $AI_API_URL/v2/lm/deployments
 
 **TTL Format:** Natural numbers with units: `m` (minutes), `h` (hours), `d` (days)
 - Valid: `5m`, `2h`, `7d`
-- Invalid: `4.5h`, `4h30m`
+- Invalid: `4.5h`, `4h30m` (fractional and combined units not supported)
+- **Tip:** Convert combined durations to a single unit (e.g., `270m` instead of `4h30m`)
 
 **Response:**
 ```json

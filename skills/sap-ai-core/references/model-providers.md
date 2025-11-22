@@ -121,10 +121,11 @@ SAP AI Core provides access to models from six providers via the Generative AI H
 
 | Model | Context | Capabilities |
 |-------|---------|--------------|
-| gemini-1.5-pro | 2M | Chat, Vision, Code, Long context |
-| gemini-1.5-flash | 1M | Fast, multimodal |
-| gemini-1.0-pro | 32K | Text generation |
-| gemini-1.0-pro-vision | 16K | Vision + text |
+| gemini-2.5-pro | 2M | Chat, Vision, Code, Long context |
+| gemini-2.5-flash | 1M | Fast, multimodal |
+| gemini-2.5-flash-lite | 1M | Fast, lower-cost multimodal |
+| gemini-2.0-flash | 1M | Flash family, multimodal |
+| gemini-2.0-flash-lite | 1M | Flash family, lower-cost |
 
 ### PaLM 2 Models
 
@@ -166,8 +167,13 @@ SAP AI Core provides access to models from six providers via the Generative AI H
 
 | Model | Context | Capabilities |
 |-------|---------|--------------|
+| claude-sonnet-4-5 | 200K | Latest, advanced reasoning |
+| claude-4-opus | 200K | Highest capability |
+| claude-4-sonnet | 200K | Balanced, high performance |
+| claude-opus-4-1 | 200K | Extended Opus capabilities |
+| claude-3-7-sonnet | 200K | Improved Sonnet 3.5 |
 | claude-3-5-sonnet | 200K | Advanced reasoning |
-| claude-3-opus | 200K | Highest capability |
+| claude-3-opus | 200K | High capability |
 | claude-3-sonnet | 200K | Balanced performance |
 | claude-3-haiku | 200K | Fast, efficient |
 

@@ -474,20 +474,25 @@ spec:
 | Environment Variable | Description |
 |---------------------|-------------|
 | `STORAGE_URI` | Points to artifact location for model download |
-| **Mounted Path** | `/mnt/models` (hardcoded by KServe) |
+| **Default Mount Path** | `/mnt/models` (typical in SAP AI Core examples) |
 
-**Important:** Models are automatically downloaded from object store to `/mnt/models`. Your inference code must read from this path:
+**Important:** The `/mnt/models` path is the typical default used in SAP AI Core examples, but the mount path is configurable via the ServingRuntime/ServingTemplate and container args (e.g., `--model_dir`). Your inference code should read the path from configuration or environment variables rather than assuming a hardcoded path:
 
 ```python
 import os
 
-# Models are always at /mnt/models
-MODEL_PATH = "/mnt/models"
+# Read from environment or use default
+MODEL_PATH = os.environ.get("MODEL_DIR", "/mnt/models")
 
 def load_model():
-    """Load model from KServe-mounted path."""
+    """Load model from configured mount path."""
     return load_from_path(MODEL_PATH)
 ```
+
+**Configuration Options:**
+- Set via container args: `--model_dir=/custom/path`
+- Set via environment variable in ServingTemplate
+- Override in KServe InferenceService spec
 
 ### Annotations Reference
 
