@@ -205,6 +205,11 @@ For comprehensive documentation:
 - **HDI Management**: See `references/hdi-management.md`
 - **Output Formats**: See `references/output-formats.md`
 - **Cloud Operations**: See `references/cloud-operations.md`
+- **Database Inspection**: See `references/db-inspection.md`
+- **Mass Operations**: See `references/mass-operations.md`
+- **System Administration**: See `references/system-admin.md`
+- **Web UI Interface**: See `references/web-ui.md`
+- **Troubleshooting Guide**: See `references/troubleshooting.md`
 
 ---
 
@@ -251,4 +256,4 @@ hana-cli inspectUser
 
 ---
 
-*Last Updated: 2025-11-22 | Version: 1.0.0*
+*Last Updated: 2025-11-22 | Version: 2.0.0*
