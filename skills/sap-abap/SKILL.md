@@ -234,17 +234,36 @@ CREATE DATA dref TYPE HANDLE elem_type.
 
 For comprehensive information on specific topics, see:
 
+### Core Language
 - **Internal Tables**: `references/internal-tables.md` - Complete table operations, keys, grouping
+- **Table Grouping**: `references/table-grouping.md` - GROUP BY loops, aggregation
 - **ABAP SQL**: `references/abap-sql.md` - SELECT, JOINs, CTEs, aggregate functions
-- **Object Orientation**: `references/object-orientation.md` - Classes, interfaces, inheritance
+- **SQL Hierarchies**: `references/sql-hierarchies.md` - CTE hierarchies, navigators
+- **WHERE Conditions**: `references/where-conditions.md` - SQL and table WHERE patterns
 - **Constructor Expressions**: `references/constructor-expressions.md` - VALUE, NEW, COND, REDUCE
-- **Dynamic Programming**: `references/dynamic-programming.md` - RTTI, RTTC, field symbols
 - **String Processing**: `references/string-processing.md` - String functions, regex
+- **Numeric Operations**: `references/numeric-operations.md` - Math functions, big integers
+- **Bits and Bytes**: `references/bits-bytes.md` - Binary operations, CASTING
+
+### Object Orientation
+- **Object Orientation**: `references/object-orientation.md` - Classes, interfaces, inheritance
+- **Design Patterns**: `references/design-patterns.md` - Factory, Singleton, Strategy patterns
+- **Dynamic Programming**: `references/dynamic-programming.md` - RTTI, RTTC, field symbols
+
+### RAP and Modern ABAP
 - **RAP and EML**: `references/rap-eml.md` - RESTful Application Programming Model
 - **CDS Views**: `references/cds-views.md` - Core Data Services
+- **ABAP Cloud**: `references/cloud-development.md` - Cloud-ready development
+- **Released Classes**: `references/released-classes.md` - Released API catalog
+
+### Testing and Security
 - **Unit Testing**: `references/unit-testing.md` - ABAP Unit framework
 - **Exception Handling**: `references/exceptions.md` - TRY/CATCH, exception classes
-- **ABAP Cloud**: `references/cloud-development.md` - Cloud-ready development
+- **Authorization**: `references/authorization.md` - AUTHORITY-CHECK, DCL
+
+### Data and Types
+- **ABAP Dictionary**: `references/abap-dictionary.md` - Data elements, domains, tables
+- **Generative AI**: `references/generative-ai.md` - AI SDK, LLM integration
 
 ---
 
