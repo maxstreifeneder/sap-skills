@@ -253,7 +253,9 @@ skills/btp-business-application-studio/
 │   ├── dev-space-types.md        # Detailed dev space info
 │   ├── connectivity-guide.md     # Connectivity troubleshooting
 │   ├── service-plans.md          # Plans and restrictions
-│   └── setup-checklist.md        # Setup procedures
+│   ├── setup-checklist.md        # Setup procedures
+│   ├── git-operations.md         # Git commands, stash, auth, Gerrit
+│   └── development-workflow.md   # Project creation, UI, debugging, CI/CD
 └── templates/
     ├── destination-config.md     # Destination configuration
     └── dev-space-setup.md        # Dev space creation

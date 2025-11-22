@@ -13,6 +13,12 @@ Use this skill when:
 - Troubleshooting connectivity or dev space issues
 - Managing roles and authorizations
 - Working with Cloud Connector for on-premise access
+- Managing Git repositories (clone, push, pull, stash, Gerrit)
+- Configuring runtime versions (Node.js, Java, Python)
+- Creating projects with templates or Yeoman generators
+- Using the Layout Editor or Storyboard for UI development
+- Setting up CI/CD pipelines
+- Debugging Node.js applications
 
 ## Keywords
 
@@ -34,6 +40,15 @@ OData, ABAP, S/4HANA, on-premise, principal propagation, service binding, SAP Sy
 ### Tools
 MTA Build Tool, mbt, Cloud Foundry CLI, cf, CDS, Fiori Tools, HANA Tools, Calculation View Editor
 
+### Git & Version Control
+Git, clone, commit, push, pull, fetch, merge, stash, Gerrit, PAT, Personal Access Token, OAuth, GitHub, Azure DevOps
+
+### Development Workflow
+template wizard, Yeoman generator, Layout Editor, data binding, Task Explorer, run configuration, debugging, breakpoint, asdf, runtime, Node.js, Java, Python, CI/CD, continuous integration
+
+### Security
+malware scan, encryption, CMK, customer managed key, audit log
+
 ## Quick Links
 
 - [SKILL.md](SKILL.md) - Core instructions and quick reference
@@ -41,6 +56,8 @@ MTA Build Tool, mbt, Cloud Foundry CLI, cf, CDS, Fiori Tools, HANA Tools, Calcul
 - [references/connectivity-guide.md](references/connectivity-guide.md) - Connectivity troubleshooting
 - [references/service-plans.md](references/service-plans.md) - Plans and restrictions
 - [references/setup-checklist.md](references/setup-checklist.md) - Setup procedures
+- [references/git-operations.md](references/git-operations.md) - Git commands, stash, auth, Gerrit
+- [references/development-workflow.md](references/development-workflow.md) - Project creation, UI, debugging, CI/CD
 - [templates/destination-config.md](templates/destination-config.md) - Destination templates
 - [templates/dev-space-setup.md](templates/dev-space-setup.md) - Dev space creation guide
 

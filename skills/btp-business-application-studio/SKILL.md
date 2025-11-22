@@ -1,9 +1,9 @@
 ---
 name: btp-business-application-studio
 description: |
-  This skill provides comprehensive guidance for SAP Business Application Studio (BAS), the cloud-based IDE on SAP BTP built on Code-OSS. Use when setting up BAS subscriptions, creating dev spaces, connecting to external systems, deploying MTA applications, or troubleshooting connectivity issues.
+  This skill provides comprehensive guidance for SAP Business Application Studio (BAS), the cloud-based IDE on SAP BTP built on Code-OSS. Use when setting up BAS subscriptions, creating dev spaces, connecting to external systems, deploying MTA applications, troubleshooting connectivity issues, managing Git repositories, configuring runtime versions, or using the layout editor.
 
-  Keywords: SAP Business Application Studio, BAS, SAP BTP, dev space, Cloud Foundry, MTA, multitarget application, SAP Fiori, CAP, HANA, destination, WebIDEEnabled, Cloud Connector, Service Center, Storyboard, Layout Editor, ABAP, OData, subscription, entitlements, role collection, Business_Application_Studio_Developer
+  Keywords: SAP Business Application Studio, BAS, SAP BTP, dev space, Cloud Foundry, MTA, multitarget application, SAP Fiori, CAP, HANA, destination, WebIDEEnabled, Cloud Connector, Service Center, Storyboard, Layout Editor, ABAP, OData, subscription, entitlements, role collection, Business_Application_Studio_Developer, Git, clone, push, pull, Gerrit, PAT, OAuth, asdf, runtime, Node.js, Java, Python, Task Explorer, CI/CD, Yeoman, generator, template wizard, mbt, mtar, debugging, breakpoint
 license: MIT
 ---
 
@@ -21,6 +21,8 @@ SAP Business Application Studio is a cloud-based IDE on SAP BTP built on Code-OS
 **Creating a dev space?** → See [Dev Space Types](#dev-space-types)
 **Connecting to external systems?** → See [Connectivity](#connectivity)
 **Deploying applications?** → See [Build & Deploy](#build--deploy)
+**Working with Git?** → See `references/git-operations.md`
+**Project creation/development?** → See `references/development-workflow.md`
 **Troubleshooting?** → See `references/connectivity-guide.md`
 
 ---
@@ -195,6 +197,8 @@ Configure SAP HANA Cloud to allow BAS IP addresses. See [Availability](https://h
 - `references/connectivity-guide.md` - Complete connectivity troubleshooting
 - `references/service-plans.md` - Plan restrictions and metering
 - `references/setup-checklist.md` - Detailed setup procedures
+- `references/git-operations.md` - Git commands, stash, authentication, Gerrit
+- `references/development-workflow.md` - Project creation, UI development, debugging, CI/CD
 - `references/PROGRESS_TRACKING.md` - Documentation source tracking
 
 ## Templates
