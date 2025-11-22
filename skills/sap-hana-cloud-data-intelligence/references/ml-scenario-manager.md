@@ -162,6 +162,29 @@ Programmatic interface for ML operations.
 
 Pre-installed in JupyterLab and Python operators.
 
+```python
+import sapdi
+from sapdi import tracking
+from sapdi import context
+```
+
+### MLTrackingSDK Functions
+
+| Function | Description | Limits |
+|----------|-------------|--------|
+| `start_run()` | Begin experiment tracking | Specify run_collection_name, run_name |
+| `end_run()` | Complete tracking | Auto-adds start/end timestamps |
+| `log_param()` | Log configuration values | name: 256 chars, value: 5000 chars |
+| `log_metric()` | Log numeric metric | name: 256 chars (case-sensitive) |
+| `log_metrics()` | Batch log metrics | Dictionary list format |
+| `persist_run()` | Force save to storage | Auto at 1.5MB cache or end_run |
+| `set_tags()` | Key-value pairs for filtering | runName is reserved |
+| `set_labels()` | UI/semantic labels | Non-filterable |
+| `delete_runs()` | Remove persisted metrics | By scenario/pipeline/execution |
+| `get_runs()` | Retrieve run objects | Returns metrics, params, tags |
+| `get_metrics_history()` | Get metric values | Max 1000 per metric |
+| `update_run_info()` | Modify run metadata | Change name, collection, tags |
+
 ### Metrics Tracking
 
 ```python
@@ -216,6 +239,53 @@ run.log_artifacts("./model_output/")
 # Retrieve artifacts
 artifacts = tracking.get_run_artifacts(run_id)
 model_data = artifacts.get("model.pkl")
+```
+
+### Artifact Class Methods
+
+| Method | Description |
+|--------|-------------|
+| `add_file()` | Add file to artifact, returns handler |
+| `create()` | Create artifact with initial content, returns ID |
+| `delete()` | Remove artifact metadata (not content) |
+| `delete_content()` | Remove stored data |
+| `download()` | Retrieve artifact contents to local storage |
+| `get()` | Get artifact metadata |
+| `list()` | List all artifacts in scenario |
+| `open_file()` | Get handler for remote file access |
+| `upload()` | Add files/directories to artifact |
+| `walk()` | Depth-first traversal of artifact structure |
+
+### FileHandler Methods
+
+| Method | Description |
+|--------|-------------|
+| `get_reader()` | Returns file-like object for reading (use with `with`) |
+| `get_writer()` | Returns object for incremental writing |
+| `read()` | Load entire remote file at once |
+| `write()` | Write strings, bytes, or files to data lake |
+
+**Important:** Only files between 5 MB and 5 GB can be appended. Use `get_writer()` for smaller files.
+
+```python
+from sapdi.artifact import Artifact
+
+# Create artifact
+artifact_id = Artifact.create(
+    name="my_model",
+    description="Trained model",
+    content=model_bytes
+)
+
+# List artifacts
+artifacts = Artifact.list()
+
+# Download artifact
+Artifact.download(artifact_id, local_path="/tmp/model/")
+
+# Read remote file
+with Artifact.open_file(artifact_id, "model.pkl").get_reader() as f:
+    model = pickle.load(f)
 ```
 
 ### Context Information

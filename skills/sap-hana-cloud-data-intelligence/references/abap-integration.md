@@ -83,6 +83,31 @@ Principal Propagation: Enabled (optional)
 2. Configure system certificate for backend
 3. Enable principal propagation if needed
 
+### Resource Configuration
+
+Configure required resources in Cloud Connector Resources pane:
+
+**For CDS View Extraction:**
+```
+Prefix: DHAMB_    (required)
+Prefix: DHAPE_    (required)
+Function: RFC_FUNCTION_SEARCH
+```
+
+**For SLT Replication Server:**
+```
+Prefix: LTAMB_    (required)
+Prefix: LTAPE_    (required)
+Function: RFC_FUNCTION_SEARCH
+```
+
+### SNC Configuration
+
+If using Secure Network Communication (SNC):
+- Configure SNC in Cloud Connector (not in DI Connection Management)
+- Upload SNC certificates to Cloud Connector
+- Map SNC names appropriately
+
 ---
 
 ## Connection Configuration
@@ -127,11 +152,23 @@ Use "Test Connection" to verify:
 
 ABAP Core Data Services views are the recommended data source.
 
-**Supported Types:**
-- Basic CDS Views
-- Composite CDS Views
-- Views with parameters
-- Extraction-enabled views (for ODP)
+**SAP S/4HANA Cloud Options:**
+- Standard CDS views with C1 release contract annotations
+- Custom CDS views developed for Data Intelligence integration
+
+**SAP S/4HANA On-Premise Options:**
+- Standard CDS views with C1 release contract
+- Custom ABAP CDS views created using ABAP Development Tool (ADT)
+
+**Discovery Methods:**
+- Use `I_DataExtractionEnabledView` (available in S/4HANA 2020+) to find extraction-enabled views
+- Check Metadata Explorer properties: "Extraction Enabled", "Delta enabled", "CDS Type"
+
+**Required Annotations for Custom Views:**
+```abap
+@Analytics.dataExtraction.enabled: true
+@Analytics.dataExtraction.delta.changeDataCapture.automatic: true
+```
 
 **Configuration:**
 ```
@@ -144,21 +181,39 @@ Package Size: 10000
 - Use extraction-enabled views for delta capability
 - Apply filters to reduce data volume
 - Consider view performance characteristics
+- Verify C1 contract compliance for standard views
 
 ### ODP (Operational Data Provisioning)
 
 Framework for extracting data from various ABAP sources.
 
+**Prerequisites:**
+- Gen1 operators: Require DMIS add-on + ODP Application API v2
+- Gen2 operators/Replication flows with S/4HANA: Only ODP Application API required
+- Legacy systems: Both DMIS add-on + ODP Application API required
+
+**Key SAP Notes:**
+- SAP Note 2890171: ODP integration requirements
+- SAP Note 2775549: Integration prerequisites
+- SAP Note 3100673: Technical user privileges
+
+**Connection Types:**
+
+| Type | Description | Use Case |
+|------|-------------|----------|
+| ABAP | Recommended connection | Latest features, resilience, replication flows |
+| ABAP_LEGACY | Fallback option | When DMIS installation not feasible |
+
 **ODP Contexts:**
 - SAPI: DataSources (classic BW extractors)
-- ABAP CDS: CDS views with extraction
+- ABAP CDS: CDS views with extraction annotations
 - BW: BW InfoProviders
 - SLT: SLT-replicated tables
 
 **Delta Support:**
-- Full extraction
-- Delta extraction (CDC)
-- Delta initialization
+- Full extraction (initial load)
+- Delta extraction (CDC - Change Data Capture)
+- Delta initialization (reset delta pointer)
 
 ### Tables
 
@@ -306,15 +361,31 @@ ENDCLASS.
 | STRING | String |
 | RAWSTRING | Binary |
 
+### Wire Format Conversion Options (Gen1)
+
+| Conversion Type | Description |
+|-----------------|-------------|
+| Enhanced format conversion | Validates data, converts invalid to "NaN" or "undefined" per ISO standards |
+| Required conversions | Minimal technical changes, preserves invalid values |
+| Required conversions + currency | Adds currency shift conversion |
+| Required conversions + time format + currency | ISO date/time format + currency handling |
+
+**Gen2 and Replication Flows:**
+Default: "Required Conversions Plus Time Format and Currency" (cannot be changed)
+
+**Detailed Mappings:** See SAP Note 3035658 for complete type conversion tables.
+
 ### Conversion Considerations
 
 **Date/Time:**
 - ABAP dates: YYYYMMDD format
 - Initial dates (00000000) may need handling
+- ISO format conversion available for Gen2
 
 **Numbers:**
 - NUMC fields are strings (preserve leading zeros)
 - Packed decimals maintain precision
+- Currency fields may be shifted based on currency table
 
 **Binary:**
 - RAW fields convert to binary
@@ -353,13 +424,24 @@ ENDCLASS.
 
 ### Common Issues
 
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| Connection timeout | Network/firewall | Check Cloud Connector mapping |
-| Authentication failed | Wrong credentials | Verify user/password |
-| Authorization error | Missing permissions | Check ABAP authorizations |
-| No data returned | Wrong selection | Verify filter conditions |
-| Performance issues | Large data volume | Add filters, adjust package size |
+| Issue | Cause | Solution | SAP Note |
+|-------|-------|----------|----------|
+| Session limit exceeded | ABAP Pipeline Engine constraints | Adjust session limits | 2999448 |
+| Connection validation fails | Connection configuration | Check connection setup | 2849542 |
+| CDS view extraction error (Gen1) | View not extraction-enabled | Enable extraction annotations | - |
+| SLT subscription conflict (Gen1) | Subscription already in use | Release subscription | 3057246 |
+| Invalid character in string | Encoding issues | Check data encoding | 3016338 |
+| Object does not exist (Gen2) | Object not found | Verify object name | 3143151 |
+| Connection timeout | Network/firewall | Check Cloud Connector mapping | - |
+| Authentication failed | Wrong credentials | Verify user/password | - |
+| Authorization error | Missing permissions | Check ABAP authorizations | - |
+
+### CDS View Specific Issues
+
+**"CDS view does not support data extraction":**
+1. Verify extraction annotations exist
+2. Check C1 contract compliance for standard views
+3. Use `I_DataExtractionEnabledView` to verify
 
 ### Diagnostic Steps
 
@@ -369,11 +451,25 @@ ENDCLASS.
 4. **Monitor** Pipeline Engine (transaction /IWREP/MONITOR)
 5. **Check** SAP Data Intelligence execution logs
 
-### SAP Notes and Resources
+### SAP Notes Reference
 
-- **SAP Note 2890171**: Central ABAP integration note
-- **SAP Note 2973594**: Known issues and corrections
+| Note | Description |
+|------|-------------|
+| 2890171 | Central ABAP integration note |
+| 2775549 | Integration prerequisites |
+| 2849542 | Connection troubleshooting |
+| 2973594 | Known issues and corrections |
+| 2999448 | Session limit issues |
+| 3016338 | Invalid character errors |
+| 3035658 | Data type conversion tables |
+| 3057246 | SLT subscription conflicts |
+| 3100673 | Technical user privileges |
+| 3143151 | Object not found errors |
+
+### Resources
+
 - **SAP Community**: https://community.sap.com/topics/data-intelligence
+- **SAP Support Portal**: https://support.sap.com
 
 ---
 

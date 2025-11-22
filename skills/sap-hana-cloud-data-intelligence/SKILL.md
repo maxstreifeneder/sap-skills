@@ -218,13 +218,16 @@ DTL provides SQL-like functions for data processing:
 
 For detailed information, see:
 
-- `references/operators-reference.md` - Complete operator catalog
-- `references/abap-integration.md` - ABAP system integration guide
+- `references/operators-reference.md` - Complete operator catalog (266 operators)
+- `references/abap-integration.md` - ABAP/S4HANA/BW integration with SAP Notes
 - `references/structured-data-operators.md` - Structured data processing
-- `references/dtl-functions.md` - Data Transformation Language reference
-- `references/ml-scenario-manager.md` - Machine learning guide
-- `references/subengines.md` - Subengine development guide
-- `references/graphs-pipelines.md` - Graph execution and monitoring
+- `references/dtl-functions.md` - Data Transformation Language (79 functions)
+- `references/ml-scenario-manager.md` - ML Scenario Manager, SDK, artifacts
+- `references/subengines.md` - Python, Node.js, C++ subengine development
+- `references/graphs-pipelines.md` - Graph execution, snapshots, recovery
+- `references/replication-flows.md` - Replication flows, cloud storage, Kafka
+- `references/data-workflow.md` - Data workflow operators, orchestration
+- `references/security-cdc.md` - Security, data protection, CDC methods
 
 ## Templates
 
