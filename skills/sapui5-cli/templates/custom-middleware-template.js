@@ -4,6 +4,21 @@
  * Purpose: [Describe what this middleware does]
  * Use Case: [Describe when to use this middleware]
  *
+ * IMPORTANT - ESM Configuration Required:
+ * This template uses ES Module syntax (export/import). To use it, your project must be configured for ESM:
+ *
+ * Option 1: Add to package.json:
+ *   {
+ *     "type": "module"
+ *   }
+ *
+ * Option 2: Use .mjs file extension:
+ *   Rename this file to myCustomMiddleware.mjs
+ *
+ * Option 3: Use CommonJS syntax instead:
+ *   Replace: export default function({...}) { ... }
+ *   With:    module.exports = function({...}) { ... }
+ *
  * Configuration in ui5.yaml:
  * ---
  * specVersion: "4.0"
@@ -289,7 +304,15 @@ export function createValidationExample({log, options}) {
 }
 
 // Pattern 7: Response Caching
+// WARNING: This is a SIMPLE EXAMPLE for development use only!
+// Production implementations should include:
+// - Cache size limits (e.g., LRU eviction to prevent unbounded memory growth)
+// - Time-to-live (TTL) for entries to expire stale data
+// - Cache invalidation on POST/PUT/DELETE operations
+// - Memory monitoring and alerting
+// - Consider using redis, node-cache, or lru-cache instead
 const cache = new Map();
+const MAX_CACHE_SIZE = 100; // Simple safeguard for development
 
 export function createCacheExample({log}) {
     return async function(req, res, next) {
@@ -308,6 +331,13 @@ export function createCacheExample({log}) {
         // Intercept response
         const originalEnd = res.end;
         res.end = function(data, ...args) {
+            // Simple size limit - evict oldest entry if at capacity
+            if (cache.size >= MAX_CACHE_SIZE) {
+                const firstKey = cache.keys().next().value;
+                cache.delete(firstKey);
+                log.warn(`Cache size limit reached (${MAX_CACHE_SIZE}), evicted oldest entry`);
+            }
+
             cache.set(cacheKey, data);
             log.info(`Cache miss: ${cacheKey}`);
             originalEnd.call(this, data, ...args);
