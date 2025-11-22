@@ -329,7 +329,7 @@ See individual reference files for complete anti-patterns and fixes.
 ## External Resources
 
 ### Standards
-- **OpenAPI Specification 3.0.3**: https://spec.openapis.org/oas/v3.0.3
+- **OpenAPI Specification**: https://spec.openapis.org/oas/latest.html
 - **OData v4.01**: https://www.odata.org/documentation/
 - **Javadoc**: https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html
 - **JSDoc 3**: https://jsdoc.app/

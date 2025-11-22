@@ -1761,7 +1761,7 @@ REVIEWER SIGN-OFF:
 ## References
 
 - **SAP API Style Guide**: https://github.com/SAP-docs/api-style-guide
-- **OpenAPI Specification 3.0.3**: https://spec.openapis.org/oas/v3.0.3
+- **OpenAPI Specification**: https://spec.openapis.org/oas/latest.html
 - **OData v4.01**: https://www.odata.org/documentation/
 - **SAP API Business Hub**: https://api.sap.com/
 

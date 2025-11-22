@@ -641,7 +641,7 @@ Total Timeline:
 
 ### External Standards
 
-- **OpenAPI Specification**: https://spec.openapis.org/oas/v3.0.3
+- **OpenAPI Specification**: https://spec.openapis.org/oas/latest.html
 - **Semantic Versioning**: https://semver.org/
 - **HTTP Status Codes**: https://httpstatuses.com/
 

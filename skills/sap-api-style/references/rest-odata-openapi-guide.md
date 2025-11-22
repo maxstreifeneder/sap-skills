@@ -2782,8 +2782,8 @@ Operation Summary: "Creates a new order"
 **Official SAP API Style Guide Section 30**:
 https://github.com/SAP-docs/api-style-guide/tree/main/docs/30-rest-and-odata-api-documentation
 
-**OpenAPI 3.0.3 Specification**:
-https://spec.openapis.org/oas/v3.0.3
+**OpenAPI Specification**:
+https://spec.openapis.org/oas/latest.html
 
 **OData Specification**:
 https://www.odata.org/documentation/

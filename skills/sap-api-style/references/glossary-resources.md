@@ -141,7 +141,7 @@ SAP-specific OpenAPI extension attribute defining API lifecycle state: beta, act
 
 #### OpenAPI Specification
 
-**URL**: https://spec.openapis.org/oas/v3.0.3
+**URL**: https://spec.openapis.org/oas/latest.html
 
 **Description**: The standard for RESTful APIs. A community-driven open specification within the OpenAPI Initiative for describing HTTP APIs in a machine-readable format.
 
@@ -388,7 +388,7 @@ git clone https://github.com/SAP-docs/api-style-guide.git
 | **.NET (C#)** | XML Comments | DocFX, Sandcastle | [Microsoft XML Docs](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/) |
 | **C/C++** | Doxygen | doxygen | [Doxygen Manual](https://www.doxygen.nl/manual/) |
 | **Python** | reStructuredText | Sphinx | [Sphinx](https://www.sphinx-doc.org/) |
-| **REST** | OpenAPI 3.0.3 | Swagger, Redoc | [OpenAPI Spec](https://spec.openapis.org/oas/v3.0.3) |
+| **REST** | OpenAPI | Swagger, Redoc | [OpenAPI Spec](https://spec.openapis.org/oas/latest.html) |
 | **OData** | OData 4.01 | Various | [OData.org](https://www.odata.org/) |
 
 ### By Documentation Type
