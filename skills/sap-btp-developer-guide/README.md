@@ -144,6 +144,8 @@ This skill triggers when discussing:
 | `references/ux-design.md` | UX design and Fiori |
 | `references/design-patterns.md` | Design patterns and DDD |
 | `references/setup.md` | BTP setup and Terraform |
+| `references/runtimes.md` | Runtime comparison (CF vs Kyma vs ABAP) |
+| `references/whats-new.md` | Changelog and latest updates |
 
 ### Tracking
 - `PROGRESS_TRACKING.md` - Documentation coverage and update links

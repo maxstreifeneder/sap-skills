@@ -197,8 +197,10 @@ serviceBindings:
 **Purpose**: Automate Kyma cluster provisioning via CI/CD pipelines for resource creation, deployment, testing, and teardown.
 
 **Key Resources:**
-- Terraform Provider for SAP BTP: `SAP/btp`
-- Terraform Module for Kyma: `github.com/kyma-project/terraform-module`
+- **Terraform Provider for SAP BTP**: `SAP/btp` - Official SAP-maintained provider ([Terraform Registry](https://registry.terraform.io/providers/SAP/btp/latest/docs))
+- **Kyma Terraform Module**: `github.com/kyma-project/terraform-module` - Open-source module maintained by the Kyma project (SAP-backed)
+
+> **Note**: The Kyma Terraform module is an open-source project. Verify version compatibility and review the module documentation before production use.
 
 #### Prerequisites
 

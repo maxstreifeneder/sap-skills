@@ -22,11 +22,16 @@ SAP BTP provides a three-tier architecture:
 | SAP Datasphere | Cross-application analytics | Data federation and warehousing |
 
 **HANA Cloud Optimization Features:**
-- **Native Storage Extension (NSE)**: Store infrequently accessed data on disk
-- **Elastic Compute Nodes (ECN)**: On-demand scaling for peak workloads
-- **Table Partitioning**: Enhanced query performance
-- **Native Multi-Tenancy**: Up to 1,000 isolated tenants per instance
-- **Free Tier**: 16GB memory at no cost
+
+| Feature | Description | Free/Trial | Paid |
+|---------|-------------|------------|------|
+| **Native Storage Extension (NSE)** | Store infrequently accessed data on disk | No | Yes |
+| **Elastic Compute Nodes (ECN)** | On-demand scaling for peak workloads | No | Yes |
+| **Table Partitioning** | Enhanced query performance | Limited | Yes |
+| **Native Multi-Tenancy** | Up to 1,000 isolated tenants per instance | No | Yes |
+| **Free Tier** | 16GB memory at no cost | Yes (16GB) | N/A |
+
+> **Note**: Feature availability varies by plan. See [SAP HANA Cloud Capacity Units](https://help.sap.com/docs/hana-cloud/sap-hana-cloud-administration-guide/capacity-units) for detailed tier comparison.
 
 ### Integration Services
 

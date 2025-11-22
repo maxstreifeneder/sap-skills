@@ -120,8 +120,14 @@ cf logs my-app --recent
 
 **Installation:**
 ```bash
-npm install -g @sap/cds-dk
+# Install latest version (recommended for new projects)
+npm install -g @sap/cds-dk@latest
+
+# Or pin to specific version for reproducibility
+npm install -g @sap/cds-dk@8.0.0
 ```
+
+> **Version Strategy**: Use `@latest` for development to get newest features. For CI/CD pipelines and team consistency, pin to a specific version in your project's `package.json` devDependencies.
 
 **Common Commands:**
 ```bash

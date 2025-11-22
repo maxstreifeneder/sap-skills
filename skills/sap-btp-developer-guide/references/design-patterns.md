@@ -79,14 +79,23 @@ Superior UX drives business value through:
 
 **When to Use**: Applications with 30+ use cases, complex domains
 
-**Complexity Score** (7+ points = use DDD):
+**Recommended Approach (SAP BTP/CAP):**
+1. **SAP One Domain Model**: Leverage SAP's standardized business data model for consistency across SAP solutions
+2. **CAP Domain Modeling**: Use CDS for human-readable, business-aligned domain models
+3. **Community Practices**: Apply EventStorming, bounded-context discovery for complex scenarios
 
-| Criterion | Points |
-|-----------|--------|
-| 30+ use cases | 2 |
-| Anticipated growth | 1 |
-| Significant future changes | 2 |
-| Novel domain | 2 |
+**Complexity Scoring Heuristic**:
+
+> **Note**: This scoring is a pragmatic heuristic to help decide when deeper DDD practices (EventStorming, bounded-context discovery) may provide value. Always validate triggers against domain expert input, non-functional requirements (performance, scalability), and team constraints before applying.
+
+| Criterion | Points | Consideration |
+|-----------|--------|---------------|
+| 30+ use cases | 2 | Scale indicator |
+| Anticipated growth | 1 | Future complexity |
+| Significant future changes | 2 | Maintainability needs |
+| Novel domain | 2 | Unknown complexity |
+
+**Score 7+ points**: Consider deeper DDD practices
 
 **DDD Process** (8 steps from ddd-crew):
 1. Align business goals
@@ -99,8 +108,9 @@ Superior UX drives business value through:
 8. Evolve architecture
 
 **Resources:**
+- SAP One Domain Model: https://api.sap.com/sap-one-domain-model
+- CAP Domain Modeling: https://cap.cloud.sap/docs/guides/domain-modeling
 - DDD Starter Modeling: https://github.com/ddd-crew/ddd-starter-modelling-process
-- SAP Community DDD Resources
 
 ## CAP Design Principles
 

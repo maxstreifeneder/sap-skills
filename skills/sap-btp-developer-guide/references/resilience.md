@@ -139,7 +139,10 @@ Automatic response to load:
 2. **Open**: Fail fast, skip calls
 3. **Half-Open**: Test recovery
 
-**Implementation (CAP):**
+**Implementation (CAP - Node.js):**
+
+> **Note**: The `opossum` library shown below is a third-party community package, not SAP-supported. Evaluate its maintenance status, compatibility with your CAP/Node.js versions, and security posture before production use. For Java applications, SAP Cloud SDK integrates with Resilience4j as the official resilience tooling.
+
 ```javascript
 const CircuitBreaker = require('opossum');
 

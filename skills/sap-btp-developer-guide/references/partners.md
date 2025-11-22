@@ -116,13 +116,13 @@ SAP BTP provides deployment options for partners (ISVs) to build and deliver ABA
 - Consistent UX across extended and core features
 - Secure multitenant architecture with data isolation
 
-## ABAP Partner Development
+## ABAP Sample Application
 
 ### Music Festival Manager
 
 **Type**: Reference application for multitenant ABAP SaaS
 
-**GitHub**: Partner Reference Application on GitHub
+**GitHub**: https://github.com/SAP-samples/abap-platform-partner-reference-application
 
 **Demonstrates:**
 - Full-stack ABAP Cloud development using RAP

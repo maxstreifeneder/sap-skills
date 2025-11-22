@@ -207,14 +207,26 @@ CAP supports microservice development with:
 - OpenAPI
 
 ### SAP Cloud SDK Integration
+
+**Generate typed client** (recommended approach):
+```bash
+# Generate OData client from service specification
+npx @sap-cloud-sdk/generator --input ./API_BUSINESS_PARTNER.edmx --outputDir ./generated
+```
+
+**Use generated client**:
 ```javascript
-const { BusinessPartner } = require('@sap/cloud-sdk-vdm-business-partner-service');
+// Import from generated client (path depends on generator output)
+const { businessPartnerApi } = require('./generated/business-partner-service');
 
 // Fetch business partners from S/4HANA
-const businessPartners = await BusinessPartner.requestBuilder()
+const businessPartners = await businessPartnerApi
+  .requestBuilder()
   .getAll()
   .execute({ destinationName: 'S4HANA' });
 ```
+
+> **Note**: The `@sap/cloud-sdk-vdm-*` packages are deprecated. Use `@sap-cloud-sdk/generator` to generate typed clients from OData service specifications. See [SAP Cloud SDK documentation](https://sap.github.io/cloud-sdk/docs/js/features/odata/generate-client) for details.
 
 ## Multitenancy
 

@@ -253,6 +253,15 @@ resources:
 | Discovery Center Missions | https://discovery-center.cloud.sap/ |
 | CAP External Services | https://cap.cloud.sap/docs/guides/using-services |
 
+## Related Skill Guides
+
+| Topic | Reference |
+|-------|-----------|
+| Design Patterns | `references/design-patterns.md` - DDD, modularization |
+| Security | `references/security.md` - Authentication, authorization |
+| Operations | `references/operations.md` - Scaling, monitoring |
+| Connectivity | `references/connectivity.md` - Remote services, destinations |
+
 ## Source Documentation
 
 - Extending SAP Solutions: https://github.com/SAP-docs/btp-developer-guide/blob/main/docs/extending-existing-sap-solutions-using-sap-btp-40aa232.md

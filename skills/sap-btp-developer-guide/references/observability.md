@@ -110,9 +110,13 @@ module.exports = (srv) => {
 ```
 
 ### Custom Metrics
+
+> **Note**: This snippet assumes a MeterProvider is already configured by the platform (e.g., SAP Cloud Logging SDK) or application bootstrap. When using SAP BTP services, the telemetry infrastructure typically provides this setup automatically.
+
 ```javascript
 const { metrics } = require('@opentelemetry/api');
 
+// Assumes MeterProvider is registered by SAP Cloud Logging or platform setup
 const meter = metrics.getMeter('my-app');
 const orderCounter = meter.createCounter('orders_created', {
   description: 'Number of orders created'

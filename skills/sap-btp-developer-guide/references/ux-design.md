@@ -96,15 +96,21 @@ Leverage Fiori Elements base with:
 
 ### Automatic Inheritance
 
-When using recommended approaches with OData V4 and internationalization:
+> **Note**: Automatic compliance applies specifically when using **SAP Fiori Elements** with recommended patterns, **OData V4** services with proper annotations, and **internationalization (i18n)** setup. Custom or Freestyle SAPUI5 applications require manual compliance verification.
 
-| Standard | Coverage |
-|----------|----------|
-| Accessibility (WCAG 2.2) | Automatic |
-| SAP Fiori Design Guidelines | Automatic |
-| Responsive Design | Automatic |
-| Performance Optimization | Automatic |
-| Security Protections | Automatic |
+**Prerequisites for automatic compliance:**
+1. Use SAP Fiori Elements floorplans
+2. Expose OData V4 services with proper UI annotations
+3. Enable internationalization (i18n) for all user-facing text
+4. Follow SAP Fiori design guidelines for customizations
+
+| Standard | Coverage | Requirement |
+|----------|----------|-------------|
+| Accessibility (WCAG 2.2) | Automatic | Fiori Elements + proper labels |
+| SAP Fiori Design Guidelines | Automatic | Standard floorplans |
+| Responsive Design | Automatic | Fiori Elements controls |
+| Performance Optimization | Automatic | OData V4 batching |
+| Security Protections | Automatic | XSUAA + CSRF tokens |
 
 ### Accessibility Requirements
 
