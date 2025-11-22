@@ -325,13 +325,13 @@ subjects:
 
 | Resource Type | Link |
 |---------------|------|
-| **GitHub** | https://github.com/SAP-archive/cap-distributed-resiliency (**Archived** - read-only since March 2025) |
+| **GitHub** | https://github.com/SAP-samples/cap-distributed-resiliency |
 
 ### Use Case 4: CAP Applications + Amazon Aurora Read Replica
 
 | Resource Type | Link |
 |---------------|------|
-| **GitHub** | https://github.com/SAP-archive/cap-distributed-resiliency (**Archived** - read-only since March 2025) |
+| **GitHub** | https://github.com/SAP-samples/cap-distributed-resiliency |
 
 ### Use Case 5: SAP Cloud Integration + Azure Traffic Manager
 
