@@ -1,0 +1,83 @@
+{
+  "_version": "1.52.0",
+  "sap.app": {
+    "id": "{{namespace}}.{{cardName}}",
+    "type": "card",
+    "title": "{{Card Title}}",
+    "subTitle": "{{Card Subtitle}}",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "{{OData Service URL}}",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "sap-icon://card"
+    }
+  },
+  "sap.card": {
+    "type": "List",
+    "designtime": "dt/configuration",
+    "configuration": {
+      "destinations": {
+        "myDestination": {
+          "name": "{{Destination Name}}"
+        }
+      },
+      "parameters": {
+        "maxItems": {
+          "value": 5,
+          "type": "integer",
+          "label": "Maximum Items"
+        }
+      }
+    },
+    "header": {
+      "title": "{{Card Title}}",
+      "subTitle": "{{Card Subtitle}}",
+      "icon": {
+        "src": "sap-icon://list"
+      },
+      "status": {
+        "text": "{= ${count} + ' items'}"
+      }
+    },
+    "content": {
+      "data": {
+        "request": {
+          "url": "{{destinations.myDestination}}/{{EntitySet}}",
+          "parameters": {
+            "$top": "{parameters>/maxItems/value}",
+            "$orderby": "{{OrderByField}} desc"
+          }
+        },
+        "path": "/d/results"
+      },
+      "item": {
+        "title": "{{{TitleField}}}",
+        "description": "{{{DescriptionField}}}",
+        "icon": {
+          "src": "sap-icon://product"
+        },
+        "actions": [
+          {
+            "type": "Navigation",
+            "parameters": {
+              "url": "{{Navigation URL}}/{{{IdField}}}"
+            }
+          }
+        ]
+      },
+      "maxItems": 5
+    }
+  }
+}
