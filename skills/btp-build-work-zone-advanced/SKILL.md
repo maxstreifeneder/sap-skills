@@ -43,7 +43,7 @@ Separate sections with dedicated pages and feeds for team communication and coll
 Customizable pages that can be configured with widgets, cards, and applications.
 
 ### UI Integration Cards
-Design patterns displaying concise information in limited-space containers. Follow SAPUI5 card specifications (version 1.87.0+).
+Design patterns displaying concise information in limited-space containers. Follow SAPUI5 card specifications (minimum version 1.87.0; newer versions supported and recommended for latest features).
 
 ### Content Packages
 Collections of artifacts (cards, workflows, workspace templates) bundled in ZIP files for distribution.

@@ -84,7 +84,9 @@ HTTP 503 Service Unavailable
 
 ### Overview
 
-SAP Build Work Zone uses OData v2 with v4 extensions.
+SAP Build Work Zone uses OData v2 protocol with support for OData v4 query syntax (e.g., advanced `$filter`, `$select` expressions).
+
+**Protocol**: OData v2 (with v4 query operator extensions)
 
 **Format**: XML (AtomPub) or JSON
 
@@ -172,6 +174,19 @@ https://<host-url>/api/v2/ai/webhook
 
 ## Chatbot API
 
+### Available Template Variables
+
+When configuring chatbot webhooks, the following template variables are available:
+
+| Variable | Description |
+|----------|-------------|
+| `{{participant_data.jamId}}` | Current user's Jam/Work Zone ID |
+| `{{participant_data.email}}` | Current user's email address |
+| `{{participant_data.firstName}}` | Current user's first name |
+| `{{participant_data.lastName}}` | Current user's last name |
+| `{{conversation_id}}` | Current conversation identifier |
+| `{{memory.variableName}}` | Custom memory variable from bot |
+
 ### Webhook Actions
 
 | Action | Description |
@@ -179,7 +194,7 @@ https://<host-url>/api/v2/ai/webhook
 | `perform_actions` | Execute platform actions |
 | `ui5_card` | Render UI Integration Cards |
 
-### Create Workspace
+### Create Workspace Example
 
 ```json
 {
@@ -193,7 +208,7 @@ https://<host-url>/api/v2/ai/webhook
 }
 ```
 
-### Render Card
+### Render Card Example
 
 ```json
 {

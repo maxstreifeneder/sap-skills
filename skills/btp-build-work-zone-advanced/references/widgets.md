@@ -29,56 +29,55 @@ Widgets are containers for various content types such as video, feeds, photos, a
 
 ---
 
-## Available Widget Types (24 Total)
+## Standard Widget Types (9 Official)
+
+The following widgets are officially documented in SAP Build Work Zone, advanced edition:
 
 ### Content Display Widgets
 
 | Widget | Description |
 |--------|-------------|
-| Image | Display single image |
-| Text | Rich text content |
-| Multimedia | Video and audio content |
-| Slideshow | Image carousel |
-| Poll | User voting/surveys |
-| Feed | Activity feeds |
+| Text | Rich text content display |
+| Image | Display single image with optional links |
+| Feed | Activity feeds from workspaces |
 | Content | Document/file display |
-| Forum | Discussion threads |
-| Knowledge Base | Knowledge articles |
+| Forum | Discussion threads and topics |
+| Knowledge Base | Knowledge articles and wikis |
 
-### Navigation & Discovery Widgets
-
-| Widget | Description |
-|--------|-------------|
-| Search | Search functionality |
-| People | User directory |
-| Workspaces | Workspace listings |
-| Action | Quick actions |
-| Recommendation | Suggested content |
-| Recent Items | Recently accessed items |
-| Tag Cloud | Popular tags display |
-
-### User Information Widgets
+### Interactive Widgets
 
 | Widget | Description |
 |--------|-------------|
-| Name | Display logged-in user's avatar/name |
+| Action | Quick action buttons |
+| Event | Calendar events display |
+| UI Integration Cards | SAPUI5-based data cards |
 
-### Data & Business Widgets
+---
 
-| Widget | Description |
+## Additional Widgets (Widget Builder/Custom)
+
+The following widgets may be available via Widget Builder or as custom extensions. Verify availability in your tenant:
+
+| Widget | Availability |
 |--------|-------------|
-| Business Record | External business data |
-| Event | Calendar events |
-| Notification | System notifications |
+| Multimedia | Custom/Widget Builder |
+| Slideshow | Custom/Widget Builder |
+| Poll | Custom/Widget Builder |
+| Search | Custom/Widget Builder |
+| People | Custom/Widget Builder |
+| Workspaces | Custom/Widget Builder |
+| Recommendation | Custom/Widget Builder |
+| Recent Items | Custom/Widget Builder |
+| Tag Cloud | Custom/Widget Builder |
+| Name | Custom/Widget Builder |
+| Business Record | Requires external integration |
+| Notification | Custom/Widget Builder |
+| Rotating Banner | Custom/Widget Builder |
+| Tool Content | Custom/Widget Builder |
+| External Content | Custom/Widget Builder |
+| Application Group | Custom/Widget Builder |
 
-### Interactive Elements
-
-| Widget | Description |
-|--------|-------------|
-| Rotating Banner | Animated banner display |
-| Tool Content | Embedded tools |
-| External Content | Third-party content |
-| Application Group | App collections |
+> **Note**: Widget availability depends on your SAP Build Work Zone edition and configuration. Check Administration Console → UI Integration for available widgets in your tenant.
 
 ---
 
@@ -195,5 +194,5 @@ Administrators can create custom HTML widgets:
 ---
 
 **Documentation Links**:
-- Widgets: https://help.sap.com/docs/build-work-zone-advanced-edition
+- Widgets: https://help.sap.com/docs/build-work-zone-advanced-edition/sap-build-work-zone-advanced-edition/about-widgets
 - GitHub: https://github.com/SAP-docs/btp-build-work-zone-advanced

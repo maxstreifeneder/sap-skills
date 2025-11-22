@@ -6,7 +6,7 @@
  *
  * Place this file at: dt/configuration.js in your card project
  *
- * Documentation: https://ui5.sap.com/test-resources/sap/ui/integration/demokit/cardExplorer/
+ * Documentation: https://ui5.sap.com/#/topic/5b46b03f024542ba802d99d67bc1a3f4
  */
 sap.ui.define(["sap/ui/integration/Designtime"], function (Designtime) {
     "use strict";
@@ -79,42 +79,31 @@ sap.ui.define(["sap/ui/integration/Designtime"], function (Designtime) {
                 },
 
                 // Context values available from SAP Build Work Zone
+                // Note: Verify these paths against your tenant's Host API using getContextValue()
+                // Available context keys may vary by Work Zone version and configuration
                 context: {
                     "sap.workzone": {
                         currentUser: {
                             id: {
                                 label: "Current User ID",
-                                description: "ID of the logged-in user"
+                                description: "Unique identifier of the logged-in user"
                             },
-                            name: {
-                                label: "Current User Name",
-                                description: "Name of the logged-in user"
+                            firstName: {
+                                label: "Current User First Name",
+                                description: "First name of the logged-in user"
+                            },
+                            lastName: {
+                                label: "Current User Last Name",
+                                description: "Last name of the logged-in user"
                             },
                             email: {
                                 label: "Current User Email",
-                                description: "Email of the logged-in user"
-                            }
-                        },
-                        currentCompany: {
-                            id: {
-                                label: "Company ID",
-                                description: "ID of the current company"
-                            },
-                            name: {
-                                label: "Company Name",
-                                description: "Name of the current company"
-                            }
-                        },
-                        currentWorkspace: {
-                            id: {
-                                label: "Workspace ID",
-                                description: "ID of the current workspace"
-                            },
-                            name: {
-                                label: "Workspace Name",
-                                description: "Name of the current workspace"
+                                description: "Email address of the logged-in user"
                             }
                         }
+                        // Note: currentCompany and currentWorkspace context values
+                        // should be verified against your tenant's Host API.
+                        // Use oHost.getContextValue("sap.workzone/...") to check availability.
                     }
                 }
             };

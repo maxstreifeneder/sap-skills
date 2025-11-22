@@ -105,4 +105,4 @@ Common issues and solutions for SAP Build Work Zone, advanced edition.
 
 **Documentation Links**:
 - Troubleshooting Guide: https://help.sap.com/docs/build-work-zone-advanced-edition
-- GitHub Issues: https://github.com/SAP-docs/btp-build-work-zone-advanced/issues
+- SAP Samples: https://github.com/SAP-samples/build-workzone-integration

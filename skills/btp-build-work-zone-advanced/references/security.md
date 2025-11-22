@@ -53,10 +53,36 @@ Key roles:
 
 ## HTTP Security Headers
 
-Configure security headers to protect against:
-- Clickjacking
-- Cross-site scripting (XSS)
-- Content injection
+Configure security headers to protect against common web vulnerabilities.
+
+### Recommended Headers
+
+| Header | Value | Protection |
+|--------|-------|------------|
+| X-Frame-Options | SAMEORIGIN | Clickjacking |
+| Content-Security-Policy | default-src 'self' | XSS, content injection |
+| X-Content-Type-Options | nosniff | MIME-type sniffing |
+| X-XSS-Protection | 1; mode=block | Cross-site scripting |
+| Strict-Transport-Security | max-age=31536000 | Protocol downgrade |
+
+### Example Configuration
+
+```
+X-Frame-Options: SAMEORIGIN
+Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+```
+
+### Configuration Location
+
+Security headers are typically configured at:
+- BTP Application Router (xs-app.json)
+- SAP Cloud Connector
+- Load balancer/reverse proxy level
+
+> **Note**: For API security including OAuth flows and token handling, see `references/api-reference.md`.
 
 ---
 
@@ -81,8 +107,10 @@ Security events logged include:
 - Content modifications
 - Administrative actions
 
+For detailed audit logging configuration, see `references/auditing.md`.
+
 ---
 
 **Documentation Links**:
-- Security Guide: https://help.sap.com/docs/build-work-zone-advanced-edition
+- Security Guide: https://help.sap.com/docs/build-work-zone-advanced-edition/sap-build-work-zone-advanced-edition/security
 - SAP Cloud Identity: https://help.sap.com/docs/cloud-identity-services

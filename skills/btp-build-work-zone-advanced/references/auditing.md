@@ -172,5 +172,5 @@ Location: Administration Console → Compliance & Security → Audit Reports
 ---
 
 **Documentation Links**:
-- Auditing: https://help.sap.com/docs/build-work-zone-advanced-edition
+- Auditing: https://help.sap.com/docs/build-work-zone-advanced-edition/sap-build-work-zone-advanced-edition/auditing-and-logging
 - GitHub: https://github.com/SAP-docs/btp-build-work-zone-advanced

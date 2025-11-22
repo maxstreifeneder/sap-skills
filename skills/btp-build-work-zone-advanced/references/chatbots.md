@@ -1,5 +1,7 @@
 # Chatbot Integration Guide
 
+> **⚠️ DEPRECATION NOTICE**: SAP Conversational AI entered maintenance/sunset mode as of January 2023. Functionality may be limited or deprecated. Verify current support status before implementing custom chatbots. See [SAP Product Availability Matrix](https://support.sap.com/en/release-upgrade-maintenance/maintenance-information/product-availability-matrix.html) for lifecycle details. Consider SAP Build Apps or other alternatives for new implementations.
+
 Complete guide for integrating and configuring chatbots in SAP Build Work Zone, advanced edition.
 
 **Source**: https://github.com/SAP-docs/btp-build-work-zone-advanced/tree/main/docs/50-Chatbots
@@ -42,6 +44,8 @@ Build independent chatbots using SAP Conversational AI platform:
 - URL: https://cai.tools.sap/
 - Custom training and intents
 - Organization-specific actions
+
+> **Note**: SAP Conversational AI is in maintenance mode since January 2023. Verify support status before starting new implementations.
 
 ---
 
@@ -99,6 +103,14 @@ Example: `https://dwpdev1.sapjam-integration.com/api/v2/ai/webhook`
 
 - Add OAuth token from Alias Account in Headers tab
 - Token must have appropriate scopes for desired actions
+
+### Available Template Variables
+
+| Variable | Description |
+|----------|-------------|
+| `{{participant_data.jamId}}` | Current user's Jam/Work Zone ID |
+| `{{participant_data.email}}` | Current user's email address |
+| `{{conversation_id}}` | Current conversation identifier |
 
 ### Payload Structure
 
@@ -210,6 +222,8 @@ Chatbots can render UI Integration Cards for enhanced user experiences.
 
 ## SAP Conversational AI Integration
 
+> **Note**: SAP Conversational AI entered maintenance mode in January 2023. This section is provided for existing implementations only.
+
 ### Connector Setup
 
 1. Access SAP Conversational AI platform
@@ -265,5 +279,5 @@ When chatbot cannot understand a request:
 
 **Documentation Links**:
 - Chatbots: https://help.sap.com/docs/build-work-zone-advanced-edition
-- SAP Conversational AI: https://cai.tools.sap/
+- SAP Conversational AI: https://cai.tools.sap/ (sunset/maintenance mode since Jan 2023)
 - GitHub: https://github.com/SAP-docs/btp-build-work-zone-advanced/tree/main/docs/50-Chatbots
