@@ -241,6 +241,63 @@ Immediate processing of all importable requests when new requests arrive.
 
 ---
 
+## Transport Request Details View
+
+### Header Section
+
+- Lifecycle status indicator
+- Transport request ID
+- Creation date and user
+- Content type
+- File size
+- Testing status (modifiable requests)
+- "Imports Failed" link (navigates to affected nodes)
+
+### Tabs
+
+**Tracking Tab** (default):
+- Landscape canvas with nodes and routes
+- Color-coded import status indicators
+- Node info: ID and forward mode
+- Context menu for node actions
+- "Test Nodes" frame (modifiable only)
+
+**Action Logs Tab**:
+- Reverse chronological action listing
+- Fields: node name, action type, user, status, last changed
+- Anonymized users for archived actions
+- Clickable rows open detailed logs
+- Covers deleted nodes
+
+**Content Tab**:
+- File details: URI, name, version, filename
+- Add/remove content (modifiable requests)
+- Rearrange files (multiple files)
+- Click file row to display MD5 hash
+- Module listing for `.mtar` files
+- Object metadata (software component, commit ID, branch)
+
+### Display Options in Import Queue
+
+**Request Fields Displayed**:
+- Transport Request ID
+- Mode (Final or Test)
+- Description
+- Owner
+- Status
+- Entry Node
+- Timestamp
+
+**Icons**:
+- **Paperclip**: Shows attached file names; for `.mtar` shows modules
+- **Log icon**: Opens log for request in current node
+
+**MTA Operation Logs**:
+- For MTA on Cloud Foundry: logs link to MTA deploy operation logs
+- **Expiry**: 3 days (no CF CLI access needed)
+
+---
+
 ## Modifiable Transport Requests
 
 Allow efficient management of multiple files in a single request.

@@ -272,13 +272,37 @@ cf space <space-name> --guid
 
 ## Support Resources
 
-### SAP Support
+### SAP Support Component
 
-For unresolved issues, contact SAP Support with:
-- Transport Action Logs
-- Destination configuration (redact secrets)
-- Error messages
-- Steps to reproduce
+**Component**: `BC-CP-LCM-TMS`
+
+Use for: Transport Management for application content
+
+### Required Information for Incidents
+
+When submitting SAP Support tickets, include:
+
+| Information | Details |
+|-------------|---------|
+| Environment | Region (EU10, US10, etc.) |
+| Account | Subaccount technical identifier |
+| URL | Complete URL where error occurs |
+| Reproduction | Exact steps triggering the issue |
+| Logs | Relevant transport action logs |
+| Evidence | Screenshots or screen recordings |
+
+### Pre-Incident Checks
+
+Before contacting support:
+1. Check SAP platform status
+2. Verify installed tool versions
+3. Review announced maintenance windows
+4. Search SAP Community for existing solutions
+
+### Community Resources
+
+- Search SAP Community posts tagged "SAP Cloud Transport Management"
+- Create discussion threads for peer assistance
 
 ### Documentation Links
 

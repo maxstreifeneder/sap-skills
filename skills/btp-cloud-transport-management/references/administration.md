@@ -15,6 +15,51 @@ Account administrators perform the following ongoing tasks:
 5. Plan backup strategy
 6. Manage storage space
 7. Update service plan
+8. Monitor service activities
+
+---
+
+## Monitoring
+
+### Home Screen Dashboard
+
+Provides overview of:
+- All imports (pie chart with selectable time intervals)
+- Pending transports (Top n Nodes with importable requests)
+- Storage usage (capacity and consumption)
+- Deactivated import schedules
+
+### Activity Logs
+
+| Log Type | Purpose |
+|----------|---------|
+| Transport Action Logs | Track all transport operations |
+| Landscape Action Logs | Detect configuration changes |
+| Audit Logs | Security monitoring |
+
+### Alert Notifications
+
+Configure SAP Alert Notification Service for:
+- Service actions (import start/finish, request added)
+- Storage threshold warnings (85% quota)
+
+### API-Based Monitoring
+
+**API Endpoint**: https://api.sap.com/api/TMS_v2/overview
+
+Use for:
+- Custom monitoring scripts
+- Automated transport log retrieval
+- Integration with external monitoring tools
+
+### Recommended Practices
+
+Regularly review:
+1. Home screen dashboard
+2. Transport action logs
+3. Landscape action logs
+4. Audit logs
+5. Storage quota
 
 ---
 

@@ -222,8 +222,8 @@
 ## Extraction Summary
 
 - **Total Files in Documentation**: ~67 files
-- **Files Extracted**: 58 files (87%)
-- **Files Skipped**: 9 files (deprecated, accessibility, release notes)
+- **Files Extracted**: 63 files (94%)
+- **Files Skipped**: 4 files (deprecated, accessibility, release notes only)
 - **Coverage**: Comprehensive for all functionality
 - **Last Updated**: 2025-11-22
 
@@ -251,13 +251,21 @@ Additional content extracted and integrated:
 | Customer Data Export | administration.md | Export functions, decommissioning |
 | Home Screen Features | administration.md | Import overview, top nodes, storage |
 
+## Final Coverage (Third Pass)
+
+| Topic | Reference File | Content Added |
+|-------|---------------|---------------|
+| Transport Request Details View | import-operations.md | Header, Tracking/Action Logs/Content tabs |
+| Display Options | import-operations.md | Mode indicator, icons, MTA logs (3-day expiry) |
+| Monitoring | administration.md | Dashboard, logs, API monitoring endpoint |
+| SAP Support Component | troubleshooting.md | BC-CP-LCM-TMS, incident requirements |
+| General Troubleshooting | troubleshooting.md | Pre-incident checks, community resources |
+
 ### Files Remaining Unextracted
 
 | File | Reason |
 |------|--------|
-| what-s-new-for-sap-cloud-transport-management-85b6ac3.md | Release notes - dynamic content |
-| accessibility-features-in-sap-cloud-transport-management-88e3f99.md | Accessibility - not core functionality |
-| deprecated-creating-destinations-for-deployment-of-references-of-sap-btp-abap-environment-14c6bcd.md | Deprecated |
-| data-protection-and-privacy-a2749d5.md | Legal/compliance - not technical |
-| options-to-display-information-about-transport-requests-a90d808.md | UI navigation - covered elsewhere |
-| displaying-details-of-transport-requests-0415f2f.md | UI navigation - covered elsewhere |
+| what-s-new-for-sap-cloud-transport-management-85b6ac3.md | Release notes - dynamic/versioned content |
+| accessibility-features-in-sap-cloud-transport-management-88e3f99.md | Accessibility features - standard SAP UI |
+| deprecated-creating-destinations-*.md | Deprecated functionality |
+| data-protection-and-privacy-a2749d5.md | Tenant isolation noted; rest is legal text |
