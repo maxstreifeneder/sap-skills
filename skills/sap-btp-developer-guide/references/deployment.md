@@ -194,6 +194,36 @@ serviceBindings:
 
 ### Terraform for Kyma
 
+**Purpose**: Automate Kyma cluster provisioning via CI/CD pipelines for resource creation, deployment, testing, and teardown.
+
+**Key Resources:**
+- Terraform Provider for SAP BTP: `SAP/btp`
+- Terraform Module for Kyma: `github.com/kyma-project/terraform-module`
+
+#### Prerequisites
+
+1. Terraform CLI on CI worker agents
+2. Admin access (subaccount or global account level)
+3. Dedicated Identity Authentication tenant
+4. Technical user account
+
+#### Variables File (.tfvars)
+
+```hcl
+# .tfvars - Store securely, use credential management
+BTP_BOT_USER              = "technical-user@example.com"
+BTP_BOT_PASSWORD          = "***"
+BTP_GLOBAL_ACCOUNT        = "global-account-subdomain"
+BTP_BACKEND_URL           = "https://cpcli.cf.sap.hana.ondemand.com"
+BTP_CUSTOM_IAS_TENANT     = "custom-ias-tenant"
+BTP_NEW_SUBACCOUNT_NAME   = "my-subaccount"
+BTP_NEW_SUBACCOUNT_REGION = "eu10"
+BTP_KYMA_PLAN             = "azure"
+BTP_KYMA_REGION           = "westeurope"
+```
+
+#### main.tf Configuration
+
 ```hcl
 # main.tf
 terraform {
@@ -208,13 +238,13 @@ provider "btp" {
   globalaccount = var.globalaccount
 }
 
-# Create Kyma environment
+# Create Kyma environment using official module
 module "kyma" {
-  source = "github.com/SAP/terraform-module-kyma"
+  source = "git::https://github.com/kyma-project/terraform-module.git?ref=v0.3.1"
 
   subaccount_id = var.subaccount_id
-  cluster_name  = "my-cluster"
-  region        = "eu-central-1"
+  cluster_name  = var.BTP_NEW_SUBACCOUNT_NAME
+  region        = var.BTP_KYMA_REGION
 
   administrators = [
     "admin@example.com"
@@ -226,7 +256,33 @@ output "kubeconfig" {
   value     = module.kyma.kubeconfig
   sensitive = true
 }
+
+output "cluster_id" {
+  value = module.kyma.cluster_id
+}
+
+output "domain" {
+  value = module.kyma.domain
+}
 ```
+
+#### Execution Commands
+
+```bash
+# Initialize Terraform
+terraform init
+
+# Apply configuration
+terraform apply -var-file=.tfvars -auto-approve
+
+# Retrieve outputs
+terraform output -raw cluster_id
+
+# Destroy resources when done
+terraform destroy -var-file=.tfvars -auto-approve
+```
+
+**Security Recommendation**: Use credential management systems (e.g., HashiCorp Vault) for sensitive variables
 
 ## ABAP Deployment
 
