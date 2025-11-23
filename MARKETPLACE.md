@@ -16,7 +16,7 @@ Welcome to the **sap-skills** marketplace - a curated collection of production-t
 
 ```bash
 # Install a single skill
-/plugin install skill-review@sap-skills
+/plugin install sap-cap-capire@sap-skills
 ```
 
 **Step 3: Use the skills**
@@ -24,65 +24,95 @@ Welcome to the **sap-skills** marketplace - a curated collection of production-t
 Once installed, Claude Code automatically discovers and uses skills when relevant:
 
 ```
-User: "Review my SAP CAP skill"
-Claude: [Automatically uses skill-review skill]
+User: "Create a new CAP service with Node.js"
+Claude: [Automatically uses sap-cap-capire skill]
 ```
 
 ---
 
-## Available Skills (1)
+## Available Skills (31)
 
-### Tooling & Development
+### SAP ABAP (2 skills)
 
 | Skill | Description |
 |-------|-------------|
-| `skill-review` | Comprehensive 14-phase audit process for skill quality assurance |
+| `sap-abap` | Comprehensive ABAP development for SAP systems including ABAP SQL, OOP, RAP, CDS views, EML statements, and ABAP Cloud |
+| `sap-abap-cds` | SAP ABAP CDS (Core Data Services) for data modeling, view development, annotations, associations, and access control |
 
----
+### SAP AI & Machine Learning (3 skills)
 
-## 🚧 Coming Soon - SAP Skills
-
-### SAP Cloud Application Programming Model (CAP)
 | Skill | Description |
 |-------|-------------|
-| `sap-cap-nodejs` | CAP with Node.js runtime |
-| `sap-cap-java` | CAP with Java runtime |
-| `sap-cap-cds` | CDS modeling, entities, services |
-| `sap-cap-fiori` | Fiori Elements integration with CAP |
+| `sap-ai-core` | SAP AI Core and AI Launchpad for enterprise AI/ML workloads, generative AI models (GPT, Claude, Gemini), RAG, embeddings, and orchestration |
+| `sap-cloud-sdk-ai` | SAP Cloud SDK for AI integration with JavaScript/TypeScript and Java - chat completion, embeddings, streaming, function calling |
+| `sap-hana-ml` | SAP HANA Machine Learning Python Client (hana-ml) for in-database ML capabilities |
 
-### SAP Fiori & UI5
+### SAP Analytics Cloud (3 skills)
+
 | Skill | Description |
 |-------|-------------|
-| `sap-fiori-elements` | Fiori Elements applications |
-| `sap-ui5-freestyle` | Freestyle UI5 development |
-| `sap-fiori-launchpad` | FLP configuration and tiles |
+| `sap-sac-custom-widget` | SAC Custom Widget development with Web Components, JSON metadata, lifecycle functions, and Widget Add-Ons |
+| `sap-sac-planning` | SAC planning applications including data actions, multi actions, version management, and planning workflows |
+| `sap-sac-scripting` | SAC scripting for Analytics Designer and Optimized Story Experience - DataSource API, widgets, events, debugging |
 
-### SAP Business Technology Platform (BTP)
+### SAP BTP Platform (14 skills)
+
 | Skill | Description |
 |-------|-------------|
-| `sap-btp-setup` | Account setup, subaccounts, entitlements |
-| `sap-cloud-foundry` | CF deployment, services, bindings |
-| `sap-kyma` | Kubernetes runtime on BTP |
+| `sap-btp-best-practices` | BTP best practices for enterprise cloud architecture, account management, security, deployment, and operations |
+| `sap-btp-build-work-zone-advanced` | SAP Build Work Zone advanced edition - workspaces, UI Integration Cards, content packages, Microsoft 365 integration |
+| `sap-btp-business-application-studio` | SAP Business Application Studio (BAS) cloud IDE - dev spaces, MTA deployment, Git, runtime configuration |
+| `sap-btp-cias` | SAP BTP Cloud Integration Automation Service for guided integration workflows and scenario execution |
+| `sap-btp-cloud-logging` | SAP Cloud Logging service - log ingestion, OpenTelemetry observability, metrics, and traces |
+| `sap-btp-cloud-platform` | Comprehensive BTP reference for Cloud Foundry, Kyma, ABAP environment, services, and deployment |
+| `sap-btp-cloud-transport-management` | Cloud Transport Management for transport landscapes, import queues, MTA deployment, and change management |
+| `sap-btp-connectivity` | BTP Connectivity including Destination Service, Cloud Connector, Connectivity Proxy, and principal propagation |
+| `sap-btp-developer-guide` | BTP application development using CAP (Node.js/Java) or ABAP Cloud with CI/CD and observability |
+| `sap-btp-integration-suite` | SAP Integration Suite - Cloud Integration (iFlows), API Management, Event Mesh, Edge Integration Cell |
+| `sap-btp-intelligent-situation-automation` | BTP Intelligent Situation Automation for situation-based automation between S/4HANA and BTP |
+| `sap-btp-job-scheduling` | BTP Job Scheduling Service for scheduled jobs development, configuration, and operations |
+| `sap-btp-master-data-integration` | SAP Master Data Integration (MDI) service - tenant setup, distribution models, SOAP APIs, ODM integration |
+| `sap-btp-service-manager` | SAP Service Manager - service instances, bindings, brokers across Cloud Foundry, Kyma, and Kubernetes |
 
-### SAP ABAP
+### SAP CAP (1 skill)
+
 | Skill | Description |
 |-------|-------------|
-| `sap-abap-cloud` | ABAP Cloud, RAP model |
-| `sap-abap-classic` | Classic ABAP patterns |
-| `sap-abap-cds` | ABAP CDS views |
+| `sap-cap-capire` | SAP Cloud Application Programming Model (CAP) - CDS models, services, HANA/SQLite/PostgreSQL, BTP deployment |
 
-### SAP Integration
+### SAP Datasphere (1 skill)
+
 | Skill | Description |
 |-------|-------------|
-| `sap-integration-suite` | Integration Suite, Cloud Platform Integration |
-| `sap-odata` | OData service development |
-| `sap-api-hub` | SAP Business Accelerator Hub integration |
+| `sap-datasphere` | SAP Datasphere for data warehousing - analytic models, data flows, replication flows, remote tables |
 
-### SAP HANA
+### SAP Fiori & SAPUI5 (4 skills)
+
 | Skill | Description |
 |-------|-------------|
-| `sap-hana-cloud` | HANA Cloud development |
-| `sap-hana-db` | HANA database, procedures, calc views |
+| `sap-fiori-tools` | SAP Fiori tools for VS Code and BAS - Fiori Elements generation, Page Editor, annotations, deployment |
+| `sapui5` | SAPUI5 development including freestyle apps, Fiori Elements, custom controls, MDC, OData, and TypeScript |
+| `sapui5-cli` | UI5 Tooling CLI (@ui5/cli) - project initialization, ui5.yaml configuration, builds, and dev server |
+| `sapui5-linter` | UI5 Linter (@ui5/linter) for static code analysis - 19 linting rules, autofix, configuration patterns |
+
+### SAP HANA (2 skills)
+
+| Skill | Description |
+|-------|-------------|
+| `sap-hana-cli` | SAP HANA Developer CLI (hana-cli) - database connections, object inspection, HDI containers, SQL execution |
+| `sap-hana-cloud-data-intelligence` | SAP Data Intelligence Cloud - pipelines, ABAP/S4HANA integration, ML scenarios, replication flows |
+
+### SAP API (1 skill)
+
+| Skill | Description |
+|-------|-------------|
+| `sap-api-style` | SAP API Style Guide standards for REST, OData, Java, JavaScript, .NET, and C/C++ API documentation |
+
+### Tooling & Development (1 skill)
+
+| Skill | Description |
+|-------|-------------|
+| `skill-review` | Comprehensive 14-phase audit process for skill quality assurance and documentation review |
 
 ---
 
@@ -110,7 +140,7 @@ Claude: [Automatically uses skill-review skill]
 
 ```bash
 # Update single skill
-/plugin update skill-review@sap-skills
+/plugin update sap-cap-capire@sap-skills
 
 # Update all skills from marketplace
 /plugin update-all@sap-skills
@@ -125,7 +155,7 @@ Claude: [Automatically uses skill-review skill]
 ### Remove Skills
 
 ```bash
-/plugin uninstall skill-review@sap-skills
+/plugin uninstall sap-cap-capire@sap-skills
 ```
 
 ---
@@ -189,7 +219,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-**Last Updated**: 2025-11-21
-**Marketplace Version**: 1.0.0
-**Skills**: 1
+**Last Updated**: 2025-11-23
+**Marketplace Version**: 2.0.0
+**Skills**: 31
 **Maintainer**: SAP Skills Maintainers
