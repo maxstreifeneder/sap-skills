@@ -135,6 +135,14 @@ This skill provides complete guidance for SQLScript development, including:
 - lateral join
 - JSON functions
 - query hints
+- APPLY_FILTER
+- ARRAY_AGG
+- TRIM_ARRAY
+- CE functions
+- CONTINUE HANDLER
+- Code Analyzer
+- Plan Profiler
+- Pragmas
 
 ### Error Handling
 - SQL_ERROR_CODE

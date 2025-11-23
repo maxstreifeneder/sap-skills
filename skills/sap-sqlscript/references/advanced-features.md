@@ -466,3 +466,284 @@ EXECUTE IMMEDIATE 'SELECT * FROM TABLE WHERE id = ?' USING :user_id;
 | Code location | In ABAP class | Separate DB object |
 | Version control | ABAP repository | Separate tracking |
 | Transport | With ABAP objects | Separate transport |
+
+---
+
+## APPLY_FILTER Function
+
+Dynamic filtering function that applies a filter string to a table, table variable, or view at runtime.
+
+### Syntax
+
+```sql
+APPLY_FILTER(<dataset>, <filter_string>)
+```
+
+### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| `<dataset>` | Table, view, calculation view, or table variable |
+| `<filter_string>` | WHERE clause condition as string |
+
+### Example
+
+```sql
+CREATE PROCEDURE dynamic_filter (
+  IN iv_filter NVARCHAR(500),
+  OUT et_result TABLE (id INTEGER, name NVARCHAR(100))
+)
+LANGUAGE SQLSCRIPT AS
+BEGIN
+  et_result = APPLY_FILTER("CUSTOMERS", :iv_filter);
+END;
+
+-- Call with dynamic filter
+CALL dynamic_filter('country = ''US'' AND status = ''ACTIVE''', ?);
+```
+
+### Use Cases
+
+- User-defined search criteria
+- Dynamic report filtering
+- Configurable data extraction
+
+> **Note:** Prefer APPLY_FILTER over dynamic SQL with 'IN' clauses for better performance and security.
+
+---
+
+## Array Functions
+
+### ARRAY_AGG
+
+Aggregates column values into an array:
+
+```sql
+DECLARE arr_ids INTEGER ARRAY;
+
+-- Convert table column to array
+arr_ids = ARRAY_AGG(:lt_data.id ORDER BY id ASC);
+
+-- With ordering
+arr_names = ARRAY_AGG(:lt_employees.name ORDER BY name DESC);
+```
+
+> **Note:** ARRAY_AGG overwrites existing array contents; it doesn't append.
+
+### TRIM_ARRAY
+
+Removes elements from the end of an array:
+
+```sql
+DECLARE arr INTEGER ARRAY := ARRAY(1, 2, 3, 4, 5);
+
+-- Remove last 2 elements
+arr = TRIM_ARRAY(:arr, 2);
+-- Result: ARRAY(1, 2, 3)
+```
+
+### Array Concatenation
+
+Combine two arrays using CONCAT or ||:
+
+```sql
+DECLARE arr1 INTEGER ARRAY := ARRAY(1, 2, 3);
+DECLARE arr2 INTEGER ARRAY := ARRAY(4, 5, 6);
+
+-- Concatenate arrays
+arr_combined = :arr1 || :arr2;
+-- Result: ARRAY(1, 2, 3, 4, 5, 6)
+```
+
+### CARDINALITY
+
+Get the number of elements in an array:
+
+```sql
+DECLARE arr INTEGER ARRAY := ARRAY(10, 20, 30);
+DECLARE lv_count INTEGER;
+
+lv_count = CARDINALITY(:arr);
+-- Result: 3
+
+-- Check if array is empty
+IF CARDINALITY(:arr) = 0 THEN
+  -- Array is empty
+END IF;
+```
+
+---
+
+## CONTINUE HANDLER
+
+Unlike EXIT HANDLER which terminates execution, CONTINUE HANDLER allows execution to continue after handling the exception.
+
+### Syntax
+
+```sql
+DECLARE CONTINUE HANDLER FOR <condition>
+  <statement>;
+```
+
+### Example
+
+```sql
+CREATE PROCEDURE process_with_continue ()
+LANGUAGE SQLSCRIPT AS
+BEGIN
+  DECLARE lv_errors INTEGER := 0;
+
+  -- Continue processing even after errors
+  DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+  BEGIN
+    lv_errors := :lv_errors + 1;
+    -- Log error but continue
+    INSERT INTO "ERROR_LOG" VALUES (::SQL_ERROR_CODE, ::SQL_ERROR_MESSAGE);
+  END;
+
+  -- These will all be attempted even if some fail
+  INSERT INTO "TABLE1" VALUES (1, 'A');
+  INSERT INTO "TABLE2" VALUES (2, 'B');  -- May fail
+  INSERT INTO "TABLE3" VALUES (3, 'C');  -- Still executed
+
+  -- Check total errors
+  IF :lv_errors > 0 THEN
+    SELECT :lv_errors || ' errors occurred' FROM DUMMY;
+  END IF;
+END;
+```
+
+### EXIT vs CONTINUE Handler
+
+| Feature | EXIT HANDLER | CONTINUE HANDLER |
+|---------|--------------|------------------|
+| After handling | Execution stops | Execution continues |
+| Use case | Critical errors | Recoverable errors |
+| Subsequent code | Not executed | Executed |
+
+---
+
+## CE Functions (Calculation Engine)
+
+> **Deprecation Notice:** CE Functions are legacy features. SAP recommends using standard SQL instead for new development.
+
+CE Functions provide direct access to the HANA Calculation Engine:
+
+### Common CE Functions
+
+| Function | Purpose |
+|----------|---------|
+| `CE_PROJECTION` | Select/rename columns, apply filters |
+| `CE_JOIN` | Join tables |
+| `CE_LEFT_OUTER_JOIN` | Left outer join |
+| `CE_UNION_ALL` | Union tables |
+| `CE_COLUMN_TABLE` | Access column table |
+| `CE_CALC` | Calculated columns |
+| `CE_AGGREGATION` | Aggregate data |
+
+### CE_PROJECTION Example
+
+```sql
+-- Restrict columns and apply filter
+lt_filtered = CE_PROJECTION(
+  :lt_products,
+  ["PRODUCTID", "PRICE", "NAME"],
+  '"PRICE" > 50'
+);
+```
+
+> **Recommendation:** Use standard SQL SELECT statements instead of CE functions for better maintainability and optimizer support.
+
+---
+
+## SQLScript Analysis Tools
+
+### SQLScript Code Analyzer
+
+Identifies code quality, security, and performance issues.
+
+**Analysis Procedures:**
+
+```sql
+-- Analyze existing objects
+CALL SYS.ANALYZE_SQLSCRIPT_OBJECTS('SCHEMA_NAME', 'PROCEDURE_NAME', NULL);
+
+-- Analyze source code before creation
+CALL SYS.ANALYZE_SQLSCRIPT_DEFINITION('<source_code>');
+```
+
+**Common Analysis Rules:**
+
+| Rule | Description |
+|------|-------------|
+| `UNCHECKED_SQL_INJECTION_SAFETY` | Potential SQL injection vulnerability |
+| `USE_OF_DYNAMIC_SQL` | Dynamic SQL detected |
+| `UNNECESSARY_VARIABLE` | Variable declared but not used |
+| `UNUSED_PARAMETER` | Parameter not used in procedure |
+
+### SQLScript Plan Profiler
+
+Performance profiling for SQLScript execution.
+
+**Enable Profiling:**
+
+```sql
+ALTER SYSTEM ALTER CONFIGURATION ('indexserver.ini', 'SYSTEM')
+SET ('sqlscript', 'plan_profiler_enabled') = 'true';
+```
+
+**View Results:**
+
+```sql
+SELECT * FROM M_SQLSCRIPT_PLAN_PROFILER_RESULTS
+WHERE PROCEDURE_NAME = 'MY_PROCEDURE';
+```
+
+### SQLScript Code Coverage
+
+Tracks which statements are executed during testing.
+
+```sql
+-- Enable code coverage
+ALTER SYSTEM ALTER CONFIGURATION ('indexserver.ini', 'SYSTEM')
+SET ('sqlscript', 'code_coverage') = 'true';
+
+-- View coverage results
+SELECT * FROM M_SQLSCRIPT_CODE_COVERAGE_RESULTS;
+```
+
+---
+
+## SQLScript Pragmas
+
+Compiler directives that control SQLScript behavior.
+
+### Syntax
+
+```sql
+DO
+BEGIN
+  PRAGMA <pragma_name> = <value>;
+  -- Code affected by pragma
+END;
+```
+
+### Common Pragmas
+
+| Pragma | Purpose |
+|--------|---------|
+| `AUTONOMOUS_TRANSACTION` | Execute in separate transaction |
+| `SUPPRESS_WARNINGS` | Suppress specific warnings |
+
+### Example
+
+```sql
+CREATE PROCEDURE autonomous_logging (IN iv_message NVARCHAR(500))
+LANGUAGE SQLSCRIPT AS
+BEGIN
+  PRAGMA AUTONOMOUS_TRANSACTION = ON;
+
+  -- This INSERT commits independently
+  INSERT INTO "AUDIT_LOG" (message, logged_at)
+  VALUES (:iv_message, CURRENT_TIMESTAMP);
+END;

@@ -2,10 +2,11 @@
 
 ## Overview
 
-SAP HANA SQLScript provides three primary mechanisms for exception handling:
+SAP HANA SQLScript provides four primary mechanisms for exception handling:
 1. **EXIT HANDLER** - Handle exceptions and suspend execution
-2. **CONDITION** - Define named conditions for error codes
-3. **SIGNAL/RESIGNAL** - Throw and re-throw exceptions
+2. **CONTINUE HANDLER** - Handle exceptions and continue execution
+3. **CONDITION** - Define named conditions for error codes
+4. **SIGNAL/RESIGNAL** - Throw and re-throw exceptions
 
 ---
 
