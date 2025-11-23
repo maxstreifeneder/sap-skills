@@ -494,7 +494,7 @@ cast(amount as abap.curr(15,2)) as FormattedAmount
 
 ## Documentation Links
 
-- **SAP Help - SQL Expressions**: https://help.sap.com/doc/abapdocu_cp_index_htm/CLOUD/en-US/abencds_sql_expr.html
+- **ABAP Keyword Documentation — CDS DDL: CDS View Entity, sql_functions**: https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abencds_f1_builtin_functions.htm
 - **Discovering ABAP - Expressions**: https://discoveringabap.com/2021/10/13/exploring-abap-on-hana-7-expressions-operations-in-cds-views/
 
 **Last Updated**: 2025-11-23

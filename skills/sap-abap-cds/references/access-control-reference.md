@@ -2,7 +2,7 @@
 
 Complete reference for implementing access control in ABAP CDS using DCL (Data Control Language).
 
-**Source**: https://help.sap.com/doc/abapdocu_750_index_htm/7.50/en-US/abencds_authorizations.htm
+**Source**: https://help.sap.com/doc/abapdocu_latest_index_htm/latest/en-US/abencds_authorizations.htm
 
 ---
 
