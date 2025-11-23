@@ -1,15 +1,15 @@
 ---
 name: SAPUI5 Development
 description: |
-  This skill should be used when developing SAP UI5 applications, including creating freestyle apps, Fiori Elements apps, custom controls, testing, data binding, OData integration, routing, and troubleshooting. Use when building enterprise web applications with SAP UI5 framework, implementing MVC patterns, configuring manifest.json, creating XML views, writing controllers, setting up data models (JSON, OData v2/v4), implementing responsive UI with sap.m controls, building List Report or Object Page applications with Fiori Elements, writing unit tests with QUnit, integration tests with OPA5, setting up mock servers, handling security (XSS, CSP), optimizing performance, implementing accessibility features, or debugging UI5 applications.
+  This skill should be used when developing SAP UI5 applications, including creating freestyle apps, Fiori Elements apps, custom controls, testing, data binding, OData integration, routing, and troubleshooting. Use when building enterprise web applications with SAP UI5 framework, implementing MVC patterns, configuring manifest.json, creating XML views, writing controllers, setting up data models (JSON, OData v2/v4), implementing responsive UI with sap.m controls, building List Report or Object Page applications with Fiori Elements, writing unit tests with QUnit, integration tests with OPA5, setting up mock servers, handling security (XSS, CSP), optimizing performance, implementing accessibility features, or debugging UI5 applications. Also use when working with sap.ui.mdc (Metadata-Driven Controls) including MDC Table, MDC FilterBar, MDC Value Help, control delegates, PropertyInfo, TypeMap, VariantManagement, or developing TypeScript control libraries with @ui5/ts-interface-generator.
 license: MIT
 metadata:
-  version: 1.2.0
-  last_updated: 2025-11-21
+  version: 1.3.0
+  last_updated: 2025-11-22
   framework_version: "1.120.0+"
   documentation_source: https://github.com/SAP-docs/sapui5
   documentation_files_analyzed: 1416
-  reference_files: 10
+  reference_files: 11
   status: production
 ---
 
@@ -63,6 +63,8 @@ Use this skill when working on tasks involving:
 - Implementing draft handling
 - Configuring Flexible Column Layout
 - Building building blocks
+- Using Metadata-Driven Controls (sap.ui.mdc)
+- Developing TypeScript control libraries
 
 **Security & Performance**:
 - Implementing XSS prevention
@@ -354,6 +356,43 @@ Build applications without JavaScript UI code using OData annotations.
 - `@UI.FieldGroup`: Grouped fields
 
 **Reference**: See `references/fiori-elements.md` for comprehensive Fiori Elements guide.
+
+---
+
+## Metadata-Driven Controls (MDC)
+
+The sap.ui.mdc library provides metadata-driven controls for building dynamic UIs at runtime. Instead of explicitly defining every control, MDC allows configuration and modification based on provided metadata.
+
+### Key Controls
+
+- **MDC Table**: Data display in tabular format with dynamic columns based on metadata
+- **MDC FilterBar**: User interface for complex filter conditions with PropertyInfo
+- **MDC Value Help**: Assisted data input with suggestions based on metadata
+
+### Key Concepts
+
+- **Delegates**: Implement service or application-specific behavior (custom control creation, metadata provision, data binding)
+- **PropertyInfo**: Define metadata for controls (visibility, data type, control settings)
+- **TypeMap**: Add custom types when standard types are insufficient
+- **VariantManagement**: Save and load user personalization settings
+
+### Quick Example
+
+```xml
+<mdc:Table
+    id="mdcTable"
+    delegate='{name: "my/app/delegate/TableDelegate", payload: {}}'
+    p13nMode="Sort,Filter,Column"
+    type="ResponsiveTable">
+    <mdc:columns>
+        <mdcTable:Column propertyKey="name" header="Name">
+            <Text text="{name}"/>
+        </mdcTable:Column>
+    </mdc:columns>
+</mdc:Table>
+```
+
+**Reference**: See `references/mdc-typescript-advanced.md` for comprehensive MDC guide with TypeScript, delegates, and control library development.
 
 ---
 
@@ -716,7 +755,7 @@ Built-in quality checker:
 
 ## Bundled Reference Files
 
-This skill includes comprehensive reference documentation (10 files):
+This skill includes comprehensive reference documentation (11 files):
 
 1. **references/glossary.md**: Complete SAPUI5 terminology and concepts (100+ terms)
 2. **references/core-architecture.md**: Framework architecture, components, MVC, bootstrapping, modules
@@ -728,8 +767,9 @@ This skill includes comprehensive reference documentation (10 files):
 8. **references/performance-optimization.md**: Performance best practices, async loading, optimization techniques
 9. **references/accessibility.md**: WCAG 2.1 compliance, screen readers, ARIA, keyboard navigation, high contrast
 10. **references/security.md**: XSS prevention, CSP, clickjacking, authentication, CSRF, secure coding practices
+11. **references/mdc-typescript-advanced.md**: Metadata-Driven Controls (sap.ui.mdc), TypeScript control library development, delegates, PropertyInfo
 
-**Access these files** for detailed information on specific topics while keeping the main skill concise. Total reference documentation: ~180KB covering all major SAPUI5 topics including enterprise requirements (accessibility, security).
+**Access these files** for detailed information on specific topics while keeping the main skill concise. Total reference documentation: ~190KB covering all major SAPUI5 topics including enterprise requirements (accessibility, security).
 
 ---
 

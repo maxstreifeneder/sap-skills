@@ -66,6 +66,12 @@ view model, json model, device model, app model, local storage, session storage,
 ### Custom Controls
 custom control, control development, control renderer, control metadata, control properties, control events, control aggregations, sap.ui.core.Control, composite control
 
+### Metadata-Driven Controls (MDC)
+sap.ui.mdc, mdc controls, mdc table, mdc filterbar, mdc value help, metadata-driven controls, control delegates, PropertyInfo, TypeMap, VariantManagement, mdc personalization, p13nMode, mdc delegate
+
+### TypeScript Control Libraries
+control library typescript, ts-interface-generator, @ui5/ts-interface-generator, ui5-tooling-transpile, typescript control library, library.ts, enum registration, ObjectPath, TypeScript UI5 library
+
 ### APF (Analysis Path Framework)
 apf, analysis path framework, apf configuration, apf modeler, analysis step, apf representation, smart filter bar apf
 
@@ -168,6 +174,7 @@ sap gateway, sap netweaver, sap s/4hana, sap btp, sap cloud platform, sap fiori 
 8. **performance-optimization.md**: Performance best practices and optimization
 9. **accessibility.md**: WCAG 2.1 compliance, screen readers, ARIA, keyboard navigation
 10. **security.md**: XSS prevention, CSP, authentication, CSRF, secure coding
+11. **mdc-typescript-advanced.md**: Metadata-Driven Controls (sap.ui.mdc), TypeScript control library development
 
 ## Official Documentation
 
@@ -177,10 +184,18 @@ sap gateway, sap netweaver, sap s/4hana, sap btp, sap cloud platform, sap fiori 
 
 ## Version
 
-- **Skill Version**: 1.2.0
+- **Skill Version**: 1.3.0
 - **Minimum UI5 Version**: 1.120.0
-- **Last Updated**: 2025-11-21
+- **Last Updated**: 2025-11-22
 - **Status**: Production
+
+### What's New in v1.3.0
+
+- ✅ Added Metadata-Driven Controls (MDC) documentation (sap.ui.mdc library)
+- ✅ Added TypeScript control library development guide
+- ✅ New reference file: `mdc-typescript-advanced.md` (~10KB)
+- ✅ Sources: SAP-samples/ui5-mdc-json-tutorial, SAP-samples/ui5-typescript-control-library
+- ✅ Enhanced coverage from 10 to 11 reference files (~190KB total documentation)
 
 ### What's New in v1.2.0
 

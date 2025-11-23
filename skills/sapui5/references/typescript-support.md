@@ -605,4 +605,18 @@ QUnit.test("Should format currency", (assert) => {
 
 ---
 
+---
+
+## Advanced TypeScript Topics
+
+For advanced TypeScript patterns including:
+- **Metadata-Driven Controls (MDC)** with TypeScript
+- **Control library development** in TypeScript
+- Using `@ui5/ts-interface-generator` for control APIs
+- Enum registration and library.ts patterns
+
+See `references/mdc-typescript-advanced.md` for detailed implementation guides.
+
+---
+
 **Note**: This document covers TypeScript support in SAPUI5. The framework actively maintains type definitions, making TypeScript a viable choice for new projects and migrations.
