@@ -1,23 +1,11 @@
 /**
- * Custom UI5 Server Middleware Template
+ * Custom UI5 Server Middleware Template (CommonJS)
  *
  * Purpose: [Describe what this middleware does]
  * Use Case: [Describe when to use this middleware]
  *
- * IMPORTANT - ESM Configuration Required:
- * This template uses ES Module syntax (export/import). To use it, your project must be configured for ESM:
- *
- * Option 1: Add to package.json:
- *   {
- *     "type": "module"
- *   }
- *
- * Option 2: Use .mjs file extension:
- *   Rename this file to myCustomMiddleware.mjs
- *
- * Option 3: Use CommonJS syntax instead:
- *   Replace: export default function({...}) { ... }
- *   With:    module.exports = function({...}) { ... }
+ * Module Format: CommonJS (works out-of-the-box)
+ * To use ESM instead, see the commented alternative at the bottom of this file.
  *
  * Configuration in ui5.yaml:
  * ---
@@ -60,7 +48,7 @@
  * @param {module:@ui5/fs.ReaderCollection} params.resources.dependencies - Dependencies only
  * @returns {Function} Express middleware function
  */
-export default function({log, middlewareUtil, options, resources}) {
+module.exports = function({log, middlewareUtil, options, resources}) {
     const {configuration = {}} = options;
 
     // Validate configuration
@@ -85,38 +73,30 @@ export default function({log, middlewareUtil, options, resources}) {
             if (req.path === "/custom-endpoint") {
                 res.json({
                     message: "Custom endpoint response",
-                    timestamp: new Date().toISOString(),
-                    configuration: configuration
+                    timestamp: new Date().toISOString()
                 });
                 return;
             }
 
-            // Example 2: Add custom headers
-            if (configuration.addHeaders) {
-                res.setHeader("X-Custom-Header", "Custom Value");
-            }
-
-            // Example 3: Serve dynamic content from project resources
-            if (req.path?.endsWith(".custom")) {
-                const resourcePath = req.path.replace(".custom", ".json");
-                const resource = await resources.rootProject.byPath(resourcePath);
+            // Example 2: Read UI5 resources
+            if (req.path.startsWith("/resources/")) {
+                const resource = await resources.rootProject.byPath(req.path);
 
                 if (resource) {
                     const content = await resource.getString();
-                    log.info(`Serving custom resource: ${resourcePath}`);
-
-                    res.type("application/json");
+                    res.type("application/javascript");
                     res.end(content);
                     return;
                 }
             }
 
-            // Example 4: Request logging
-            if (configuration.logRequests) {
-                log.info(`${req.method} ${req.path}`);
-            }
+            // Example 3: Add custom headers
+            res.setHeader("X-Custom-Header", "UI5-Custom-Middleware");
 
-            // Always call next() if not sending response
+            // Example 4: Log requests
+            log.info(`${req.method} ${req.path}`);
+
+            // Pass to next middleware
             next();
 
         } catch (error) {
@@ -124,16 +104,15 @@ export default function({log, middlewareUtil, options, resources}) {
             next(error);
         }
     };
-}
+};
 
 /**
  * Common patterns and examples:
  */
 
 // Pattern 1: API Proxy
-import {createProxyMiddleware} from "http-proxy-middleware";
-
-export function createProxyExample({log, options}) {
+module.exports.createProxyExample = function({log, options}) {
+    const {createProxyMiddleware} = require("http-proxy-middleware");
     const {configuration} = options;
 
     if (!configuration.target) {
@@ -152,10 +131,10 @@ export function createProxyExample({log, options}) {
             res.status(500).json({error: "Proxy error"});
         }
     });
-}
+};
 
 // Pattern 2: Authentication/Authorization
-export function createAuthExample({log, options}) {
+module.exports.createAuthExample = function({log, options}) {
     const {configuration} = options;
 
     return async function(req, res, next) {
@@ -181,10 +160,17 @@ export function createAuthExample({log, options}) {
             res.status(500).json({error: "Authentication failed"});
         }
     };
+};
+
+// Helper function for auth example
+async function validateCredentials(authHeader, configuration) {
+    // Example validation logic
+    const token = authHeader.replace("Bearer ", "");
+    return token === configuration.validToken;
 }
 
 // Pattern 3: Mock Data Server
-export function createMockExample({log, resources}) {
+module.exports.createMockExample = function({log, resources}) {
     return async function(req, res, next) {
         // Only handle /mock/* requests
         if (!req.path?.startsWith("/mock/")) {
@@ -193,15 +179,15 @@ export function createMockExample({log, resources}) {
         }
 
         try {
-            // Load mock data from project
-            const mockPath = `/resources/localService/mockdata${req.path.replace("/mock", "")}.json`;
-            const resource = await resources.rootProject.byPath(mockPath);
+            // Read mock data from project
+            const mockDataPath = req.path.replace("/mock", "/test/mock");
+            const mockResource = await resources.rootProject.byPath(mockDataPath + ".json");
 
-            if (resource) {
-                const mockData = await resource.getString();
+            if (mockResource) {
+                const mockData = await mockResource.getString();
                 res.type("application/json");
                 res.end(mockData);
-                log.info(`Served mock data: ${mockPath}`);
+                log.info(`Served mock data: ${req.path}`);
                 return;
             }
 
@@ -211,12 +197,11 @@ export function createMockExample({log, resources}) {
             next(error);
         }
     };
-}
+};
 
 // Pattern 4: File Upload Handler
-import multer from "multer";
-
-export function createUploadExample({log, options}) {
+module.exports.createUploadExample = function({log, options}) {
+    const multer = require("multer");
     const upload = multer({dest: "uploads/"});
 
     return async function(req, res, next) {
@@ -242,45 +227,39 @@ export function createUploadExample({log, options}) {
             });
         });
     };
-}
+};
 
 // Pattern 5: Content Transformation (Markdown to HTML)
-import MarkdownIt from "markdown-it";
-
-export function createMarkdownExample({log, resources}) {
+module.exports.createMarkdownExample = function({log, resources}) {
+    const MarkdownIt = require("markdown-it");
     const md = new MarkdownIt();
 
     return async function(req, res, next) {
-        if (!req.path?.endsWith(".html")) {
-            next();
-            return;
-        }
+        // Transform .md requests to HTML
+        if (req.path.endsWith(".md")) {
+            const resource = await resources.rootProject.byPath(req.path);
 
-        try {
-            const mdPath = req.path.replace(".html", ".md");
-            const resource = await resources.rootProject.byPath(mdPath);
+            if (resource) {
+                const markdown = await resource.getString();
+                const html = md.render(markdown);
 
-            if (!resource) {
-                next();
+                res.type("text/html");
+                res.send(`<!DOCTYPE html>
+<html>
+<head><title>${req.path}</title></head>
+<body>${html}</body>
+</html>`);
+                log.info(`Rendered markdown: ${req.path}`);
                 return;
             }
-
-            const markdown = await resource.getString();
-            const html = md.render(markdown);
-
-            log.info(`Rendering markdown: ${mdPath}`);
-
-            res.type("text/html");
-            res.end(html);
-        } catch (error) {
-            log.error(`Markdown error: ${error.message}`);
-            next(error);
         }
+
+        next();
     };
-}
+};
 
 // Pattern 6: Request Validation
-export function createValidationExample({log, options}) {
+module.exports.createValidationExample = function({log, options}) {
     const {configuration} = options;
 
     return function(req, res, next) {
@@ -301,7 +280,7 @@ export function createValidationExample({log, options}) {
 
         next();
     };
-}
+};
 
 // Pattern 7: Response Caching
 // WARNING: This is a SIMPLE EXAMPLE for development use only!
@@ -314,7 +293,7 @@ export function createValidationExample({log, options}) {
 const cache = new Map();
 const MAX_CACHE_SIZE = 100; // Simple safeguard for development
 
-export function createCacheExample({log}) {
+module.exports.createCacheExample = function({log}) {
     return async function(req, res, next) {
         if (req.method !== "GET") {
             next();
@@ -345,73 +324,88 @@ export function createCacheExample({log}) {
 
         next();
     };
-}
+};
 
-/**
- * Helper functions:
- */
+// Pattern 8: CORS Handler
+module.exports.createCORSExample = function({log, options}) {
+    const {configuration} = options;
 
-async function validateCredentials(authHeader, configuration) {
-    // Example: Bearer token validation
-    const token = authHeader.replace("Bearer ", "");
-    return token === configuration.validToken;
-}
+    return function(req, res, next) {
+        res.setHeader("Access-Control-Allow-Origin", configuration.allowOrigin || "*");
+        res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-/**
- * Testing the middleware:
- *
- * 1. Create ui5.yaml extension (see configuration above)
- * 2. Configure in server.customMiddleware
- * 3. Run: ui5 serve --verbose
- * 4. Test endpoints with curl or browser
- *
- * Examples:
- * curl http://localhost:8080/custom-endpoint
- * curl http://localhost:8080/api/data
- * curl -H "Authorization: Bearer token" http://localhost:8080/protected
- *
- * Debugging:
- * - Use --verbose flag for detailed logging
- * - Use log.info(), log.warn(), log.error() for messages
- * - Check middleware execution order
- * - Test with different HTTP methods
- * - Verify mountPath works correctly
- */
+        // Handle preflight
+        if (req.method === "OPTIONS") {
+            res.status(200).end();
+            return;
+        }
 
-/**
- * Common issues:
- *
- * 1. Middleware not executing:
- *    - Verify extension is defined
- *    - Check beforeMiddleware/afterMiddleware reference
- *    - Verify mountPath (if specified)
- *    - Use --verbose to see middleware loading
- *
- * 2. Resources not found:
- *    - Check resource path starts with /
- *    - Verify resource exists in project
- *    - Try resources.all instead of resources.rootProject
- *
- * 3. Hanging requests:
- *    - Always call next() if not sending response
- *    - Check for missing return statements
- *    - Verify async/await usage
- *
- * 4. karma-ui5 compatibility:
- *    - Use Connect API only (not Express-specific features)
- *    - Avoid req.baseUrl, req.hostname, req.ip
- *    - Test with both ui5 serve and karma
- */
+        next();
+    };
+};
 
-/**
- * Security best practices:
+// Pattern 9: Request Logging
+module.exports.createLoggingExample = function({log}) {
+    return function(req, res, next) {
+        const start = Date.now();
+
+        // Intercept response
+        res.on("finish", () => {
+            const duration = Date.now() - start;
+            log.info(`${req.method} ${req.path} ${res.statusCode} ${duration}ms`);
+        });
+
+        next();
+    };
+};
+
+// Pattern 10: Error Handler (should be last middleware)
+module.exports.createErrorHandler = function({log}) {
+    return function(err, req, res, next) {
+        log.error(`Error handling ${req.path}: ${err.message}`);
+        log.error(err.stack);
+
+        res.status(err.status || 500).json({
+            error: err.message || "Internal Server Error",
+            path: req.path
+        });
+    };
+};
+
+/* ============================================================================
+ * ESM ALTERNATIVE
+ * ============================================================================
+ * To use ECMAScript modules instead of CommonJS, replace this entire file with:
  *
- * 1. Validate all user input
- * 2. Use HTTPS for proxy targets
- * 3. Don't log sensitive data
- * 4. Implement rate limiting for APIs
- * 5. Use environment variables for secrets (not configuration)
- * 6. Sanitize file paths
- * 7. Implement proper error handling
- * 8. Set appropriate CORS headers
+ * // Main middleware function (ESM)
+ * export default function({log, middlewareUtil, options, resources}) {
+ *     const {configuration = {}} = options;
+ *
+ *     return async function(req, res, next) {
+ *         // ... implementation
+ *     };
+ * }
+ *
+ * // Pattern exports (ESM)
+ * export function createProxyExample({log, options}) {
+ *     // ... implementation
+ * }
+ *
+ * export function createAuthExample({log, options}) {
+ *     // ... implementation
+ * }
+ * // ... etc.
+ *
+ * // And use ES6 imports instead of require():
+ * import {createProxyMiddleware} from "http-proxy-middleware";
+ * import multer from "multer";
+ * import MarkdownIt from "markdown-it";
+ *
+ * IMPORTANT: ESM requires either:
+ * 1. Add to package.json: { "type": "module" }
+ * 2. Use .mjs file extension: myCustomMiddleware.mjs
+ *
+ * Without one of these, Node.js will throw: "SyntaxError: Unexpected token 'export'"
+ * ============================================================================
  */

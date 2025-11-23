@@ -1,8 +1,11 @@
 /**
- * Custom UI5 Build Task Template
+ * Custom UI5 Build Task Template (CommonJS)
  *
  * Purpose: [Describe what this task does]
  * Use Case: [Describe when to use this task]
+ *
+ * Module Format: CommonJS (works out-of-the-box)
+ * To use ESM instead, see the commented alternative at the bottom of this file.
  *
  * Configuration in ui5.yaml:
  * ---
@@ -40,7 +43,7 @@
  * @param {object} params.options - Task options
  * @returns {Promise<Set<string>>} Set of required dependency names
  */
-export async function determineRequiredDependencies({
+module.exports.determineRequiredDependencies = async function({
     availableDependencies,
     getDependencies,
     getProject,
@@ -62,7 +65,7 @@ export async function determineRequiredDependencies({
     }
 
     return dependencies;
-}
+};
 
 /**
  * Main task function
@@ -79,7 +82,7 @@ export async function determineRequiredDependencies({
  * @param {module:@ui5/builder.tasks.TaskUtil} params.taskUtil - Task utilities (Spec v2.2+)
  * @returns {Promise<undefined>}
  */
-export default async function({workspace, dependencies, log, options = {}, taskUtil}) {
+module.exports = async function({workspace, dependencies, log, options = {}, taskUtil}) {
     const {configuration = {}} = options;
 
     log.info("Starting custom task...");
@@ -102,20 +105,18 @@ export default async function({workspace, dependencies, log, options = {}, taskU
             // Process content (example: add header comment)
             const processedContent = `/* Processed by custom task */\n${content}`;
 
-            // Write back to workspace
+            // Update resource
             resource.setString(processedContent);
             await workspace.write(resource);
         }
 
-        // Example 2: Create new resource using taskUtil (Spec v2.2+)
+        // Example 2: Create new resource using taskUtil
         if (taskUtil) {
-            const {resourceFactory} = taskUtil;
-
-            const newResource = resourceFactory.createResource({
+            const newResource = taskUtil.resourceFactory.createResource({
                 path: "/resources/generated/metadata.json",
                 string: JSON.stringify({
-                    timestamp: new Date().toISOString(),
-                    version: configuration.version || "1.0.0",
+                    generated: new Date().toISOString(),
+                    projectName: options.projectName,
                     taskName: options.taskName
                 }, null, 2)
             });
@@ -124,22 +125,21 @@ export default async function({workspace, dependencies, log, options = {}, taskU
             log.info("Created metadata.json");
         }
 
-        // Example 3: Access dependency resources (if declared)
+        // Example 3: Read from dependencies (if declared in determineRequiredDependencies)
         if (dependencies) {
-            const depResources = await dependencies.byGlob("**/library.js");
-            log.info(`Found ${depResources.length} library.js files in dependencies`);
+            const depResources = await dependencies.byGlob("**/*.json");
+            log.info(`Found ${depResources.length} JSON files in dependencies`);
 
-            for (const resource of depResources) {
-                const content = await resource.getString();
+            for (const depResource of depResources) {
+                const depContent = await depResource.getString();
                 // Process dependency resource
+                log.info(`Processing dependency: ${depResource.getPath()}`);
             }
         }
 
-        // Example 4: Use project information (taskUtil, Spec v2.2+)
-        if (taskUtil) {
-            const project = await taskUtil.getProject(options.projectName);
-            log.info(`Project type: ${project.getType()}`);
-            log.info(`Project namespace: ${project.getNamespace()}`);
+        // Example 4: Use configuration
+        if (configuration.quality) {
+            log.info(`Quality setting: ${configuration.quality}`);
         }
 
         log.info("Custom task completed successfully");
@@ -148,79 +148,35 @@ export default async function({workspace, dependencies, log, options = {}, taskU
         log.error(`Task failed: ${error.message}`);
         throw error;
     }
-}
+};
 
-/**
- * Common patterns and utilities:
- */
-
-// Pattern 1: Filter resources by pattern
-async function processSpecificFiles(workspace, pattern, processFunc) {
-    const resources = await workspace.byGlob(pattern);
-    return Promise.all(resources.map(processFunc));
-}
-
-// Pattern 2: Read, transform, write
-async function transformResource(resource, transformer) {
-    const content = await resource.getString();
-    const transformed = transformer(content);
-    resource.setString(transformed);
-    return resource;
-}
-
-// Pattern 3: Create resource from scratch
-function createResource(taskUtil, path, content) {
-    return taskUtil.resourceFactory.createResource({
-        path,
-        string: typeof content === 'string' ? content : JSON.stringify(content, null, 2)
-    });
-}
-
-// Pattern 4: Graceful error handling
-async function safeProcess(log, operation, fallback) {
-    try {
-        return await operation();
-    } catch (error) {
-        log.warn(`Operation failed: ${error.message}`);
-        return fallback;
-    }
-}
-
-/**
- * Testing the task:
+/* ============================================================================
+ * ESM ALTERNATIVE
+ * ============================================================================
+ * To use ECMAScript modules instead of CommonJS, replace this entire file with:
  *
- * 1. Create ui5.yaml extension (see configuration above)
- * 2. Configure in builder.customTasks
- * 3. Run: ui5 build --verbose
- * 4. Check output in dist/ directory
+ * // Optional dependencies callback (ESM)
+ * export async function determineRequiredDependencies({
+ *     availableDependencies,
+ *     getDependencies,
+ *     getProject,
+ *     options
+ * }) {
+ *     const dependencies = new Set();
+ *     // ... implementation
+ *     return dependencies;
+ * }
  *
- * Debugging:
- * - Use --verbose flag for detailed logging
- * - Use log.info(), log.warn(), log.error() for messages
- * - Check task execution order with --verbose
- * - Verify resources with workspace.byPath() during development
- */
-
-/**
- * Common issues:
+ * // Main task function (ESM)
+ * export default async function({workspace, dependencies, log, options = {}, taskUtil}) {
+ *     const {configuration = {}} = options;
+ *     // ... implementation
+ * }
  *
- * 1. Task not executing:
- *    - Verify extension is defined
- *    - Check beforeTask/afterTask reference valid task
- *    - Use --verbose to see task execution
+ * IMPORTANT: ESM requires either:
+ * 1. Add to package.json: { "type": "module" }
+ * 2. Use .mjs file extension: myCustomTask.mjs
  *
- * 2. Resources not found:
- *    - Check glob pattern syntax
- *    - Verify resource paths start with /
- *    - Use workspace.byPath() to debug specific paths
- *
- * 3. Dependencies not available:
- *    - Implement determineRequiredDependencies
- *    - Check dependency names match exactly
- *    - Verify dependencies in project tree (ui5 tree)
- *
- * 4. Performance issues:
- *    - Use graceful-fs for file operations
- *    - Process resources in parallel when possible
- *    - Only declare truly needed dependencies
+ * Without one of these, Node.js will throw: "SyntaxError: Unexpected token 'export'"
+ * ============================================================================
  */
