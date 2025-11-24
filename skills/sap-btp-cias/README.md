@@ -223,4 +223,4 @@ sap-btp-cias/
 
 ## License
 
-MIT
+GPL-3.0

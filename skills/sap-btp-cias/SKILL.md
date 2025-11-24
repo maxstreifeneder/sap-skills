@@ -3,7 +3,7 @@ name: sap-btp-cias
 description: |
   SAP BTP Cloud Integration Automation Service (CIAS) skill for guided integration workflows.
   Use when: setting up CIAS subscriptions, configuring destinations, assigning roles (CIASIntegrationAdministrator, CIASIntegrationExpert, CIASIntegrationMonitor), planning integration scenarios, working with My Inbox tasks, monitoring scenario execution, troubleshooting CIAS errors, creating OAuth2 instances, configuring identity providers for CIAS, understanding CIAS security architecture, or integrating SAP products (S/4HANA, SuccessFactors, BTP services, SAP Build, IBP).
-license: MIT
+license: GPL-3.0
 metadata:
   version: "1.0.0"
   last_verified: "2025-11-22"

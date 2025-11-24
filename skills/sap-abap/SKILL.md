@@ -7,7 +7,7 @@ description: |
   development, string processing, dynamic programming, RTTI/RTTC, field symbols,
   data references, exception handling, or ABAP unit testing. Covers both classic
   ABAP and modern ABAP for Cloud Development patterns.
-license: MIT
+license: GPL-3.0
 metadata:
   version: "1.0.0"
   last_updated: "2025-11-22"

@@ -16,7 +16,7 @@ description: |
   - Text mining with topic modeling (LDA)
 
   Keywords: hana-ml, SAP HANA, machine learning, PAL, APL, predictive analytics, HANA DataFrame, ConnectionContext, classification, regression, clustering, time series, ARIMA, gradient boosting, AutoML, SHAP, model storage, spatial analytics, graph algorithms
-license: MIT
+license: GPL-3.0
 ---
 
 # SAP HANA ML Python Client (hana-ml)

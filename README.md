@@ -5,7 +5,7 @@
 **Production-ready skills for SAP development with Claude**
 
 [![Skills](https://img.shields.io/badge/Skills-31-blue?style=flat-square)](MARKETPLACE.md)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/badge/License-GPL--3.0-blue?style=flat-square)](LICENSE)
 [![Last Updated](https://img.shields.io/badge/Updated-2025--11--23-orange?style=flat-square)](#)
 
 A curated collection of battle-tested skills for building SAP applications with BTP, CAP, Fiori, ABAP, HANA, and more.
@@ -246,7 +246,15 @@ Contributions welcome! Please:
 
 ## 📄 License
 
-MIT License - See [LICENSE](LICENSE) for details.
+This project is licensed under the **GNU General Public License v3.0** (GPL-3.0).
+
+See [LICENSE](LICENSE) for the full license text.
+
+**What this means:**
+- ✅ Free to use, modify, and distribute
+- ✅ Must keep source code open
+- ✅ Derivative works must also be GPL-3.0
+- ✅ Patent protection included
 
 ---
 

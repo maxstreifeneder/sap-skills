@@ -103,4 +103,4 @@ This skill extracts and organizes content from **1683 documentation files** in t
 
 ## License
 
-MIT
+GPL-3.0

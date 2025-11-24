@@ -119,4 +119,4 @@ See `SKILL.md` for complete documentation and reference files for detailed topic
 
 ## License
 
-MIT
+GPL-3.0

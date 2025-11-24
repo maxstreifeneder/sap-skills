@@ -260,7 +260,7 @@ This skill follows quarterly update cycle:
 
 ## License
 
-MIT License - See repository LICENSE file.
+GPL-3.0 License - See repository LICENSE file.
 
 ---
 

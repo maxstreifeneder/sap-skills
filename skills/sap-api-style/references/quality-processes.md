@@ -1770,5 +1770,5 @@ REVIEWER SIGN-OFF:
 **Document Version**: 1.0.0
 **Last Updated**: 2025-11-21
 **Status**: Complete
-**License**: MIT
+**License**: GPL-3.0
 **Maintainer**: SAP Skills Team | https://github.com/secondsky/sap-skills

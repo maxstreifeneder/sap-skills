@@ -362,6 +362,6 @@ if (confirmed) {
 
 ---
 
-**License**: MIT  
+**License**: GPL-3.0  
 **Last Updated**: 2025-11-22  
 **Repository**: https://github.com/secondsky/sap-skills

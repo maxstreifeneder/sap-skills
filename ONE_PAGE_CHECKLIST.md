@@ -39,7 +39,7 @@ Research completed before building:
 - [ ] **description**: Uses third-person ("This skill should be used when..." not "Use this skill when...")
 - [ ] **description**: Includes "Use when" scenarios
 - [ ] **description**: Includes keywords (technologies, use cases, error messages)
-- [ ] **license**: Present (e.g., `MIT` or `Complete terms in LICENSE.txt`)
+- [ ] **license**: Present (e.g., `GPL-3.0` or `Complete terms in LICENSE.txt`)
 - [ ] **allowed-tools** (optional): Included if pre-approving tools
 - [ ] **metadata** (optional): Used if custom fields needed
 
@@ -53,7 +53,7 @@ description: |
   or encountering deployment issues on SAP BTP.
 
   Keywords: SAP CAP, CDS, Node.js, BTP, Cloud Foundry, HANA, OData
-license: MIT
+license: GPL-3.0
 ---
 ```
 

@@ -7,7 +7,7 @@ description: |
   converting metadata to CDS/EDMX/OpenAPI formats, managing SAP HANA Cloud instances,
   working with BTP CLI integration, or troubleshooting hana-cli commands.
   Covers: 91 commands, 17+ output formats, HDI container management, cloud operations.
-license: MIT
+license: GPL-3.0
 ---
 
 # SAP HANA Developer CLI (hana-cli)

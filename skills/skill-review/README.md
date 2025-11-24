@@ -337,7 +337,7 @@ Found an issue with the review process? Suggestions for improvement?
 
 ## License
 
-MIT License - See LICENSE file in repository root
+GPL-3.0 License - See LICENSE file in repository root
 
 ---
 

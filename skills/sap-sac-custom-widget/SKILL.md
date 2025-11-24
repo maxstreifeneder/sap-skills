@@ -5,7 +5,7 @@ description: |
 
   Keywords: sap analytics cloud, sac custom widget, custom widget development, web component sac, json metadata widget, widget lifecycle functions, onCustomWidgetBeforeUpdate, onCustomWidgetAfterUpdate, onCustomWidgetResize, onCustomWidgetDestroy, sac data binding, widget data binding, dataBindings feeds, getDataBinding, getResultSet, styling panel widget, builder panel widget, widget properties events methods, propertiesChanged event, dispatchEvent custom widget, sac echarts integration, sac d3js integration, third party library sac, widget hosting sac, sac hosted widget, integrity hash widget, sha256 integrity, widget security cors, sac widget debugging, custom visualization sac, sac analytics designer widget, optimized story experience widget, sac widget api, widget add-on, sac script api widget, custom types enumeration, MemberInfo ResultMemberInfo Selection, widget installation admin, sac performance optimization, shadow dom web component, sac tooltip customization, plot area addon
 
-license: MIT
+license: GPL-3.0
 metadata:
   version: 1.1.0
   last_verified: 2025-11-22

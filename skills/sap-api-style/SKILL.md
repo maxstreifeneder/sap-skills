@@ -9,7 +9,7 @@ description: |
 
   Keywords: SAP API, REST, OData, OpenAPI, Swagger, Javadoc, JSDoc, XML documentation, API Business Hub, API naming,
   API deprecation, x-sap-stateInfo, Entity Data Model, EDM, documentation tags, API quality, API templates
-license: MIT
+license: GPL-3.0
 ---
 
 # SAP API Style Guide
@@ -363,5 +363,5 @@ See individual reference files for complete anti-patterns and fixes.
 
 **Skill Version**: 1.0.0
 **Last Updated**: 2025-11-21
-**License**: MIT
+**License**: GPL-3.0
 **Maintainer**: SAP Skills Team | https://github.com/secondsky/sap-skills

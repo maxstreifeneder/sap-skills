@@ -209,7 +209,7 @@ This skill automatically triggers when working with:
 **Last Updated**: 2025-11-21
 **UI5 Linter Version**: 1.20.5
 **Maintained By**: SAP Skills Repository
-**License**: MIT
+**License**: GPL-3.0
 
 ## Update Schedule
 

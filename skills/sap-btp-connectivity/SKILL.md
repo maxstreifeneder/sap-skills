@@ -14,7 +14,7 @@ description: |
   - Configuring multitenancy for destinations
 
   Keywords: SAP BTP, Connectivity, Destination Service, Cloud Connector, Connectivity Proxy, Transparent Proxy, Kyma, Kubernetes, OAuth, Principal Propagation, RFC, LDAP, on-premise, hybrid connectivity, service channels, SOCKS5, reverse proxy, tunnel
-license: MIT
+license: GPL-3.0
 ---
 
 # SAP BTP Connectivity Skill

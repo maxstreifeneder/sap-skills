@@ -2,7 +2,7 @@
 name: SAPUI5 Development
 description: |
   This skill should be used when developing SAP UI5 applications, including creating freestyle apps, Fiori Elements apps, custom controls, testing, data binding, OData integration, routing, and troubleshooting. Use when building enterprise web applications with SAP UI5 framework, implementing MVC patterns, configuring manifest.json, creating XML views, writing controllers, setting up data models (JSON, OData v2/v4), implementing responsive UI with sap.m controls, building List Report or Object Page applications with Fiori Elements, writing unit tests with QUnit, integration tests with OPA5, setting up mock servers, handling security (XSS, CSP), optimizing performance, implementing accessibility features, or debugging UI5 applications. Also use when working with sap.ui.mdc (Metadata-Driven Controls) including MDC Table, MDC FilterBar, MDC Value Help, control delegates, PropertyInfo, TypeMap, VariantManagement, or developing TypeScript control libraries with @ui5/ts-interface-generator.
-license: MIT
+license: GPL-3.0
 metadata:
   version: 1.3.0
   last_updated: 2025-11-22
@@ -848,7 +848,7 @@ For troubleshooting:
 
 ---
 
-**License**: MIT
+**License**: GPL-3.0
 **Version**: 1.0.0
 **Maintained by**: SAP Skills Maintainers
 **Repository**: https://github.com/secondsky/sap-skills

@@ -286,7 +286,7 @@ This skill extracts information from official SAP documentation:
 
 ## License
 
-MIT License - See LICENSE file for details.
+GPL-3.0 License - See LICENSE file for details.
 
 ## Contributing
 

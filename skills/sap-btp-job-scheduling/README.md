@@ -127,7 +127,7 @@ sap-btp-job-scheduling/
 
 - **Skill Version**: 1.0.0
 - **Last Updated**: 2025-11-22
-- **License**: MIT
+- **License**: GPL-3.0
 
 ## Support
 

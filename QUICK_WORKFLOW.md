@@ -33,7 +33,7 @@ description: |
   Use when: [scenarios]
 
   Keywords: [tech, errors, use-cases]
-license: MIT
+license: GPL-3.0
 ---
 
 # [Skill Name]

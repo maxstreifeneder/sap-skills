@@ -172,4 +172,4 @@ This skill covers:
 
 ## License
 
-MIT
+GPL-3.0

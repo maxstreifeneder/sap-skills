@@ -146,4 +146,4 @@ To update this skill:
 
 ## License
 
-MIT
+GPL-3.0

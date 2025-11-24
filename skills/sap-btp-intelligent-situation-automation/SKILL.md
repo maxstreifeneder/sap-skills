@@ -11,7 +11,7 @@ description: |
   Event Mesh, Business Event Handling, situation automation, situation dashboard, analyze situations,
   SAP_COM_0345, SAP_COM_0376, SAP_COM_0092, SituationAutomationKeyUser, SituationAutomationAdminUser,
   Cloud Connector, cf-eu10, CA-SIT-ATM, business situations, situation types, situation actions
-license: MIT
+license: GPL-3.0
 ---
 
 # SAP BTP Intelligent Situation Automation
@@ -304,5 +304,5 @@ View logs via the Audit Log Viewer in Cloud Foundry.
 
 **Skill Version**: 1.0.0
 **Last Updated**: 2025-11-22
-**License**: MIT
+**License**: GPL-3.0
 **Maintainer**: SAP Skills Team | https://github.com/secondsky/sap-skills

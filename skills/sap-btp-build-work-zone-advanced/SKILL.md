@@ -2,7 +2,7 @@
 name: sap-btp-build-work-zone-advanced
 description: |
   Develops and administers SAP Build Work Zone, advanced edition digital workplace solutions. Use when creating workspaces, workpages, and collaborative sites, developing UI Integration Cards in SAP Business Application Studio, building content packages and workspace templates, integrating with Microsoft 365/Teams/SharePoint/Google Drive, configuring chatbots and webhooks, implementing SCIM API user provisioning, setting up OData business records, managing themes and branding, configuring role-based access and SSO, troubleshooting deployment issues, or working with the Administration Console.
-license: MIT
+license: GPL-3.0
 ---
 
 # SAP Build Work Zone, Advanced Edition

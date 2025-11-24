@@ -270,4 +270,4 @@ define role Z_EXAMPLE_DCL {
 
 ## License
 
-MIT License
+GPL-3.0 License

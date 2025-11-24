@@ -157,7 +157,7 @@ This skill should be triggered when users ask about:
 
 ## License
 
-MIT License
+GPL-3.0 License
 
 ## Related Skills
 

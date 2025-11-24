@@ -416,7 +416,7 @@ This skill is maintained as part of the SAP Skills repository:
 
 ## License
 
-MIT License - See LICENSE file for details
+GPL-3.0 License - See LICENSE file for details
 
 ---
 

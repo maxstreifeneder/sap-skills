@@ -232,7 +232,7 @@ smctl get-binding my-binding -o json
 
 ## License
 
-MIT
+GPL-3.0
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 name: sap-btp-developer-guide
 description: Develops business applications on SAP Business Technology Platform (BTP) using CAP (Node.js/Java) or ABAP Cloud. Use when building cloud applications on SAP BTP, deploying to Cloud Foundry or Kyma runtimes, integrating with SAP HANA Cloud, implementing SAP Fiori UIs, connecting to remote SAP systems, building multitenant SaaS applications, extending SAP S/4HANA or SuccessFactors, setting up CI/CD pipelines, implementing observability, or following SAP development best practices.
-license: MIT
+license: GPL-3.0
 ---
 
 # SAP BTP Developer Guide Skill

@@ -256,7 +256,7 @@ The skill automatically activates when you ask about SAP Fiori tools topics. Exa
 
 ## License
 
-MIT
+GPL-3.0
 
 ## Maintainer
 

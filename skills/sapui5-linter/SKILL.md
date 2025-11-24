@@ -2,7 +2,7 @@
 name: sapui5-linter
 description: |
   Use this skill when working with the UI5 Linter (@ui5/linter) for static code analysis of SAPUI5/OpenUI5 applications and libraries. This skill should be used when: (1) Setting up UI5 Linter in a project for the first time, (2) Configuring linting rules and ignore patterns for UI5 codebases, (3) Running the linter to detect deprecated APIs, global variable usage, CSP violations, or manifest issues, (4) Using autofix to automatically correct deprecated API usage, global references, event handlers, and manifest properties, (5) Troubleshooting linting errors or warnings in UI5 code, (6) Integrating UI5 Linter into CI/CD pipelines or pre-commit hooks, (7) Preparing UI5 projects for migration to UI5 2.x by identifying compatibility issues, (8) Understanding and resolving specific linting rules like no-deprecated-api, no-globals, async-component-flags, or manifest validation rules, (9) Optimizing linter performance for large UI5 codebases, (10) Creating configuration files (ui5lint.config.js/.mjs/.cjs) for project-specific linting needs. The skill covers all 19 linting rules, comprehensive autofix capabilities and limitations, CLI options, configuration patterns, performance optimization, and integration with development workflows.
-license: MIT
+license: GPL-3.0
 metadata:
   version: 1.0.0
   last_updated: 2025-11-21
@@ -823,4 +823,4 @@ ui5lint --perf > perf-$(date +%Y%m%d).txt
 **Skill Version**: 1.0.0
 **Last Updated**: 2025-11-21
 **Maintained By**: SAP Skills Repository
-**License**: MIT
+**License**: GPL-3.0

@@ -2,7 +2,7 @@
 name: sap-sac-scripting
 description: |
   This skill provides comprehensive guidance for scripting in SAP Analytics Cloud (SAC), including Analytics Designer and Optimized Story Experience. Use when writing scripts for analytic applications, planning applications, or enhanced stories in SAC. Covers DataSource API (36+ methods), Chart/Table/Input Controls manipulation, Planning operations (version management, data locking, data actions), Calendar integration (tasks, processes, workflows), Bookmarks (save/apply state), Linked Analysis, Timer API, Container widgets (Panel, TabStrip, PageBook), Layout API (responsive design), R Visualizations, Custom Widgets development, Navigation, global/local variables, event handlers (onInitialization, onSelect, onResultChanged), popups/dialogs, debugging techniques (console.log, debugger statement), performance optimization, and developer best practices (naming conventions, layout organization, script annotation). Includes 39 ready-to-use code templates. Supports SAC version 2025.14+.
-license: MIT
+license: GPL-3.0
 metadata:
   version: 1.3.0
   last_updated: 2025-11-22
@@ -733,7 +733,7 @@ For troubleshooting:
 
 ---
 
-**License**: MIT
+**License**: GPL-3.0
 **Version**: 1.0.0
 **Maintained by**: SAP Skills Maintainers
 **Repository**: https://github.com/secondsky/sap-skills

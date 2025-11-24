@@ -2056,4 +2056,4 @@ module.exports = OrderService;
 **Document Version**: 1.0.0
 **Last Updated**: 2025-11-21
 **Maintained By**: SAP Skills Team
-**License**: MIT
+**License**: GPL-3.0

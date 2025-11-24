@@ -154,7 +154,7 @@ sap-btp-intelligent-situation-automation/
 
 ## License
 
-MIT License - See repository LICENSE file.
+GPL-3.0 License - See repository LICENSE file.
 
 ## Contributing
 

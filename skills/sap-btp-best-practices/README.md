@@ -296,7 +296,7 @@ This skill is based on content from:
 
 ## License
 
-MIT License - See repository LICENSE file.
+GPL-3.0 License - See repository LICENSE file.
 
 ---
 

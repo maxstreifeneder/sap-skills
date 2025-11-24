@@ -2,7 +2,7 @@
 name: sap-btp-best-practices
 description: |
   Comprehensive SAP Business Technology Platform (BTP) best practices for enterprise cloud architecture, account management, security, deployment, and operations. Use when planning SAP BTP implementations, setting up account hierarchies (global accounts, directories, subaccounts), configuring Cloud Foundry or Kyma environments, implementing authentication with SAP Cloud Identity Services, designing CI/CD pipelines with SAP Continuous Integration and Delivery, establishing governance models, building Platform Engineering teams, implementing failover strategies, or managing the complete application lifecycle on SAP BTP.
-license: MIT
+license: GPL-3.0
 metadata:
   version: "1.2.0"
   last_verified: "2025-11-22"

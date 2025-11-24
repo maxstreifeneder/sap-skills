@@ -214,7 +214,7 @@ sap gateway, sap netweaver, sap s/4hana, sap btp, sap cloud platform, sap fiori 
 
 ## License
 
-MIT
+GPL-3.0
 
 ---
 

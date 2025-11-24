@@ -2,7 +2,7 @@
 name: sap-sac-planning
 description: |
   This skill should be used when developing SAP Analytics Cloud (SAC) planning applications, including building planning-enabled stories, analytics designer applications with planning functionality, data actions, multi actions, version management, and planning workflows. Use when creating planning models, implementing data entry forms, configuring spreading/distribution/allocation, setting up data locking, building calendar-based planning processes with approval workflows, writing JavaScript scripts for planning automation, using the getPlanning() API, PlanningModel API, or DataSource API for planning scenarios, troubleshooting planning performance issues, or integrating predictive forecasting into planning workflows.
-license: MIT
+license: GPL-3.0
 metadata:
   version: 1.2.0
   last_updated: 2025-11-22
@@ -667,7 +667,7 @@ For troubleshooting:
 
 ---
 
-**License**: MIT
+**License**: GPL-3.0
 **Version**: 1.0.0
 **Maintained by**: SAP Skills Maintainers
 **Repository**: https://github.com/secondsky/sap-skills

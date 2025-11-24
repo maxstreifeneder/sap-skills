@@ -7,7 +7,7 @@ description: |
   creating adaptation projects, using Guided Development, previewing with mock data or live data, configuring
   SAP Fiori launchpad, or using AI-powered generation with Project Accelerator/Joule.
   Technologies: SAP Fiori Elements, SAPUI5, OData V2/V4, CAP, SAP BTP, ABAP, Cloud Foundry.
-license: MIT
+license: GPL-3.0
 ---
 
 # SAP Fiori Tools Development Skill

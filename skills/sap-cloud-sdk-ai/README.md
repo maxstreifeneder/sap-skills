@@ -101,4 +101,4 @@ sap-cloud-sdk-ai/
 
 ## License
 
-MIT
+GPL-3.0

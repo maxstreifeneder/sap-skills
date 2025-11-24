@@ -92,7 +92,7 @@ sap-skills/
 ├── QUICK_WORKFLOW.md             # 5-minute skill creation
 ├── README.md                     # Public-facing overview
 ├── MARKETPLACE.md                # Marketplace documentation
-├── LICENSE                       # MIT License
+├── LICENSE                       # GPL-3.0 License
 │
 └── skills/                       # ← All production skills
     └── skill-review/             # Quality assurance skill
@@ -220,7 +220,7 @@ Use [ONE_PAGE_CHECKLIST.md](ONE_PAGE_CHECKLIST.md) to verify:
 - [ ] Templates tested and working
 - [ ] Package versions current
 - [ ] Known issues documented with sources
-- [ ] LICENSE field present (MIT)
+- [ ] LICENSE field present (GPL-3.0)
 - [ ] README.md has auto-trigger keywords
 - [ ] Token efficiency measured (≥50%)
 

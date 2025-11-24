@@ -215,7 +215,7 @@ We welcome contributions! See [QUICK_WORKFLOW.md](QUICK_WORKFLOW.md) for guideli
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0) - see [LICENSE](LICENSE) for details.
 
 ---
 

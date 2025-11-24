@@ -8,7 +8,7 @@ description: |
   troubleshooting ingestion issues. Covers service plans (dev/standard/large), all 4
   instance creation methods (BTP Cockpit, CF CLI, BTP CLI, Service Operator), all 4
   ingestion methods (Cloud Foundry, Kyma, OpenTelemetry, JSON API), and security best practices.
-license: MIT
+license: GPL-3.0
 metadata:
   version: "1.0.0"
   last_updated: "2025-11-22"

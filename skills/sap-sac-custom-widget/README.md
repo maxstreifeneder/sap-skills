@@ -89,7 +89,7 @@ This skill should be used when:
 
 ## License
 
-MIT
+GPL-3.0
 
 ---
 

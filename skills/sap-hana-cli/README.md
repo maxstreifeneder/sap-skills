@@ -233,7 +233,7 @@ This skill activates when users:
 
 ## License
 
-MIT License
+GPL-3.0 License
 
 ---
 

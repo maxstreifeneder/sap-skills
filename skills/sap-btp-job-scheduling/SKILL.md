@@ -10,7 +10,7 @@ description: |
   Keywords: SAP BTP, Job Scheduling, jobscheduler, cron, schedule, recurring jobs, one-time jobs, Cloud Foundry tasks,
   CF tasks, Kyma, OAuth 2.0, XSUAA, @sap/jobs-client, REST API, asynchronous jobs, action endpoint, run logs,
   SAP Cloud ALM, Alert Notification Service, multitenancy, tenant-aware, BC-CP-CF-JBS
-license: MIT
+license: GPL-3.0
 ---
 
 # SAP BTP Job Scheduling Service
@@ -350,5 +350,5 @@ Limits stack - both can apply simultaneously.
 
 **Skill Version**: 1.0.0
 **Last Updated**: 2025-11-22
-**License**: MIT
+**License**: GPL-3.0
 **Maintainer**: SAP Skills Team | https://github.com/secondsky/sap-skills

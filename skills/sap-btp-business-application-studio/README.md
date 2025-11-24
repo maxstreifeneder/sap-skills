@@ -78,7 +78,7 @@ Guide Center, search, Problems view, application preview, ports, incognito mode,
 
 ## License
 
-MIT
+GPL-3.0
 
 ---
 

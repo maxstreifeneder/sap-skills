@@ -85,4 +85,4 @@ This skill covers **558 documentation files** from the official SAP Datasphere d
 
 ## License
 
-MIT
+GPL-3.0

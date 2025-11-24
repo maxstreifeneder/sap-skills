@@ -6,7 +6,7 @@ description: |
   SAP HANA/SQLite/PostgreSQL databases, deploying to SAP BTP Cloud Foundry or Kyma, implementing
   Fiori UIs, handling authorization, multitenancy, or messaging. Covers CDL/CQL/CSN syntax,
   Node.js and Java runtimes, event handlers, OData services, and CAP plugins.
-license: MIT
+license: GPL-3.0
 metadata:
   version: "1.0.0"
   last_verified: "2025-11-22"

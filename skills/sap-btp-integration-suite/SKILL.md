@@ -24,7 +24,7 @@ description: |
   content modifier, splitter, aggregator, router, sftp adapter, http adapter, odata adapter, rfc adapter,
   amqp adapter, kafka adapter, jms queue, data store, idempotent processing, exactly once
 
-license: MIT
+license: GPL-3.0
 metadata:
   version: 1.0.0
   last_verified: 2025-11-22

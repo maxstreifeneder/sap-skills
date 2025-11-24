@@ -2,7 +2,7 @@
 name: sap-btp-master-data-integration
 description: |
   Configures and integrates SAP Master Data Integration (MDI) service on SAP Business Technology Platform. Use when setting up MDI tenants, connecting applications (S/4HANA, SuccessFactors, Ariba, Fieldglass, etc.), configuring distribution models, SOAP APIs for business partners, extensibility, or troubleshooting master data replication. Covers One Domain Model integration, Business Data Orchestration, client authentication (OAuth2, mTLS), and security configurations.
-license: MIT
+license: GPL-3.0
 ---
 
 # SAP BTP Master Data Integration

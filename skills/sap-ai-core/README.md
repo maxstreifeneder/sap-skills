@@ -172,7 +172,7 @@ curl -X GET "$AI_API_URL/v2/lm/scenarios/foundation-models/models" \
 
 ## License
 
-MIT
+GPL-3.0
 
 ## Last Updated
 

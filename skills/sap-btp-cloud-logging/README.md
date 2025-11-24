@@ -195,7 +195,7 @@ This skill should be used when:
 
 ## License
 
-MIT License - See repository LICENSE file
+GPL-3.0 License - See repository LICENSE file
 
 ---
 

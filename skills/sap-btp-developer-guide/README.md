@@ -184,4 +184,4 @@ The skill automatically activates when you discuss SAP BTP development topics. E
 
 ## License
 
-MIT
+GPL-3.0

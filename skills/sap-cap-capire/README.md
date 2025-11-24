@@ -192,4 +192,4 @@ sap-cap-capire/
 
 ## License
 
-MIT
+GPL-3.0

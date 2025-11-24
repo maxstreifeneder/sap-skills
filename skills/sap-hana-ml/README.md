@@ -146,4 +146,4 @@ predictions = clf.predict(conn.table('TEST_DATA'), features=['F1', 'F2'])
 
 ## License
 
-MIT
+GPL-3.0

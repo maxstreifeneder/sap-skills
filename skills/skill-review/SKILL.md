@@ -5,7 +5,7 @@ description: |
 
   Keywords: skill review, skill audit, documentation review, version check, api verification, package updates, skill maintenance, quality assurance, standards compliance, breaking changes, github verification, official docs check, context7 verification, skill-review, audit-skill, review-documentation, check-skill-currency, verify-skill-accuracy, outdated skill, skill needs update, verify api methods, package version drift, stale documentation, contradictory examples, broken links check, yaml frontmatter validation, skill discovery test, production testing, sap skill review
 
-license: MIT
+license: GPL-3.0
 metadata:
   version: 1.3.0
   last_verified: 2025-11-21

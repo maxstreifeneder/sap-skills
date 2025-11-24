@@ -286,7 +286,7 @@ This skill triggers when you're working with:
 
 ## License
 
-MIT License
+GPL-3.0 License
 
 ## Maintainer
 
