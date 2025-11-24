@@ -674,7 +674,7 @@ Table_1.export(ExportType.CSV);
 
 ## Bundled Reference Files
 
-This skill includes detailed reference documentation (11 files):
+This skill includes detailed reference documentation (12 files):
 
 **Core APIs**:
 1. **references/api-datasource.md**: Complete DataSource API (36+ methods)
@@ -694,6 +694,9 @@ This skill includes detailed reference documentation (11 files):
 **Best Practices**:
 10. **references/best-practices-developer.md**: Naming conventions, layout organization, script annotation, responsive design
 11. **references/best-practices-planning-stories.md**: Multi-story architecture, entry point design, navigation scripting, user assistance patterns
+
+**Embedding & Migration**:
+12. **references/iframe-embedding-lumira-migration.md**: iFrame PostMessage communication, Lumira Designer migration guidance
 
 **Templates** (40 ready-to-use patterns):
 1. **templates/common-patterns.js**: 40 patterns - filtering, data access, loops, arrays, R visualization, type conversion, etc.
@@ -742,6 +745,6 @@ For troubleshooting:
 ---
 
 **License**: MIT
-**Version**: 1.0.0
+**Version**: 1.4.0
 **Maintained by**: SAP Skills Maintainers
 **Repository**: https://github.com/secondsky/sap-skills

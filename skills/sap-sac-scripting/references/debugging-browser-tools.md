@@ -268,7 +268,7 @@ R widgets have two separate environments:
 
 **On Startup**:
 - R script runs
-- `onResultSetChanged` JavaScript event does NOT run (initial state)
+- `onResultChanged` JavaScript event does NOT run (initial state)
 
 **On Data Change**:
 1. R script runs first
