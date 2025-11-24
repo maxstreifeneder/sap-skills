@@ -1,0 +1,121 @@
+name: Quality Checks
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'skills/**'
+      - '.github/**'
+      - '*.md'
+
+jobs:
+  validate-skills:
+    name: Validate Skill Files
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Validate YAML frontmatter
+        run: |
+          echo "Checking YAML frontmatter in SKILL.md files..."
+          FAILED=0
+          for file in skills/*/SKILL.md; do
+            if [ ! -f "$file" ]; then
+              continue
+            fi
+            
+            if ! grep -q "^---" "$file"; then
+              echo "❌ Missing frontmatter: $file"
+              FAILED=1
+            else
+              echo "✅ Valid frontmatter: $file"
+            fi
+          done
+          
+          if [ $FAILED -eq 1 ]; then
+            echo "❌ Some files are missing YAML frontmatter"
+            exit 1
+          fi
+          echo "✅ All SKILL.md files have valid frontmatter"
+      
+      - name: Check license field
+        run: |
+          echo "Checking GPL-3.0 license in SKILL.md files..."
+          FAILED=0
+          for file in skills/*/SKILL.md; do
+            if [ ! -f "$file" ]; then
+              continue
+            fi
+            
+            if ! grep -q "license: GPL-3.0" "$file"; then
+              echo "❌ Wrong or missing license: $file"
+              FAILED=1
+            else
+              echo "✅ Correct license: $file"
+            fi
+          done
+          
+          if [ $FAILED -eq 1 ]; then
+            echo "❌ Some files have incorrect license field"
+            exit 1
+          fi
+          echo "✅ All SKILL.md files have GPL-3.0 license"
+      
+      - name: Validate skill structure
+        run: |
+          echo "Checking required files in skill directories..."
+          FAILED=0
+          for dir in skills/*/; do
+            skill_name=$(basename "$dir")
+            
+            # Skip if not a directory
+            if [ ! -d "$dir" ]; then
+              continue
+            fi
+            
+            # Check for SKILL.md
+            if [ ! -f "${dir}SKILL.md" ]; then
+              echo "❌ Missing SKILL.md in: $skill_name"
+              FAILED=1
+            fi
+            
+            # Check for README.md
+            if [ ! -f "${dir}README.md" ]; then
+              echo "❌ Missing README.md in: $skill_name"
+              FAILED=1
+            fi
+            
+            if [ $FAILED -eq 0 ]; then
+              echo "✅ Valid structure: $skill_name"
+            fi
+          done
+          
+          if [ $FAILED -eq 1 ]; then
+            echo "❌ Some skills have invalid structure"
+            exit 1
+          fi
+          echo "✅ All skills have required files"
+      
+      - name: Check for broken internal links
+        run: |
+          echo "Checking for broken internal links..."
+          # Check if referenced files exist
+          find . -name "*.md" -type f | while read -r file; do
+            grep -oP '\[.*?\]\(\K[^)#]+' "$file" 2>/dev/null | while read -r link; do
+              # Skip external links
+              if [[ "$link" =~ ^https?:// ]]; then
+                continue
+              fi
+              
+              # Resolve relative path
+              dir=$(dirname "$file")
+              target="$dir/$link"
+              
+              if [ ! -f "$target" ] && [ ! -d "$target" ]; then
+                echo "⚠️  Broken link in $file: $link"
+              fi
+            done
+          done || true
+          echo "✅ Internal link check complete"

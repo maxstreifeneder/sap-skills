@@ -1,0 +1,17 @@
+# CODEOWNERS - Defines code ownership for automatic review requests
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global rule - owner reviews all changes
+* @secondsky
+
+# Critical files requiring owner review
+/CLAUDE.md @secondsky
+/README.md @secondsky
+/MARKETPLACE.md @secondsky
+/LICENSE @secondsky
+
+# GitHub configuration
+/.github/ @secondsky
+
+# All skills require owner review
+/skills/ @secondsky
