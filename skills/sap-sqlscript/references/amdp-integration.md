@@ -423,6 +423,12 @@ lv_debug = 'Processing customer: ' || :iv_kunnr;
 TRACE :lv_debug;
 ```
 
+**Viewing TRACE Output:**
+- **Eclipse ADT:** Open Debug perspective → Console view shows TRACE output during debugging session
+- **SAP HANA Web IDE:** Debug Console panel displays trace messages
+- **SQL Console:** TRACE output appears in the Messages tab after execution
+- **Programmatic Access:** Query `M_SQLSCRIPT_TRACE` system view for trace history (requires appropriate privileges)
+
 ---
 
 ## Best Practices

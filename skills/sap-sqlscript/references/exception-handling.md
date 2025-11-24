@@ -147,6 +147,8 @@ END;
 ### Purpose
 CONDITIONS allow you to assign user-friendly names to SQL error codes for cleaner, more readable code.
 
+> **Note:** CONDITION declaration is optional. You can use `SQL_ERROR_CODE <number>` directly in EXIT HANDLER declarations. However, named conditions improve code readability and maintainability.
+
 ### Syntax
 
 ```sql

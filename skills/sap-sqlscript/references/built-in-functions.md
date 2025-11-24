@@ -347,8 +347,10 @@ Frame bounds:
 |-----|-------------|
 | `'CLIENT'` | SAP client (mandant) |
 | `'APPLICATIONUSER'` | Application user name |
-| `'SAP_USER'` | SAP user ID |
 | `'LOCALE'` | Session locale |
+| `'LOCALE_SAP'` | SAP locale setting |
+
+> **Note:** Available keys may vary by HANA version and configuration. Custom session variables can be set with `SET SESSION`.
 
 **Example:**
 ```sql
@@ -415,7 +417,7 @@ FROM DUMMY;
 
 ### CONVERT_UNIT
 
-Unit of measure conversion:
+Unit of measure conversion using SAP UOM tables:
 
 ```sql
 CONVERT_UNIT(
@@ -426,6 +428,33 @@ CONVERT_UNIT(
   CLIENT => <client_number>
 )
 ```
+
+**Example:**
+```sql
+-- Convert 1000 grams to kilograms
+SELECT CONVERT_UNIT(
+  QUANTITY => 1000.00,
+  SOURCE_UNIT => 'G',
+  SCHEMA => 'SAPABAP1',
+  TARGET_UNIT => 'KG',
+  CLIENT => '100'
+) AS converted_quantity
+FROM DUMMY;
+-- Returns: 1.00
+
+-- Convert length units
+SELECT CONVERT_UNIT(
+  QUANTITY => 100.00,
+  SOURCE_UNIT => 'CM',
+  SCHEMA => 'SAPABAP1',
+  TARGET_UNIT => 'M',
+  CLIENT => '100'
+) AS meters
+FROM DUMMY;
+-- Returns: 1.00
+```
+
+> **Note:** Requires UOM conversion factors configured in SAP T006* tables.
 
 ---
 

@@ -496,8 +496,9 @@ Place control structures at the end of procedures to maximize parallel processin
 | Table locks per transaction | 16,383 |
 | Tables in a statement | 4,095 |
 | SQL statement length | 2 GB |
-| Total stored procedures size | 1,945 GB |
-| Error codes defined | 5,737 |
+| Procedure size | Bounded by SQL statement length (2 GB) |
+
+> **Note:** Actual limits may vary by HANA version. Consult SAP documentation for version-specific limits.
 
 ---
 

@@ -85,6 +85,8 @@ SELECT /*+ HINT1 HINT2 */ <columns> FROM <table>;
 
 > **Note:** Use hints sparingly. The optimizer usually makes good decisions.
 
+> **Version Note:** Hint availability and syntax may vary across HANA versions. Verify hint support in your specific HANA version's documentation.
+
 ---
 
 ## JSON Functions
@@ -172,6 +174,8 @@ FROM "TIME_SERIES";
 SELECT GENERATED_PERIOD_START, GENERATED_PERIOD_END
 FROM SERIES_GENERATE_TIMESTAMP('INTERVAL 1 DAY', '2024-01-01', '2024-12-31');
 ```
+
+> **Performance Note:** Generating large date ranges (multiple years with fine granularity) can impact memory and performance. For large ranges, consider chunking into smaller periods or materializing results into a calendar table.
 
 ---
 
@@ -278,7 +282,14 @@ END;
 
 ### session_context()
 
-Retrieve session context values:
+Retrieve session context values. Standard keys include:
+
+| Key | Description |
+|-----|-------------|
+| `'CLIENT'` | SAP client (mandant) |
+| `'APPLICATIONUSER'` | Application user name |
+| `'LOCALE'` | Session locale |
+| `'LOCALE_SAP'` | SAP locale setting |
 
 ```sql
 -- Get client (SAP system)
@@ -287,9 +298,11 @@ SELECT SESSION_CONTEXT('CLIENT') FROM DUMMY;
 -- Get application user
 SELECT SESSION_CONTEXT('APPLICATIONUSER') FROM DUMMY;
 
--- Get SAP user
-SELECT SESSION_CONTEXT('SAP_USER') FROM DUMMY;
+-- Get SAP locale
+SELECT SESSION_CONTEXT('LOCALE_SAP') FROM DUMMY;
 ```
+
+> **Note:** Custom session variables can be set using `SET SESSION '<key>' = '<value>'` and retrieved with SESSION_CONTEXT. Check SAP documentation for version-specific available keys.
 
 ### record_count()
 
@@ -388,6 +401,17 @@ LEFT JOIN table_b b ON a.id = b.id
 WHERE b.id IS NULL;
 ```
 
+> **NULL Handling Caveat:** The LEFT JOIN approach does not correctly handle NULL values. In SQL, `NULL = NULL` evaluates to UNKNOWN, not TRUE. If the column may contain NULLs, use this pattern instead:
+>
+> ```sql
+> SELECT DISTINCT a.id
+> FROM table_a a
+> LEFT JOIN table_b b ON a.id = b.id OR (a.id IS NULL AND b.id IS NULL)
+> WHERE b.id IS NULL AND NOT (a.id IS NULL AND EXISTS (SELECT 1 FROM table_b WHERE id IS NULL));
+> ```
+>
+> Alternatively, keep the original EXCEPT for NULL-safe semantics when correctness outweighs performance.
+
 ---
 
 ## Procedure Management
@@ -411,6 +435,8 @@ ALTER PROCEDURE my_proc ADD PARAMETER (new_param INTEGER);
 DROP PROCEDURE my_proc;
 CREATE PROCEDURE my_proc (old_param INTEGER, new_param INTEGER) ...
 ```
+
+> **Schema Change Strategy:** For zero-downtime deployments, consider versioned procedure naming (e.g., `my_proc_v2`) or wrapper procedures. See `references/troubleshooting.md` for error handling patterns when managing procedure dependencies.
 
 ### DROP FUNCTION
 

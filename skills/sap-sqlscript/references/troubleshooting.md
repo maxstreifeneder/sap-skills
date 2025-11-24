@@ -6,7 +6,11 @@
 
 #### Error: "feature not supported: Scalar UDF does not support SQL statements"
 
-**Cause:** Attempting to use SELECT or other SQL statements in scalar UDF (older HANA versions).
+**Cause:** Attempting to use SELECT or other SQL statements in scalar UDF. This restriction applies to HANA versions prior to 2.0 SPS05. Starting with HANA 2.0 SPS05+, scalar UDFs support SQL statements including SELECT.
+
+**Version Support:**
+- HANA 1.0 / 2.0 (prior to SPS05): SQL statements NOT supported in Scalar UDF
+- HANA 2.0 SPS05+: SQL statements supported in Scalar UDF
 
 **Solution:**
 ```sql
@@ -265,6 +269,13 @@ WHERE OPERATOR_NAME = 'TABLE SCAN';
 SELECT * FROM M_EXPENSIVE_STATEMENTS
 ORDER BY DURATION DESC;
 ```
+
+> **System View Prerequisites:**
+> - `EXPLAIN_CALL_PLANS`: Available after executing EXPLAIN PLAN; results stored per session
+> - `M_EXPENSIVE_STATEMENTS`: Requires `MONITORING` system privilege or `DATA ADMIN` role
+> - Enable expensive statement tracing first (see configuration below) for M_EXPENSIVE_STATEMENTS to contain data
+>
+> Some views may not be available in SAP HANA Cloud; check platform-specific documentation.
 
 **Common Causes and Solutions:**
 

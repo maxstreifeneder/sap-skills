@@ -239,7 +239,7 @@ END;
 ### FOR Loop
 
 ```sql
--- Numeric range
+-- Numeric range (inclusive on both ends)
 FOR <var> IN [REVERSE] <start>..<end> DO
   <statements>
 END FOR;
@@ -254,6 +254,8 @@ FOR <row_var> AS (SELECT <columns> FROM <table>) DO
   <statements>
 END FOR;
 ```
+
+> **Range Semantics:** The numeric FOR loop range is **inclusive** on both bounds. `FOR i IN 1..5` iterates with i = 1, 2, 3, 4, 5 (five iterations total).
 
 ### LOOP with EXIT
 
@@ -295,11 +297,21 @@ CLOSE <cursor_name>;
 
 ### Cursor Attributes
 
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| `<cursor>::ISCLOSED` | BOOLEAN | TRUE if cursor is closed |
-| `<cursor>::NOTFOUND` | BOOLEAN | TRUE if FETCH found no row |
-| `<cursor>::ROWCOUNT` | INTEGER | Number of rows fetched |
+| Attribute | Type | Description | Typical Usage |
+|-----------|------|-------------|---------------|
+| `<cursor>::ISCLOSED` | BOOLEAN | TRUE if cursor is closed | Check before OPEN to avoid "already open" error |
+| `<cursor>::NOTFOUND` | BOOLEAN | TRUE if FETCH found no row | Loop termination condition after FETCH |
+| `<cursor>::ROWCOUNT` | INTEGER | Number of rows fetched so far | Progress tracking, batch processing limits |
+
+**Usage Example:**
+```sql
+WHILE NOT cur::NOTFOUND DO  -- Check NOTFOUND to exit loop
+  FETCH cur INTO lv_var;
+  IF cur::ROWCOUNT > 1000 THEN  -- Limit processing
+    BREAK;
+  END IF;
+END WHILE;
+```
 
 ---
 

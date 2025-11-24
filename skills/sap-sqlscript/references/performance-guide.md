@@ -84,11 +84,16 @@ END FOR;
 
 **Problem:** HANA uses specialized engines for different operations. Mixing them causes data conversion overhead.
 
-| Engine | Purpose |
-|--------|---------|
-| Column Engine | Columnar storage operations |
-| Row Engine | Row-store table operations |
-| Calculation Engine | Complex expressions, CE functions |
+| Engine | Purpose | Triggered By |
+|--------|---------|--------------|
+| Column Engine | Columnar storage operations | Queries on column tables, most SQLScript |
+| Row Engine | Row-store table operations | Queries on row tables, transactional operations |
+| Calculation Engine | Complex expressions, CE functions | CE_* functions, certain calculation views |
+
+**Engine Selection:** HANA automatically selects the execution engine based on:
+- Table storage type (column vs row store)
+- Query patterns and operations used
+- Optimizer cost estimation
 
 **Solution:** Keep operations within same engine type.
 
