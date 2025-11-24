@@ -231,7 +231,7 @@ var theme = Application.getTheme();
 
 **Application Events**:
 - `onInitialization`: Runs once when application loads
-- `onPostMessageRecieved`: Fires when host app sends PostMessage (iFrame scenarios)
+- `onPostMessageReceived`: Fires when host app sends PostMessage (iFrame scenarios)
 - `onResize`: Fires when application is resized
 - `onOrientationChange`: Mobile orientation change
 

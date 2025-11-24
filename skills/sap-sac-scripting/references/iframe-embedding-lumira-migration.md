@@ -20,9 +20,9 @@ When your analytic application is embedded in an iFrame, it can communicate bidi
 SAC analytic applications have two primary application events:
 
 1. **onInitialization**: Runs once when the application is instantiated by a user
-2. **onPostMessageRecieved**: Triggered when the host application sends a PostMessage
+2. **onPostMessageReceived**: Triggered when the host application sends a PostMessage
 
-### onPostMessageRecieved Event
+### onPostMessageReceived Event
 
 This event fires whenever the host application makes a PostMessage call into the embedded analytic application.
 
@@ -30,7 +30,7 @@ This event fires whenever the host application makes a PostMessage call into the
 
 ### Event Parameters
 
-The `onPostMessageRecieved` event provides two input parameters:
+The `onPostMessageReceived` event provides two input parameters:
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
@@ -49,7 +49,7 @@ The `origin` parameter contains the domain of the host application.
 
 **Security Best Practice**:
 ```javascript
-// onPostMessageRecieved event
+// onPostMessageReceived event
 if (origin !== "https://trusted-domain.com") {
     console.log("Unauthorized origin: " + origin);
     return;  // Reject messages from unknown origins
@@ -90,7 +90,7 @@ The structured clone algorithm has some limitations on what can be cloned:
 ### Example: Receiving PostMessage
 
 ```javascript
-// onPostMessageRecieved event handler
+// onPostMessageReceived event handler
 // Parameters: origin, message
 
 // Security check
@@ -158,7 +158,7 @@ var trustedOrigins = [
     "https://intranet.company.com"
 ];
 
-// In onPostMessageRecieved
+// In onPostMessageReceived
 var isTrusted = false;
 for (var i = 0; i < trustedOrigins.length; i++) {
     if (origin === trustedOrigins[i]) {
