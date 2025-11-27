@@ -4,7 +4,7 @@
 
 **Production-ready skills for SAP development with Claude**
 
-[![Skills](https://img.shields.io/badge/Skills-31-blue?style=flat-square)](MARKETPLACE.md)
+[![Skills](https://img.shields.io/badge/Skills-35-blue?style=flat-square)](MARKETPLACE.md)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue?style=flat-square)](LICENSE)
 [![Last Updated](https://img.shields.io/badge/Updated-2025--11--23-orange?style=flat-square)](#)
 
@@ -30,7 +30,7 @@ Skills work natively across multiple Claude-powered development tools:
 
 ---
 
-## 📦 Available Skills (31)
+## 📦 Available Skills (35)
 
 | Category | Count | Key Technologies |
 |----------|:-----:|------------------|
