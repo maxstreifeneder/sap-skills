@@ -113,9 +113,44 @@ jobs:
           # Check if referenced files exist
           # Use find with -print0 and read with -d '' to handle filenames with spaces
           while IFS= read -r -d '' file; do
-            # Extract all markdown links from the file and save to temp file
-            grep -oP '\[.*?\]\(\K[^)#]+' "$file" 2>/dev/null > "${BROKEN_LINKS_FILE}.links" || true
-            
+            # Extract markdown links while skipping code blocks, inline code, and escaped syntax
+            awk '
+              # Track if we are inside a fenced code block
+              /^```/ { in_code_block = !in_code_block; next }
+
+              # Skip lines inside code blocks
+              in_code_block { next }
+
+              # Process each line that is not in a code block
+              {
+                # Save original line
+                line = $0
+
+                # Remove inline code sections (` ... `)
+                while (match(line, /`[^`]*`/)) {
+                  line = substr(line, 1, RSTART-1) substr(line, RSTART+RLENGTH)
+                }
+
+                # Remove escaped markdown links (\[...\](...))
+                gsub(/\\[[].*\\]\([^)]*\)/, "", line)
+
+                # Extract and print all markdown links
+                while (match(line, /\[[^]]+\]\([^)#]+\)/)) {
+                  link_match = substr(line, RSTART, RLENGTH)
+                  # Extract the URL part from [text](url)
+                  if (match(link_match, /\([^)#]+\)/)) {
+                    url = substr(link_match, RSTART+1, RLENGTH-2)
+                    # Skip external links
+                    if (url !~ /^https?:\/\//) {
+                      print url
+                    }
+                  }
+                  # Continue searching after this match
+                  line = substr(line, RSTART + RLENGTH)
+                }
+              }
+            ' "$file" > "${BROKEN_LINKS_FILE}.links" 2>/dev/null || true
+
             # Process each link without using pipes (to avoid subshells)
             if [ -s "${BROKEN_LINKS_FILE}.links" ]; then
               exec 3< "${BROKEN_LINKS_FILE}.links"
