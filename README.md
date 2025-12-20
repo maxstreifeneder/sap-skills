@@ -119,7 +119,7 @@ Skills work natively across multiple Claude-powered development tools:
 ```json
 {
   "extraKnownMarketplaces": [
-    { "name": "sap-skills", "url": "[https://github.com/secondsky/sap-skills](https://github.com/secondsky/sap-skills)" }
+    { "name": "sap-skills", "url": "https://github.com/secondsky/sap-skills" }
   ]
 }
 ```
@@ -130,7 +130,7 @@ For contributors or local development:
 
 ```bash
 # Clone the repository
-git clone [https://github.com/secondsky/sap-skills.git](https://github.com/secondsky/sap-skills.git)
+git clone https://github.com/secondsky/sap-skills.git
 
 # Skills are automatically available in the skills/ directory
 ```
