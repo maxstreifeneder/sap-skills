@@ -4,8 +4,8 @@ description: |
   Comprehensive plugin for SAP Datasphere development with 3 specialized agents, 4 slash commands, and validation hooks. Use when building data warehouses on SAP BTP, creating analytic models, configuring data flows and replication flows, setting up connections to SAP and third-party systems, managing spaces and users, implementing data access controls, using the datasphere CLI, creating data products for the marketplace, or monitoring data integration tasks. Covers Data Builder (graphical/SQL views, local/remote tables, transformation flows), Business Builder (business entities, consumption models), analytic models (dimensions, measures, hierarchies), 40+ connection types (SAP S/4HANA, BW/4HANA, HANA Cloud, AWS, Azure, GCP, Kafka, Generic HTTP), real-time replication, task chains, content transport, CLI automation, catalog governance, and data marketplace. Includes 2025 features: Generic HTTP connections, REST API tasks in task chains, SAP Business Data Cloud integration. Keywords: sap datasphere, data warehouse cloud, dwc, data builder, business builder, analytic model, graphical view, sql view, transformation flow, replication flow, data flow, task chain, remote table, local table, sap btp data warehouse, datasphere connection, datasphere space, data access control, elastic compute node, sap analytics cloud integration, datasphere cli, data products, data marketplace, catalog, governance
 license: GPL-3.0
 metadata:
-  version: 2.0.0
-  last_verified: 2025-12-27
+  version: 2.1.0
+  last_verified: 2025-12-28
 ---
 
 # SAP Datasphere Skill
@@ -447,8 +447,8 @@ datasphere config auth login --service-key-path ./key.json
 **CI/CD Integration**:
 ```bash
 # Export and import workflow
-datasphere objects export --space DEV --output package.zip
-datasphere objects import --space PROD --input package.zip --overwrite
+datasphere objects export --space DEV --output-file package.zip
+datasphere objects import --space PROD --input-file package.zip --overwrite
 ```
 
 For complete CLI reference, see `references/cli-commands.md`.
@@ -590,6 +590,9 @@ For transport procedures, see `references/content-transport.md`.
 12. **`references/best-practices-patterns.md`** - Architecture patterns, naming conventions, performance optimization, checklists
 13. **`references/whats-new-2025.md`** - Q1-Q4 2025 features, Generic HTTP, REST API tasks, deprecations
 
+**MCP Integration:**
+14. **`references/mcp-tools-reference.md`** - Complete MCP tool reference, 45 tools across 8 categories, API documentation, authentication patterns
+
 ### Plugin Components
 
 This plugin includes 3 specialized agents, 4 slash commands, and validation hooks:
@@ -609,11 +612,45 @@ This plugin includes 3 specialized agents, 4 slash commands, and validation hook
 - PreToolUse validation for SQL/SQLScript code quality
 - PostToolUse suggestions for persistence and optimization
 
+## MCP Integration
+
+This skill integrates with the **SAP Datasphere MCP Server** (@mariodefe/sap-datasphere-mcp) providing 45 tools for live tenant interaction.
+
+### MCP Tools
+
+The MCP server enables:
+- **Direct Queries:** Execute SQL and smart queries on live data
+- **Metadata Access:** Inspect tables, views, and analytic models
+- **User Management:** Create, update, delete database users
+- **Catalog Search:** Find assets by name or column
+- **Connection Testing:** Verify connectivity and tenant info
+- **Data Profiling:** Analyze column distributions
+
+See `/datasphere-mcp-tools` command for complete tool list.
+
+### Authentication
+
+OAuth 2.0 Client Credentials with automatic token refresh.
+
+Required environment variables:
+- `DATASPHERE_BASE_URL`
+- `DATASPHERE_CLIENT_ID`
+- `DATASPHERE_CLIENT_SECRET`
+- `DATASPHERE_TOKEN_URL`
+
+### Performance
+
+- Sub-100ms metadata queries (cached)
+- 100-500ms catalog operations
+- 500-2,000ms OData queries
+- Batch processing up to 50,000 records
+
 ### File Structure
 ```
 plugins/sap-datasphere/
 ├── .claude-plugin/
 │   └── plugin.json
+├── .mcp.json                         # MCP server configuration
 ├── agents/
 │   ├── datasphere-modeler.md
 │   ├── datasphere-integration-advisor.md
@@ -622,7 +659,8 @@ plugins/sap-datasphere/
 │   ├── datasphere-space-template.md
 │   ├── datasphere-view-template.md
 │   ├── datasphere-connection-guide.md
-│   └── datasphere-cli.md
+│   ├── datasphere-cli.md
+│   └── datasphere-mcp-tools.md       # MCP tools reference
 ├── hooks/
 │   └── hooks.json
 └── skills/
@@ -644,7 +682,8 @@ plugins/sap-datasphere/
             ├── data-products-marketplace.md
             ├── catalog-governance.md
             ├── best-practices-patterns.md
-            └── whats-new-2025.md
+            ├── whats-new-2025.md
+            └── mcp-tools-reference.md    # MCP technical reference
 ```
 
 ## Documentation Links
@@ -656,4 +695,4 @@ plugins/sap-datasphere/
 
 ---
 
-**Version**: 2.0.0 | **Last Verified**: 2025-12-27
+**Version**: 2.1.0 | **Last Verified**: 2025-12-28

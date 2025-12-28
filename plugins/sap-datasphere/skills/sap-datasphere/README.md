@@ -40,9 +40,61 @@ This skill activates when working with:
 - PreToolUse validation for SQL/SQLScript quality
 - PostToolUse suggestions for optimization
 
+## MCP Integration
+
+This plugin integrates with the SAP Datasphere MCP Server for direct tenant interaction.
+
+### Setup
+
+1. **Install MCP Server:**
+   ```bash
+   npm install -g @mariodefe/sap-datasphere-mcp
+   ```
+
+2. **Configure Environment Variables:**
+   Create `.env` file in your project:
+   ```bash
+   DATASPHERE_BASE_URL=https://your-tenant.eu10.hcs.cloud.sap
+   DATASPHERE_CLIENT_ID=your-oauth-client-id
+   DATASPHERE_CLIENT_SECRET=your-oauth-client-secret
+   DATASPHERE_TOKEN_URL=https://your-tenant.authentication.eu10.hana.ondemand.com/oauth/token
+   ```
+
+3. **Get OAuth Credentials:**
+   - Go to SAP BTP Cockpit → Subscriptions → SAP Datasphere
+   - Create OAuth2 Client (grant type: Client Credentials)
+   - Required scopes: READ, WRITE (based on needs)
+
+### Available Tools
+
+The plugin provides access to 45 MCP tools across 8 categories:
+- **Foundation:** Connection testing, tenant info, space discovery
+- **Catalog:** Asset search, column analysis
+- **Analytics:** Query analytic models, smart queries
+- **ETL:** Relational queries, bulk extract
+- **User Management:** CRUD operations for DB users
+- **Metadata:** Table/view/model structure inspection
+- **Search:** Semantic and quick find
+- **Space Management:** Space details and permissions
+
+Use `/datasphere-mcp-tools` command to see all available tools.
+
+### Usage in Agents
+
+All three agents have access to relevant MCP tools:
+- **datasphere-modeler:** Queries, metadata, data preview
+- **datasphere-integration-advisor:** Connection testing, space discovery
+- **datasphere-admin-helper:** User management, permissions
+
+### Commands Using MCP
+
+- `/datasphere-mcp-tools` - List all MCP tools
+
 ## Keywords
 
 **Product Terms**: sap datasphere, data warehouse cloud, dwc, sap btp data warehouse, datasphere tenant, datasphere space, sap business data cloud
+
+**MCP Integration**: mcp, model context protocol, oauth, live tenant, real-time data, direct queries, mcp tools, mcp server, datasphere mcp, tenant interaction
 
 **Data Builder**: data builder, graphical view, sql view, sqlscript, local table, remote table, data flow, replication flow, transformation flow, task chain, e-r model, intelligent lookup, rest api task
 
@@ -76,6 +128,7 @@ This skill activates when working with:
 plugins/sap-datasphere/
 ├── .claude-plugin/
 │   └── plugin.json
+├── .mcp.json                         # MCP server configuration
 ├── agents/
 │   ├── datasphere-modeler.md
 │   ├── datasphere-integration-advisor.md
@@ -84,7 +137,8 @@ plugins/sap-datasphere/
 │   ├── datasphere-space-template.md
 │   ├── datasphere-view-template.md
 │   ├── datasphere-connection-guide.md
-│   └── datasphere-cli.md
+│   ├── datasphere-cli.md
+│   └── datasphere-mcp-tools.md       # MCP tools reference
 ├── hooks/
 │   └── hooks.json
 └── skills/
@@ -106,7 +160,8 @@ plugins/sap-datasphere/
             ├── data-products-marketplace.md
             ├── catalog-governance.md
             ├── best-practices-patterns.md
-            └── whats-new-2025.md
+            ├── whats-new-2025.md
+            └── mcp-tools-reference.md    # MCP technical reference
 ```
 
 ## Documentation Sources
