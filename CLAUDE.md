@@ -34,7 +34,7 @@ This is a curated collection of **production-tested Claude Code skills** for SAP
 When asked to review skills:
 1. **DO NOT** manually check versions/dates
 2. **DO** use the installed `skill-review` skill which provides a 14-phase comprehensive audit
-3. The skill-review skill is located at `skills/skill-review/SKILL.md`
+3. The skill-review skill is located in the `plugins/skill-review/` directory
 4. It covers: version accuracy, date freshness, documentation quality, error catalog completeness, template validation, and more
 
 Example: "Review the sap-cap skill" → Use skill-review skill, not manual inspection
@@ -94,11 +94,15 @@ sap-skills/
 ├── MARKETPLACE.md                # Marketplace documentation
 ├── LICENSE                       # GPL-3.0 License
 │
-└── skills/                       # ← All production skills
-    └── skill-review/             # Quality assurance skill
-        ├── SKILL.md
-        ├── README.md
-        └── references/
+└── plugins/                      # ← All production plugins
+    └── skill-review/             # Quality assurance plugin
+        ├── .claude-plugin/
+        │   └── plugin.json
+        └── skills/
+            └── skill-review/
+                ├── SKILL.md
+                ├── README.md
+                └── references/
 ```
 
 ---
@@ -191,7 +195,7 @@ Future skills to be developed:
    • Document findings
 
 2. CREATE SKILL
-   • Create directory: mkdir -p skills/new-skill/
+   • Create directory: mkdir -p plugins/new-skill/skills/new-skill/
    • Create SKILL.md with YAML frontmatter
    • Create README.md with keywords
    • Add resources (scripts/, references/, assets/)
@@ -211,7 +215,7 @@ Future skills to be developed:
    • Run validation: jq '.plugins | length' .claude-plugin/marketplace.json
 
 6. COMMIT
-   • git add skills/new-skill skills/new-skill/.claude-plugin/plugin.json .claude-plugin/marketplace.json
+   • git add plugins/new-skill .claude-plugin/marketplace.json
    • git commit -m "Add new-skill for [use case]"
    • git push
 ```
@@ -251,7 +255,6 @@ Three automation scripts maintain plugin consistency:
 - All skills must be **tested in production**
 - Package versions must be **current** (verified regularly)
 - Known issues must be **documented with sources** (SAP notes, GitHub issues, etc.)
-- Token efficiency must be **measured** (≥50% savings)
 
 ### 3. Official Standards Compliance
 - YAML frontmatter: `name` and `description` (required)
@@ -283,20 +286,6 @@ Use [ONE_PAGE_CHECKLIST.md](ONE_PAGE_CHECKLIST.md) to verify:
 - [ ] Known issues documented with sources
 - [ ] LICENSE field present (GPL-3.0)
 - [ ] README.md has auto-trigger keywords
-- [ ] Token efficiency measured (≥50%)
-
----
-
-## Token Efficiency Metrics
-
-**Why This Matters**: Skills save massive amounts of tokens by preventing trial-and-error.
-
-| Scenario | Without Skill | With Skill | Savings |
-|----------|---------------|------------|---------|
-| SAP CAP setup | ~15k tokens, 2-3 errors | ~5k tokens, 0 errors | ~67% |
-| Fiori Elements app | ~12k tokens, 1-2 errors | ~4k tokens, 0 errors | ~67% |
-| BTP deployment | ~10k tokens, 2 errors | ~4k tokens, 0 errors | ~60% |
-| **Average** | **~12k tokens** | **~4.5k tokens** | **~62%** |
 
 ---
 
@@ -355,7 +344,7 @@ Use [ONE_PAGE_CHECKLIST.md](ONE_PAGE_CHECKLIST.md) to verify:
 
 **Documentation Issues?**
 - Check [START_HERE.md](START_HERE.md) for navigation
-- Review working examples in `skills/` directory
+- Review working examples in `plugins/` directory
 
 **Technical Issues?**
 - Open issue: [https://github.com/secondsky/sap-skills/issues](https://github.com/secondsky/sap-skills/issues)
@@ -392,7 +381,6 @@ Use [ONE_PAGE_CHECKLIST.md](ONE_PAGE_CHECKLIST.md) to verify:
 - ✅ Zero reported errors from documented issues
 
 **Efficiency**:
-- ✅ Average 60%+ token savings
 - ✅ 100% error prevention (vs manual setup)
 - ✅ Sub-5-minute skill creation (with templates)
 - ✅ First-try skill discovery rate: 95%+

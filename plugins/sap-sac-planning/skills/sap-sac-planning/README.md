@@ -14,6 +14,10 @@ This skill provides comprehensive guidance for SAP Analytics Cloud planning deve
 - **Calendar-based planning processes**
 - **JavaScript API for planning automation**
 - **Data locking and approval workflows**
+- **Seamless Planning with SAP Datasphere** (New in 2025)
+- **BPC Live Connection for BW on HANA** (New in 2025)
+- **Value Driver Trees for what-if analysis** (New in 2025)
+- **Data Action Tracing and debugging** (New in 2025)
 
 ---
 
@@ -127,22 +131,80 @@ This skill should be triggered when users mention:
 - export planning data
 - S/4HANA plan data
 
+### Seamless Planning with Datasphere
+- Seamless Planning SAC
+- SAC Datasphere integration
+- SAC HANA Cloud storage
+- planning data persistence Datasphere
+- tenant linkage SAC Datasphere
+- unified data SAC
+- cross-model planning Datasphere
+- fact object Datasphere
+
+### BPC Live Connection
+- BPC live connection SAC
+- BW on HANA planning
+- BPC Embedded SAC
+- planning sequence BPC
+- BPC planning function
+- master data planning BPC
+- BPC input mode
+- live data BPC SAC
+
+### Value Driver Trees
+- value driver tree SAC
+- VDT SAC
+- what-if analysis SAC
+- simulation SAC planning
+- driver node SAC
+- calculated node VDT
+- planning simulation SAC
+- scenario analysis VDT
+
+### Data Action Tracing
+- data action tracing SAC
+- debug data action
+- tracepoint SAC
+- trace mode data action
+- troubleshoot data action
+- data action debugging
+- analyze data action execution
+
 ---
 
 ## File Structure
 
 ```
-sap-sac-planning/
-├── SKILL.md                          # Main skill instructions
-├── README.md                         # This file
-├── references/
-│   ├── api-reference.md              # Complete Analytics Designer API
-│   ├── data-actions.md               # Data Actions & Multi Actions
-│   ├── planning-workflows.md         # Calendar, Tasks, Approvals
-│   ├── version-management.md         # Versions, Publishing
-│   ├── javascript-patterns.md        # Code snippets & patterns
-│   └── s4hana-acdocp-export.md       # S/4HANA ACDOCP integration
-└── templates/                        # (Reserved for future templates)
+plugins/sap-sac-planning/
+├── .claude-plugin/
+│   └── plugin.json                   # Plugin manifest (v2.2.0)
+├── agents/                           # Specialized subagents
+│   ├── planning-model-architect.md   # Architecture decisions
+│   ├── data-action-debugger.md       # Data action troubleshooting
+│   └── planning-api-assistant.md     # JavaScript API help
+├── commands/                         # Slash commands
+│   ├── sac-planning-checklist.md     # Implementation checklist
+│   ├── data-action-template.md       # Data action template
+│   └── seamless-planning-guide.md    # Quick Seamless Planning guide
+├── hooks/
+│   └── hooks.json                    # Validation hooks
+└── skills/sap-sac-planning/
+    ├── .claude-plugin/plugin.json    # Skill manifest
+    ├── SKILL.md                      # Main skill instructions
+    ├── README.md                     # This file
+    ├── references/                   # 24 reference files
+    │   ├── api-reference.md          # Analytics Designer API
+    │   ├── data-actions.md           # Data Actions & Multi Actions
+    │   ├── planning-workflows.md     # Calendar, Tasks, Approvals
+    │   ├── version-management.md     # Versions, Publishing
+    │   ├── javascript-patterns.md    # Code snippets & patterns
+    │   ├── s4hana-acdocp-export.md   # S/4HANA ACDOCP integration
+    │   ├── seamless-planning-datasphere.md  # NEW: Datasphere integration
+    │   ├── bpc-live-connection.md    # NEW: BPC Live Connection
+    │   ├── value-driver-trees.md     # NEW: VDT configuration
+    │   ├── data-action-tracing.md    # NEW: Tracing & debugging
+    │   └── ... (14 more reference files)
+    └── templates/                    # (Reserved for future templates)
 ```
 
 ---
@@ -235,9 +297,11 @@ This skill is based on official SAP documentation and verified community resourc
 
 ## Compatibility
 
-- **SAP Analytics Cloud Version**: 2025.14+
+- **SAP Analytics Cloud Version**: 2025.25+
 - **Analytics Designer**: Supported
 - **Optimized Story Experience**: Partial (some APIs differ)
+- **Seamless Planning**: Requires HANA Cloud + Datasphere tenant linkage
+- **BPC Live Connection**: Requires BW/4HANA or BW on HANA
 
 ---
 
@@ -245,8 +309,9 @@ This skill is based on official SAP documentation and verified community resourc
 
 This skill follows quarterly update cycle:
 
-- **Last Verified**: 2025-11-22
-- **Next Review**: 2026-02-22
+- **Last Verified**: 2025-12-27
+- **Next Review**: 2026-03-27
+- **Plugin Version**: 2.2.0
 
 ### Update Checklist
 1. Check Analytics Designer API Reference for new version
@@ -254,6 +319,8 @@ This skill follows quarterly update cycle:
 3. Verify documentation links
 4. Test code examples
 5. Update version in SKILL.md metadata
+6. Check Seamless Planning and BPC Live Connection changes
+7. Verify Value Driver Trees API updates
 
 ---
 

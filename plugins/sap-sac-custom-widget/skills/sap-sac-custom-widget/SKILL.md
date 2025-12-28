@@ -7,10 +7,9 @@ description: |
 
 license: GPL-3.0
 metadata:
-  version: 1.2.0
-  last_verified: 2025-11-26
+  version: 2.0.0
+  last_verified: 2025-12-27
   sac_version: "2025.21"
-  token_savings: ~75%
   errors_prevented: 25+
   official_docs:
     - [https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/0ac8c6754ff84605a4372468d002f2bf/75311f67527c41638ceb89af9cd8af3e.html](https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/0ac8c6754ff84605a4372468d002f2bf/75311f67527c41638ceb89af9cd8af3e.html)
@@ -28,6 +27,7 @@ allowed-tools:
 
 ## Table of Contents
 - [Overview](#overview)
+- [Plugin Components](#plugin-components)
 - [Quick Start](#quick-start)
 - [Community Sample Widgets](#community-sample-widgets)
 - [Key Concepts](#key-concepts)
@@ -50,6 +50,45 @@ This skill enables development of custom widgets for SAP Analytics Cloud (SAC). 
 - SAC tenant with Optimized Story Experience or Analytics Designer
 - JavaScript/Web Components knowledge
 - External hosting (GitHub Pages, AWS S3, Azure) OR SAC-hosted resources (QRC Q2 2023+)
+
+---
+
+## Plugin Components
+
+This plugin provides specialized agents, commands, and validation hooks for comprehensive widget development support.
+
+### Agents
+
+| Agent | Color | Purpose | Trigger Examples |
+|-------|-------|---------|------------------|
+| **widget-architect** | Blue | Design widget structure, metadata, and integration patterns | "design custom widget", "plan widget architecture" |
+| **widget-debugger** | Yellow | Troubleshoot loading, data binding, CORS, and runtime issues | "widget won't load", "CORS error", "data not binding" |
+| **widget-api-assistant** | Green | Write JavaScript widget code, lifecycle functions, API integrations | "write widget code", "implement lifecycle functions" |
+
+### Commands
+
+| Command | Usage | Description |
+|---------|-------|-------------|
+| `/widget-validate` | `/widget-validate [file]` | Validate widget.json schema and widget.js structure |
+| `/widget-generate` | `/widget-generate` | Interactively generate widget scaffold with JSON + JS |
+| `/widget-lint` | `/widget-lint [file]` | Performance, security, and best practices analysis |
+
+### Validation Hooks
+
+Automatic quality checks triggered on Write/Edit operations:
+- **widget.json**: Required fields, tag naming, property types, data binding config
+- **widget.js**: Lifecycle functions, Shadow DOM, propertiesChanged dispatch
+- **Performance**: Resize debouncing, chart disposal, XSS prevention
+- **Context Reminders**: Template suggestions, command recommendations
+
+### Templates
+
+Ready-to-use scaffolds in `templates/` directory:
+- `basic-widget.js` - Minimal Web Component with all lifecycle functions
+- `data-bound-chart.js` - ECharts widget with data binding
+- `styling-panel.js` - Runtime customization panel
+- `widget.json-minimal` - Bare-minimum metadata
+- `widget.json-complete` - Full-featured metadata with all options
 
 ---
 
@@ -313,10 +352,18 @@ See **`references/widget-addon-guide.md`** for complete implementation.
 
 ## Bundled Resources
 
-For detailed templates and examples, see:
+### Templates (Ready-to-Use Code)
+
+- **`templates/basic-widget.js`** - Minimal Web Component scaffold (~60 lines)
+- **`templates/data-bound-chart.js`** - ECharts widget with SAC data binding (~120 lines)
+- **`templates/styling-panel.js`** - Styling panel for runtime customization (~150 lines)
+- **`templates/widget.json-minimal`** - Bare-minimum metadata (~25 lines)
+- **`templates/widget.json-complete`** - Full-featured metadata (~100 lines)
+
+### Reference Documentation
 
 1. **`references/json-schema-reference.md`** - Complete JSON schema documentation
-2. **`references/widget-templates.md`** - Ready-to-use widget templates (6 templates)
+2. **`references/widget-templates.md`** - Additional widget template patterns (6 templates)
 3. **`references/echarts-integration.md`** - ECharts library integration guide
 4. **`references/widget-addon-guide.md`** - Widget Add-On development (QRC Q4 2023+)
 5. **`references/best-practices-guide.md`** - Performance, security, and development guidelines
@@ -340,6 +387,14 @@ For detailed templates and examples, see:
 ---
 
 ## Version History
+
+**v2.0.0** (2025-12-27)
+- Added 3 specialized agents: widget-architect, widget-debugger, widget-api-assistant
+- Added 3 slash commands: /widget-validate, /widget-generate, /widget-lint
+- Added validation hooks for automatic quality checks on Write/Edit
+- Added 5 production-ready templates in templates/ directory
+- Enhanced plugin structure to match comprehensive plugin pattern
+- Updated last verified date
 
 **v1.2.0** (2025-11-26)
 - Updated SAC version reference to 2025.21
@@ -366,4 +421,4 @@ For detailed templates and examples, see:
 
 ---
 
-**Last Verified**: 2025-11-26 | **SAC Version**: 2025.21 | **Skill Version**: 1.2.0
+**Last Verified**: 2025-12-27 | **SAC Version**: 2025.21 | **Skill Version**: 2.0.0

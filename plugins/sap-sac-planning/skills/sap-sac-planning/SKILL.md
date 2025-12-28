@@ -1,15 +1,15 @@
 ---
 name: sap-sac-planning
 description: |
-  This skill should be used when developing SAP Analytics Cloud (SAC) planning applications, including building planning-enabled stories, analytics designer applications with planning functionality, data actions, multi actions, version management, and planning workflows. Use when creating planning models, implementing data entry forms, configuring spreading/distribution/allocation, setting up data locking, building calendar-based planning processes with approval workflows, writing JavaScript scripts for planning automation, using the getPlanning() API, PlanningModel API, or DataSource API for planning scenarios, troubleshooting planning performance issues, or integrating predictive forecasting into planning workflows.
+  This skill should be used when developing SAP Analytics Cloud (SAC) planning applications, including building planning-enabled stories, analytics designer applications with planning functionality, data actions, multi actions, version management, and planning workflows. Use when creating planning models, implementing data entry forms, configuring spreading/distribution/allocation, setting up data locking, building calendar-based planning processes with approval workflows, writing JavaScript scripts for planning automation, using the getPlanning() API, PlanningModel API, or DataSource API for planning scenarios, troubleshooting planning performance issues, integrating predictive forecasting into planning workflows, implementing Seamless Planning with SAP Datasphere, configuring BPC live connections for BW on HANA integration, building value driver trees for what-if analysis, or debugging data actions with tracing.
 license: GPL-3.0
 metadata:
-  version: 1.3.0
-  last_verified: 2025-11-26
-  sac_version: "2025.23"
-  documentation_source: [https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/18850a0e13944f53aa8a8b7c094ea29e](https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/18850a0e13944f53aa8a8b7c094ea29e)
-  api_reference: [https://help.sap.com/doc/958d4c11261f42e992e8d01a4c0dde25/2025.23/en-US/index.html](https://help.sap.com/doc/958d4c11261f42e992e8d01a4c0dde25/2025.23/en-US/index.html)
-  reference_files: 20
+  version: 1.4.0
+  last_verified: 2025-12-27
+  sac_version: "2025.25"
+  documentation_source: [https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7](https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7)
+  api_reference: [https://help.sap.com/doc/958d4c11261f42e992e8d01a4c0dde25/2025.25/en-US/index.html](https://help.sap.com/doc/958d4c11261f42e992e8d01a4c0dde25/2025.25/en-US/index.html)
+  reference_files: 24
   status: production
 ---
 
@@ -19,12 +19,13 @@ Comprehensive skill for building enterprise planning applications with SAP Analy
 
 ---
 
-## Reference Add-Ons (2025.23)
+## Reference Add-Ons (2025.25)
 
 - Execution guides: `references/data-actions.md`, `references/multi-actions.md`, `references/allocations.md`, `references/scheduling-calendar.md`, `references/data-locking.md`
 - Modeling & governance: `references/modeling-basics.md`, `references/version-management.md`, `references/version-edit-modes.md`, `references/version-publishing-notes.md`
 - Calculations & intelligence: `references/advanced-formulas.md`, `references/predictive-conversion.md`, `references/ai-planning-analytics.md`, `references/api-snippets.md`
 - Workflow aids: `references/input-tasks.md`, `references/job-monitoring.md`
+- **New in 2025**: `references/seamless-planning-datasphere.md`, `references/bpc-live-connection.md`, `references/value-driver-trees.md`, `references/data-action-tracing.md`
 - Ready-to-use templates: `templates/data-action-checklist.md`, `templates/multi-action-checklist.md`, `templates/parameter-table.md`
 
 Use these to keep instructions concise in this file while deep-dives remain one click away.
@@ -36,6 +37,10 @@ Use these to keep instructions concise in this file while deep-dives remain one 
 - [Quick Start](#quick-start)
 - [Core Concepts](#core-concepts)
 - [Data Actions](#data-actions)
+- [Seamless Planning with Datasphere](#seamless-planning-with-datasphere)
+- [BPC Live Connection](#bpc-live-connection)
+- [Value Driver Trees](#value-driver-trees)
+- [Data Action Tracing](#data-action-tracing)
 - [Bundled Resources](#bundled-resources)
 
 ## When to Use This Skill
@@ -89,6 +94,30 @@ Use this skill when working on tasks involving:
 - Creating data locking tasks in calendar
 - Implementing event-based data locking
 - Integrating data locking in multi actions
+
+**Seamless Planning with Datasphere** (2025):
+- Planning models with Datasphere storage
+- Cross-model planning with unified data
+- Direct persistence to Datasphere
+- Enterprise data governance for planning
+
+**BPC Live Connection**:
+- Planning with BPC Embedded on S/4HANA
+- Running BPC planning sequences from SAC
+- Master data planning via BPC
+- Live data connection configuration
+
+**Value Driver Trees**:
+- Building business value chain visualizations
+- What-if analysis and scenario simulation
+- Driver-based planning
+- Interactive planning dashboards
+
+**Data Action Debugging**:
+- Tracing data action execution
+- Adding tracepoints for debugging
+- Analyzing intermediate results
+- Troubleshooting allocation issues
 
 ---
 
@@ -344,6 +373,191 @@ SAC Planning Model → Data Export Service → Cloud Connector → API_PLPACDOCP
 6. Schedule or run export
 
 **Reference**: See `references/s4hana-acdocp-export.md` for complete configuration guide, troubleshooting, and SAP documentation links.
+
+---
+
+## Seamless Planning with Datasphere
+
+Seamless Planning unifies SAC planning with SAP Datasphere, enabling enterprise-grade storage and governance for plan data.
+
+### Architecture Overview
+
+```
+SAC (Planning Logic & UX) ──Direct Persistence──► Datasphere (Data Storage & Governance)
+```
+
+**What stays in SAC**: Planning calculations, version management, data actions, calendar workflows
+**What moves to Datasphere**: Fact data, public dimensions, physical storage, data governance
+
+### Key Benefits
+
+| Benefit | Description |
+|---------|-------------|
+| **Unified Data** | Centralized storage ensures consistency |
+| **Direct Persistence** | Changes in SAC instantly reflect in Datasphere |
+| **Optimized Resources** | Reduces SAC memory and storage footprint |
+| **Enterprise Reusability** | Datasphere modeling extends to planning data |
+
+### Prerequisites
+
+1. **SAC tenant on SAP HANA Cloud** - Verify in System → About
+2. **Co-located tenants** - Same SAP data center region
+3. **1:1 tenant linkage** - One SAC tenant to one Datasphere tenant
+4. **Consistent IdP** - Same SAML identity provider
+5. **Datasphere space roles** - DW Modeler, DW Integrator, or DW Space Administrator
+
+### Quick Setup
+
+1. Create new Planning Model
+2. Select **SAP Datasphere Space** as Data Storage Location
+3. Configure dimensions (public dimensions stored in Datasphere)
+4. Enable **Expose to Datasphere** in Model Details
+5. Plan normally in SAC - changes persist automatically
+
+### Cross-Model Planning
+
+All models for cross-model operations (data actions, multi actions) must be in the **same Datasphere space**.
+
+**Reference**: See `references/seamless-planning-datasphere.md` for detailed architecture, configuration, and troubleshooting.
+
+---
+
+## BPC Live Connection
+
+SAC supports live data connections to BPC Embedded on S/4HANA, enabling planning with the BPC engine while using SAC's modern interface.
+
+### Supported BPC Versions
+
+| Version | Planning Support |
+|---------|------------------|
+| **BPC Embedded (S/4HANA)** | Full planning features |
+| **BPC for NetWeaver** | Limited (read-only) |
+| **BPC Standard** | Export to BPC required |
+
+### Planning Features via BPC Live
+
+- **Data Entry**: Direct input to BPC models
+- **Planning Sequences**: Execute FOX scripts from SAC
+- **Version Management**: BPC-controlled categories
+- **Master Data Planning**: Update dimension properties
+- **Data Locking**: BPC locks integration
+
+### Running BPC Planning Sequences
+
+```javascript
+// Execute BPC planning sequence
+PlanningSequence_1.setParameterValue("FISCAL_YEAR", "2025");
+PlanningSequence_1.setParameterValue("VERSION", "PLAN");
+PlanningSequence_1.execute().then(function() {
+    Table_1.getDataSource().refreshData();
+});
+```
+
+### When to Use BPC Live vs Native SAC
+
+**Use BPC Live when**: Existing BPC investment, complex FOX scripts, integrated with BW reporting
+**Use Native SAC when**: New implementation, simpler requirements, mobile-first applications
+
+**Reference**: See `references/bpc-live-connection.md` for setup, prerequisites, and troubleshooting.
+
+---
+
+## Value Driver Trees
+
+Value Driver Trees (VDT) visualize how values flow through a planning model, enabling driver-based planning and what-if analysis.
+
+### Use Cases
+
+| Scenario | Example |
+|----------|---------|
+| **Driver-Based Planning** | Model how prices, headcount impact revenue |
+| **What-If Analysis** | Simulate scenarios, see cascading effects |
+| **Strategic Planning** | Visualize value chain impacts |
+| **Executive Presentations** | Touchscreen-friendly boardroom displays |
+
+### Creating a Value Driver Tree
+
+1. Add **Value Driver Tree** widget to story or application
+2. Select planning model with Date dimension
+3. Add nodes (auto-create from model or manual)
+4. Configure measures and structures per node
+5. Link nodes (drivers right, outcomes left)
+6. Set presentation date range
+
+### Node Configuration
+
+| Setup | Description |
+|-------|-------------|
+| **1 Account + 1 Structure** | Single row of values |
+| **Multiple Accounts** | Row per account (e.g., sales + quantity) |
+| **Multiple Structures** | Compare scenarios/currencies |
+
+### JavaScript API
+
+```javascript
+// Get VDT reference
+var vdt = ValueDriverTree_1;
+
+// Get selected node value
+var value = vdt.getSelectedNode().getValue("Revenue", "2025Q1");
+
+// Collapse/expand nodes
+vdt.collapseNode("Node_Revenue");
+vdt.expandNode("Node_Revenue");
+```
+
+**Reference**: See `references/value-driver-trees.md` for detailed setup and best practices.
+
+---
+
+## Data Action Tracing
+
+Data Action Tracing is a debugging tool for inspecting intermediate results during data action execution.
+
+### When to Use Tracing
+
+| Scenario | How Tracing Helps |
+|----------|-------------------|
+| **New Development** | Validate each step produces expected results |
+| **Debugging Failures** | Identify which step causes incorrect data |
+| **Performance Investigation** | See which steps process most data |
+| **Allocation Debugging** | Validate driver ratios and distributions |
+
+### Adding Tracepoints
+
+1. Open data action in **Data Action Designer**
+2. Navigate to step where you want to trace
+3. Click **Add Tracepoint** (or right-click → Add Tracepoint)
+4. Name descriptively (e.g., "After Copy Step", "Before Allocation")
+
+### Running Trace Mode
+
+1. Open data action in designer
+2. Click **Run with Tracing**
+3. Set required parameters
+4. Execute - data captured at each tracepoint
+5. Review results in **Tracing Results Panel**
+
+### Analyzing Results
+
+| View | Description |
+|------|-------------|
+| **Data at Tracepoint** | All values at that point |
+| **Changes Since Previous** | Delta between tracepoints |
+| **Filtered View** | Focus on specific data |
+
+### TRACE() in Advanced Formulas
+
+```
+// Add tracepoints in script
+[Revenue] = [Quantity] * [Price]
+TRACE("After_Revenue_Calc")
+
+[Final] = [Revenue] * (1 + [Tax])
+TRACE("After_Tax")
+```
+
+**Reference**: See `references/data-action-tracing.md` for complete debugging guide.
 
 ---
 
@@ -690,7 +904,7 @@ console.log("Lock state: " + lockState);
 
 ## Bundled Reference Files
 
-This skill includes comprehensive reference documentation (20 files):
+This skill includes comprehensive reference documentation (24 files):
 
 **API & Scripting**:
 1. **references/api-reference.md**: Complete Analytics Designer API for planning
@@ -723,6 +937,12 @@ This skill includes comprehensive reference documentation (20 files):
 18. **references/javascript-patterns.md**: Code snippets, patterns, best practices
 19. **references/modeling-basics.md**: Planning model fundamentals
 20. **references/data-locking.md**: Configure and manage data locks
+
+**New in 2025**:
+21. **references/seamless-planning-datasphere.md**: Seamless Planning architecture, prerequisites, configuration with SAP Datasphere
+22. **references/bpc-live-connection.md**: BPC Embedded live connection, planning sequences, master data planning
+23. **references/value-driver-trees.md**: Value driver tree setup, node configuration, JavaScript API
+24. **references/data-action-tracing.md**: Data action tracing, tracepoints, debugging techniques
 
 ---
 
@@ -768,6 +988,6 @@ For troubleshooting:
 ---
 
 **License**: GPL-3.0
-**Version**: 1.3.0
+**Version**: 1.4.0
 **Maintained by**: SAP Skills Maintainers
 **Repository**: [https://github.com/secondsky/sap-skills](https://github.com/secondsky/sap-skills)

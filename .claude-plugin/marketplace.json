@@ -5,7 +5,7 @@
   "repository": "https://github.com/secondsky/sap-skills",
   "metadata": {
     "version": "2.1.0",
-    "last_updated": "2025-12-19",
+    "last_updated": "2025-12-28",
     "total_skills": 33,
     "categories": [
       "abap",
@@ -454,7 +454,20 @@
         "sap-cap-capire",
         "sql"
       ],
-      "license": "GPL-3.0"
+      "license": "GPL-3.0",
+      "agents": [
+        "./agents/cap-cds-modeler.md",
+        "./agents/cap-service-developer.md",
+        "./agents/cap-performance-debugger.md",
+        "./agents/cap-project-architect.md"
+      ],
+      "commands": [
+        "./commands/cap-setup-wizard.md",
+        "./commands/cap-troubleshooter.md",
+        "./commands/cap-mcp-tools.md",
+        "./commands/cap-cds-reference.md",
+        "./commands/cap-deployment-checklist.md"
+      ]
     },
     {
       "name": "sap-cloud-sdk-ai",
@@ -481,23 +494,38 @@
     {
       "name": "sap-datasphere",
       "source": "plugins/sap-datasphere",
-      "description": "Comprehensive guide for SAP Datasphere development including data acquisition, preparation, modeling, administration, connectivity, and integration. Use when building data warehouses on SAP BTP, creating analytic models, configuring data flows and replication flows, setting up connections to SAP and third-party systems, managing spaces and users, implementing data access controls, or monitoring data integration tasks. Covers Data Builder (graphical/SQL views, local/remote tables, transformation flows), Business Builder (business entities, consumption models), analytic models (dimensions, measures, hierarchies), 40+ connection types (SAP S/4HANA, BW/4HANA, HANA Cloud, AWS, Azure, GCP, Kafka), real-time replication, task chains, and content transport. Keywords: sap datasphere, data warehouse cloud, dwc, data builder, business builder, analytic model, graphical view, sql view, transformation flow, replication flow, data flow, task chain, remote table, local table, sap btp data warehouse, datasphere connection, datasphere space, data access control, elastic compute node, sap analytics cloud integration",
+      "description": "Comprehensive plugin for SAP Datasphere development with 3 specialized agents, 4 slash commands, and validation hooks. Use when building data warehouses on SAP BTP, creating analytic models, configuring data flows and replication flows, setting up connections to SAP and third-party systems, managing spaces and users, implementing data access controls, using the datasphere CLI, creating data products for the marketplace, or monitoring data integration tasks. Covers Data Builder (graphical/SQL views, local/remote tables, transformation flows), Business Builder (business entities, consumption models), analytic models (dimensions, measures, hierarchies), 40+ connection types (SAP S/4HANA, BW/4HANA, HANA Cloud, AWS, Azure, GCP, Kafka, Generic HTTP), real-time replication, task chains, content transport, CLI automation, catalog governance, and data marketplace. Includes 2025 features: Generic HTTP connections, REST API tasks in task chains, SAP Business Data Cloud integration. Keywords: sap datasphere, data warehouse cloud, dwc, data builder, business builder, analytic model, graphical view, sql view, transformation flow, replication flow, data flow, task chain, remote table, local table, sap btp data warehouse, datasphere connection, datasphere space, data access control, elastic compute node, sap analytics cloud integration, datasphere cli, data products, data marketplace, catalog, governance",
       "version": "2.1.0",
       "category": "data-analytics",
       "keywords": [
         "analytics",
+        "api",
         "btp",
         "dashboard",
         "data",
         "datasphere",
         "hana",
+        "http",
+        "rest",
         "sac",
         "sap",
         "sap-datasphere",
         "sql",
         "visualization"
       ],
-      "license": "GPL-3.0"
+      "license": "GPL-3.0",
+      "agents": [
+        "./agents/datasphere-integration-advisor.md",
+        "./agents/datasphere-admin-helper.md",
+        "./agents/datasphere-modeler.md"
+      ],
+      "commands": [
+        "./commands/datasphere-cli.md",
+        "./commands/datasphere-connection-guide.md",
+        "./commands/datasphere-space-template.md",
+        "./commands/datasphere-view-template.md",
+        "./commands/datasphere-mcp-tools.md"
+      ]
     },
     {
       "name": "sap-fiori-tools",
@@ -607,12 +635,22 @@
         "visualization",
         "widget"
       ],
-      "license": "GPL-3.0"
+      "license": "GPL-3.0",
+      "agents": [
+        "./agents/widget-debugger.md",
+        "./agents/widget-architect.md",
+        "./agents/widget-api-assistant.md"
+      ],
+      "commands": [
+        "./commands/widget-validate.md",
+        "./commands/widget-lint.md",
+        "./commands/widget-generate.md"
+      ]
     },
     {
       "name": "sap-sac-planning",
       "source": "plugins/sap-sac-planning",
-      "description": "This skill should be used when developing SAP Analytics Cloud (SAC) planning applications, including building planning-enabled stories, analytics designer applications with planning functionality, data actions, multi actions, version management, and planning workflows. Use when creating planning models, implementing data entry forms, configuring spreading/distribution/allocation, setting up data locking, building calendar-based planning processes with approval workflows, writing JavaScript scripts for planning automation, using the getPlanning() API, PlanningModel API, or DataSource API for planning scenarios, troubleshooting planning performance issues, or integrating predictive forecasting into planning workflows.",
+      "description": "This skill should be used when developing SAP Analytics Cloud (SAC) planning applications, including building planning-enabled stories, analytics designer applications with planning functionality, data actions, multi actions, version management, and planning workflows. Use when creating planning models, implementing data entry forms, configuring spreading/distribution/allocation, setting up data locking, building calendar-based planning processes with approval workflows, writing JavaScript scripts for planning automation, using the getPlanning() API, PlanningModel API, or DataSource API for planning scenarios, troubleshooting planning performance issues, integrating predictive forecasting into planning workflows, implementing Seamless Planning with SAP Datasphere, configuring BPC live connections for BW on HANA integration, building value driver trees for what-if analysis, or debugging data actions with tracing.",
       "version": "2.1.0",
       "category": "data-analytics",
       "keywords": [
@@ -620,6 +658,7 @@
         "api",
         "dashboard",
         "data",
+        "hana",
         "javascript",
         "planning",
         "sac",
@@ -627,12 +666,22 @@
         "sap-sac-planning",
         "visualization"
       ],
-      "license": "GPL-3.0"
+      "license": "GPL-3.0",
+      "agents": [
+        "./agents/planning-api-assistant.md",
+        "./agents/data-action-debugger.md",
+        "./agents/planning-model-architect.md"
+      ],
+      "commands": [
+        "./commands/sac-planning-checklist.md",
+        "./commands/data-action-template.md",
+        "./commands/seamless-planning-guide.md"
+      ]
     },
     {
       "name": "sap-sac-scripting",
       "source": "plugins/sap-sac-scripting",
-      "description": "Comprehensive SAC scripting skill for Analytics Designer and Optimized Story Experience. Use when building analytic applications, planning models, or enhanced stories. Covers DataSource API, Chart/Table manipulation, Planning operations, Calendar integration, Bookmarks, Timer API, Container widgets, Layout API, R Visualizations, Custom Widgets, Navigation, variables, event handlers, debugging, performance optimization, and 2025.23 features: comments APIs, Search to Insight, smart grouping, time-series forecast, geo map quick menus, Explorer/Smart Insights, composites scripting. Includes 40 code templates.",
+      "description": "Comprehensive SAC scripting skill for SAP Analytics Cloud Analytics Designer and Optimized Story Experience. This skill should be used when the user asks to \"create SAC script\", \"debug Analytics Designer\", \"optimize SAC performance\", \"planning operations in SAC\", \"filter data in SAC\", \"use DataSource API\", \"chart scripting\", \"table manipulation\", \"SAC event handlers\", \"version management\", \"data locking\", or works with SAC widgets, planning models, or analytics applications.",
       "version": "2.1.0",
       "category": "data-analytics",
       "keywords": [
@@ -646,28 +695,50 @@
         "scripting",
         "visualization"
       ],
-      "license": "GPL-3.0"
+      "license": "GPL-3.0",
+      "agents": [
+        "./agents/sac-api-helper.md",
+        "./agents/sac-planning-assistant.md",
+        "./agents/sac-performance-optimizer.md",
+        "./agents/sac-script-debugger.md"
+      ],
+      "commands": [
+        "./commands/sac-optimize.md",
+        "./commands/sac-debug.md",
+        "./commands/sac-script-template.md",
+        "./commands/sac-planning.md"
+      ]
     },
     {
       "name": "sap-sqlscript",
       "source": "plugins/sap-sqlscript",
-      "description": "Comprehensive SQLScript development skill for SAP HANA database programming. This skill provides syntax patterns, built-in functions, exception handling, performance optimization, and AMDP integration guidance. Use when: - Creating stored procedures or user-defined functions in SAP HANA - Writing anonymous blocks for ad-hoc SQLScript execution - Implementing AMDP (ABAP Managed Database Procedures) - Optimizing SQLScript performance with code-to-data paradigm - Handling exceptions with EXIT HANDLER, SIGNAL, and RESIGNAL - Working with table variables, cursors, and table types - Using window functions, aggregate functions, or string manipulation - Debugging SQLScript execution or analyzing query performance",
+      "description": "This skill should be used when the user asks to \"write a SQLScript procedure\", \"create HANA stored procedure\", \"implement AMDP method\", \"optimize SQLScript performance\", \"handle SQLScript exceptions\", \"debug HANA procedure\", \"create table function\", or mentions SQLScript, SAP HANA procedures, AMDP, EXIT HANDLER, or code-to-data paradigm. Comprehensive SQLScript development guidance for SAP HANA database programming including syntax patterns, built-in functions, exception handling, performance optimization, cursor management, and ABAP Managed Database Procedure (AMDP) integration.",
       "version": "2.1.0",
-      "category": "tooling",
+      "category": "data-analytics",
       "keywords": [
         "abap",
-        "automation",
-        "cli",
-        "development",
+        "analytics",
+        "dashboard",
+        "data",
         "hana",
-        "productivity",
+        "sac",
         "sap",
         "sap-sqlscript",
         "sql",
         "sqlscript",
-        "tools"
+        "visualization"
       ],
-      "license": "GPL-3.0"
+      "license": "GPL-3.0",
+      "agents": [
+        "./agents/amdp-helper.md",
+        "./agents/procedure-generator.md",
+        "./agents/sqlscript-analyzer.md"
+      ],
+      "commands": [
+        "./commands/sqlscript-validate.md",
+        "./commands/sqlscript-convert.md",
+        "./commands/sqlscript-optimize.md"
+      ]
     },
     {
       "name": "sapui5",
@@ -686,7 +757,20 @@
         "typescript",
         "xml"
       ],
-      "license": "GPL-3.0"
+      "license": "GPL-3.0",
+      "agents": [
+        "./agents/ui5-migration-specialist.md",
+        "./agents/ui5-api-explorer.md",
+        "./agents/ui5-code-quality-advisor.md",
+        "./agents/ui5-app-scaffolder.md"
+      ],
+      "commands": [
+        "./commands/ui5-mcp-tools.md",
+        "./commands/ui5-scaffold.md",
+        "./commands/ui5-lint.md",
+        "./commands/ui5-api.md",
+        "./commands/ui5-version.md"
+      ]
     },
     {
       "name": "sapui5-cli",

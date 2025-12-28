@@ -11,9 +11,12 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
-SKILLS_DIR="$REPO_ROOT/skills"
+PLUGINS_DIR="$REPO_ROOT/plugins"
 MARKETPLACE_DIR="$REPO_ROOT/.claude-plugin"
 MARKETPLACE_JSON="$MARKETPLACE_DIR/marketplace.json"
+
+# Source shared categorization function (for future use)
+source "$SCRIPT_DIR/lib/categorize.sh"
 
 # Default values
 DRY_RUN=false
@@ -33,7 +36,7 @@ Usage: $(basename "$0") [OPTIONS]
 
 Generate marketplace.json from all plugin.json files.
 
-This script reads all skills/*/.claude-plugin/plugin.json files and creates
+This script reads all plugins/*/.claude-plugin/plugin.json files and creates
 a central marketplace.json registry with proper metadata.
 
 OPTIONS:
@@ -44,8 +47,8 @@ OUTPUT:
   .claude-plugin/marketplace.json
 
 CRITICAL IMPLEMENTATION:
-  Uses skill-specific source paths to avoid cache duplication:
-    ✅ CORRECT: "source": "./skills/sap-cap-capire"
+  Uses plugin-specific source paths to avoid cache duplication:
+    ✅ CORRECT: "source": "plugins/sap-cap-capire"
     ❌ WRONG:   "source": "./"
 
 EXAMPLES:
@@ -87,17 +90,24 @@ collect_plugins() {
 
   echo "Scanning for plugin.json files..." >&2
 
-  for skill_dir in "$SKILLS_DIR"/*; do
-    if [ ! -d "$skill_dir" ]; then
+  for plugin_dir in "$PLUGINS_DIR"/*; do
+    if [ ! -d "$plugin_dir" ]; then
       continue
     fi
 
-    local skill_name
-    skill_name=$(basename "$skill_dir")
-    local plugin_json="$skill_dir/.claude-plugin/plugin.json"
+    local plugin_name
+    plugin_name=$(basename "$plugin_dir")
+
+    # Check nested structure first: plugins/[name]/skills/[name]/.claude-plugin/plugin.json
+    local plugin_json="$plugin_dir/skills/$plugin_name/.claude-plugin/plugin.json"
+
+    # Fallback to flat structure if nested not found: plugins/[name]/.claude-plugin/plugin.json
+    if [ ! -f "$plugin_json" ]; then
+      plugin_json="$plugin_dir/.claude-plugin/plugin.json"
+    fi
 
     if [ ! -f "$plugin_json" ]; then
-      echo -e "${YELLOW}  Warning: No plugin.json found for $skill_name, skipping${NC}" >&2
+      echo -e "${YELLOW}  Warning: No plugin.json found for $plugin_name, skipping${NC}" >&2
       continue
     fi
 
@@ -120,6 +130,10 @@ collect_plugins() {
     keywords=$(jq -c '.keywords // []' "$plugin_json")
     local license
     license=$(jq -r '.license' "$plugin_json")
+    local agents
+    agents=$(jq -c '.agents // null' "$plugin_json")
+    local commands
+    commands=$(jq -c '.commands // null' "$plugin_json")
 
     # Validate required fields
     if [ "$name" = "null" ] || [ "$description" = "null" ]; then
@@ -127,8 +141,8 @@ collect_plugins() {
       continue
     fi
 
-    # CRITICAL: Use skill-specific source path (not "./")
-    local source="skills/$skill_name"
+    # CRITICAL: Use plugin-specific source path (not "./")
+    local source="plugins/$plugin_name"
 
     # Track categories (append with newline for later processing)
     if [ "$category" != "null" ] && [ -n "$category" ]; then
@@ -150,6 +164,8 @@ $category"
       --arg category "$category" \
       --argjson keywords "$keywords" \
       --arg license "$license" \
+      --argjson agents "$agents" \
+      --argjson commands "$commands" \
       '{
         name: $name,
         source: $source,
@@ -158,7 +174,8 @@ $category"
         category: $category,
         keywords: $keywords,
         license: $license
-      }'
+      } + (if $agents != null then {agents: $agents} else {} end)
+        + (if $commands != null then {commands: $commands} else {} end)'
     )
 
     # Add to plugins array
@@ -331,9 +348,9 @@ main() {
   fi
   echo ""
 
-  # Check if skills directory exists
-  if [ ! -d "$SKILLS_DIR" ]; then
-    echo -e "${RED}Error: Skills directory not found: $SKILLS_DIR${NC}" >&2
+  # Check if plugins directory exists
+  if [ ! -d "$PLUGINS_DIR" ]; then
+    echo -e "${RED}Error: Plugins directory not found: $PLUGINS_DIR${NC}" >&2
     exit 1
   fi
 

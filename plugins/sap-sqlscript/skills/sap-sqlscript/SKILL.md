@@ -1,23 +1,16 @@
 ---
 name: sap-sqlscript
 description: |
-  Comprehensive SQLScript development skill for SAP HANA database programming. This skill provides syntax patterns, built-in functions, exception handling, performance optimization, and AMDP integration guidance.
+  This skill should be used when the user asks to "write a SQLScript procedure", "create HANA stored procedure", "implement AMDP method", "optimize SQLScript performance", "handle SQLScript exceptions", "debug HANA procedure", "create table function", or mentions SQLScript, SAP HANA procedures, AMDP, EXIT HANDLER, or code-to-data paradigm.
 
-  Use when:
-  - Creating stored procedures or user-defined functions in SAP HANA
-  - Writing anonymous blocks for ad-hoc SQLScript execution
-  - Implementing AMDP (ABAP Managed Database Procedures)
-  - Optimizing SQLScript performance with code-to-data paradigm
-  - Handling exceptions with EXIT HANDLER, SIGNAL, and RESIGNAL
-  - Working with table variables, cursors, and table types
-  - Using window functions, aggregate functions, or string manipulation
-  - Debugging SQLScript execution or analyzing query performance
+  Comprehensive SQLScript development guidance for SAP HANA database programming including syntax patterns, built-in functions, exception handling, performance optimization, cursor management, and ABAP Managed Database Procedure (AMDP) integration.
 license: GPL-3.0
 metadata:
-  version: "1.2.0"
-  last_verified: "2025-11-26"
+  version: "2.1.0"
+  last_verified: "2025-12-27"
   production_tested: "Yes, referenced in SAP Community projects"
   sap_hana_version: "2.0 SPS07"
+  hana_cloud_version: "QRC 3/2025"
   errors_prevented: 15
 ---
 
@@ -546,22 +539,59 @@ TO_TIMESTAMP(string, 'YYYY-MM-DD HH24:MI:SS')
 
 ---
 
-## Additional Resources
+## Related Skills
 
-Load reference files for detailed information:
-- `references/syntax-reference.md` - Complete syntax patterns
-- `references/built-in-functions.md` - All function categories
-- `references/exception-handling.md` - Error handling patterns
-- `references/amdp-integration.md` - AMDP implementation guide
+For comprehensive SAP development, combine this skill with:
+
+| Skill | Use Case |
+|-------|----------|
+| **sap-abap** | ABAP programming patterns for AMDP context |
+| **sap-abap-cds** | CDS views that consume SQLScript procedures |
+| **sap-cap-capire** | CAP framework database procedures integration |
+| **sap-hana-cli** | HANA CLI for procedure deployment and testing |
+| **sap-btp-cloud-platform** | BTP deployment of HANA artifacts |
+
 ---
 
 ## Bundled Resources
 
 ### Reference Documentation
+- `references/skill-reference-guide.md` - **Index of all references with quick navigation**
+- `references/glossary.md` - **SQLScript terminology and concepts**
 - `references/syntax-reference.md` - Complete SQLScript syntax reference
 - `references/built-in-functions.md` - Built-in functions catalog
+- `references/data-types.md` - Data types and conversion
+- `references/exception-handling.md` - Exception handling patterns
 - `references/amdp-integration.md` - AMDP integration patterns
 - `references/performance-guide.md` - Optimization techniques
 - `references/advanced-features.md` - Lateral joins, JSON, query hints, currency conversion
 - `references/troubleshooting.md` - Common errors and solutions
-- `references/exception-handling.md` - Exception handling patterns
+
+### Production-Ready Templates
+Copy and customize these templates for common patterns:
+- `templates/simple-procedure.sql` - Basic stored procedure with error handling
+- `templates/procedure-with-error-handling.sql` - Comprehensive error handling patterns
+- `templates/table-function.sql` - Table UDF with validation
+- `templates/scalar-function.sql` - Scalar UDF examples
+- `templates/amdp-class.abap` - Complete AMDP class boilerplate
+- `templates/amdp-procedure.sql` - AMDP implementation template
+- `templates/cursor-iteration.sql` - Cursor patterns (classic and FOR loop)
+- `templates/bulk-operations.sql` - High-performance bulk operations
+
+### Specialized Agents
+- **sqlscript-analyzer** - Analyze code for performance issues and best practices
+- **procedure-generator** - Generate procedures interactively from requirements
+- **amdp-helper** - Assist with AMDP class creation and debugging
+
+### Slash Commands
+- `/sqlscript-validate` - Validate code with auto-fix capability
+- `/sqlscript-optimize` - Performance analysis and optimization suggestions
+- `/sqlscript-convert` - Convert between standalone and AMDP formats
+
+### Validation Hooks
+Automatic code quality checks on Write/Edit operations:
+- Error handling completeness
+- Security vulnerabilities
+- Performance anti-patterns
+- Naming conventions
+- AMDP compliance

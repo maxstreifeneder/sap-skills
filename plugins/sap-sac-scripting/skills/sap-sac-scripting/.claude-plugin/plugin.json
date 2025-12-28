@@ -1,6 +1,6 @@
 {
   "name": "sap-sac-scripting",
-  "description": "Comprehensive SAC scripting skill for Analytics Designer and Optimized Story Experience. Use when building analytic applications, planning models, or enhanced stories. Covers DataSource API, Chart/Table manipulation, Planning operations, Calendar integration, Bookmarks, Timer API, Container widgets, Layout API, R Visualizations, Custom Widgets, Navigation, variables, event handlers, debugging, performance optimization, and 2025.23 features: comments APIs, Search to Insight, smart grouping, time-series forecast, geo map quick menus, Explorer/Smart Insights, composites scripting. Includes 40 code templates.",
+  "description": "Comprehensive SAC scripting skill for SAP Analytics Cloud Analytics Designer and Optimized Story Experience. This skill should be used when the user asks to \"create SAC script\", \"debug Analytics Designer\", \"optimize SAC performance\", \"planning operations in SAC\", \"filter data in SAC\", \"use DataSource API\", \"chart scripting\", \"table manipulation\", \"SAC event handlers\", \"version management\", \"data locking\", or works with SAC widgets, planning models, or analytics applications.",
   "version": "2.1.0",
   "author": {
     "name": "SAP Skills Maintainers",
@@ -19,5 +19,17 @@
     "scripting",
     "visualization"
   ],
-  "category": "data-analytics"
+  "category": "data-analytics",
+  "agents": [
+    "./agents/sac-api-helper.md",
+    "./agents/sac-planning-assistant.md",
+    "./agents/sac-performance-optimizer.md",
+    "./agents/sac-script-debugger.md"
+  ],
+  "commands": [
+    "./commands/sac-optimize.md",
+    "./commands/sac-debug.md",
+    "./commands/sac-script-template.md",
+    "./commands/sac-planning.md"
+  ]
 }

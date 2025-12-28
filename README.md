@@ -1,108 +1,16 @@
-<div align="center">
+# SAP Skills for Claude Code
 
-# SAP Skills Collection
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL%203.0-blue.svg)](LICENSE)
+[![Skills](https://img.shields.io/badge/Skills-33-brightgreen.svg)](.claude-plugin/marketplace.json)
+[![Version](https://img.shields.io/badge/Version-2.1.0-orange.svg)](CHANGELOG.md)
 
-**Production-ready skills for SAP development with Claude**
-
-[![Skills](https://img.shields.io/badge/Skills-33-blue?style=flat-square)](MARKETPLACE.md)
-[![License](https://img.shields.io/badge/License-GPL--3.0-blue?style=flat-square)](LICENSE)
-[![Last Updated](https://img.shields.io/badge/Updated-2025--12--20-orange?style=flat-square)](#)
-
-A curated collection of battle-tested skills for building SAP applications with BTP, CAP, Fiori, ABAP, HANA, and more.
-
-[**Browse Skills →**](MARKETPLACE.md) · [**Quick Start ↓**](#-quick-start) · [**Contributing**](#-contributing)
-
-</div>
+Production-ready Claude Code skills for SAP development. Build faster with context-aware AI assistance for SAP BTP, CAP, Fiori, ABAP, Analytics, and more.
 
 ---
 
-## 🖥️ Supported Platforms
+## Installation
 
-Skills work natively across multiple Claude-powered development tools:
-
-| Platform | Type | Description |
-|----------|------|-------------|
-| [**Claude Code CLI**](https://docs.anthropic.com/en/docs/claude-code) | Terminal | Anthropic's official command-line coding assistant |
-| [**Claude Desktop**](https://claude.ai/download) | Desktop App | Claude desktop application with native skills support |
-| [**Factory Droid CLI**](https://docs.factory.ai/) | Terminal | Enterprise-grade AI coding assistant |
-
-> **How it works**: All platforms automatically discover and use relevant skills when you're working on SAP projects. No manual activation needed.
-
----
-
-## 📦 Available Skills (33)
-
-| Category | Count | Key Technologies |
-|----------|:-----:|------------------|
-| [**SAP BTP Platform**](MARKETPLACE.md#sap-btp-platform-14-skills) | 14 | Cloud Foundry, Kyma, Connectivity, Integration Suite, Job Scheduling |
-| [**SAP Fiori & SAPUI5**](MARKETPLACE.md#sap-fiori--sapui5-4-skills) | 4 | Fiori Tools, UI5, UI5 CLI, UI5 Linter |
-| [**SAP AI & ML**](MARKETPLACE.md#sap-ai--machine-learning-3-skills) | 3 | AI Core, Cloud SDK AI, HANA ML |
-| [**SAP Analytics Cloud**](MARKETPLACE.md#sap-analytics-cloud-3-skills) | 3 | Custom Widgets, Planning, Scripting |
-| [**SAP ABAP**](MARKETPLACE.md#sap-abap-2-skills) | 2 | ABAP Cloud, ABAP CDS |
-| [**SAP HANA**](MARKETPLACE.md#sap-hana-2-skills) | 2 | HANA CLI, Data Intelligence |
-| [**SAP CAP**](MARKETPLACE.md#sap-cap-1-skill) | 1 | Cloud Application Programming Model |
-| [**SAP Datasphere**](MARKETPLACE.md#sap-datasphere-1-skill) | 1 | Data Warehousing, Analytics |
-| [**SAP API**](MARKETPLACE.md#sap-api-1-skill) | 1 | API Style Guide |
-| [**Tooling**](MARKETPLACE.md#tooling--development-1-skill) | 1 | Skill Review & QA |
-
-**[→ View Full Skill Catalog](MARKETPLACE.md)**
-
-<details>
-<summary><b>📋 Complete Skill List</b></summary>
-
-### SAP BTP Platform
-- `sap-btp-best-practices` - Enterprise cloud architecture & operations
-- `sap-btp-build-work-zone-advanced` - Digital workplace solutions
-- `sap-btp-business-application-studio` - Cloud IDE setup & configuration
-- `sap-btp-cias` - Cloud Integration Automation Service
-- `sap-btp-cloud-logging` - Logging, metrics, traces
-- `sap-btp-cloud-platform` - CF, Kyma, ABAP environment
-- `sap-btp-cloud-transport-management` - Transport landscapes & deployment
-- `sap-btp-connectivity` - Destinations, Cloud Connector, proxies
-- `sap-btp-developer-guide` - CAP/ABAP development best practices
-- `sap-btp-integration-suite` - iFlows, API Management, Event Mesh
-- `sap-btp-intelligent-situation-automation` - S/4HANA automation
-- `sap-btp-job-scheduling` - Scheduled jobs
-- `sap-btp-master-data-integration` - MDI service configuration
-- `sap-btp-service-manager` - Service instances & bindings
-
-### SAP Fiori & SAPUI5
-- `sap-fiori-tools` - Fiori Elements generation & Page Editor
-- `sapui5` - Freestyle apps, MDC, OData, TypeScript
-- `sapui5-cli` - UI5 Tooling CLI
-- `sapui5-linter` - Static code analysis
-
-### SAP AI & Machine Learning
-- `sap-ai-core` - AI Core, Generative AI Hub
-- `sap-cloud-sdk-ai` - AI SDK for JS/TS and Java
-- `sap-hana-ml` - HANA ML Python client
-
-### SAP Analytics Cloud
-- `sap-sac-custom-widget` - Custom widget development
-- `sap-sac-planning` - Planning applications
-- `sap-sac-scripting` - Analytics Designer scripting
-
-### SAP ABAP
-- `sap-abap` - ABAP development patterns
-- `sap-abap-cds` - CDS views & data modeling
-
-### SAP HANA
-- `sap-hana-cli` - HANA Developer CLI
-- `sap-hana-cloud-data-intelligence` - Data Intelligence pipelines
-
-### Other
-- `sap-cap-capire` - CAP development
-- `sap-datasphere` - Data warehousing
-- `sap-api-style` - API documentation standards
-- `skill-review` - Skill quality assurance
-
-</details>
-
----
-
-## 🚀 Quick Start
-
-### Option 1: Marketplace Installation (Recommended)
+Add the SAP Skills marketplace to Claude Code:
 
 ```bash
 # Add the marketplace
@@ -135,174 +43,238 @@ git clone https://github.com/secondsky/sap-skills.git
 # Skills are automatically available from plugins in the plugins/ directory
 ```
 
-### Verify Installation
-
-Once installed, skills are automatically suggested when relevant:
-
-```
-You: "Create a new CAP project with HANA database"
-     ↓
-Claude: [Detects relevant skills: sap-cap-capire, sap-hana-cli]
-     ↓
-Claude: "I'll use the SAP CAP skill to set this up correctly..."
-     ↓
-Result: Production-ready project with proper configuration
-```
-
----
-
-## ⚡ How Skills Work
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  You: "Set up SAP Fiori Elements app with OData service"        │
-└─────────────────────────────────────────────────────────────────┘
-                              ↓
-┌─────────────────────────────────────────────────────────────────┐
-│  🔍 Auto-Discovery                                              │
-│  Claude scans installed skills for relevance                    │
-│  → Found: sap-fiori-tools, sapui5                               │
-└─────────────────────────────────────────────────────────────────┘
-                              ↓
-┌─────────────────────────────────────────────────────────────────┐
-│  ✨ Skill Activation                                            │
-│  Uses production-tested patterns & templates                    │
-│  Prevents known issues automatically                            │
-└─────────────────────────────────────────────────────────────────┘
-                              ↓
-┌─────────────────────────────────────────────────────────────────┐
-│  ✅ Result                                                      │
-│  • Working Fiori app in minutes                                 │
-│  • Zero configuration errors                                    │
-│  • ~65% fewer tokens used                                       │
-└─────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 📊 Token Efficiency
-
-Using skills vs manual implementation:
-
-| Metric | Manual Setup | With Skills | Improvement |
-|--------|:------------:|:-----------:|:-----------:|
-| **Average Tokens** | 12,000-15,000 | 4,000-5,000 | **~65% savings** |
-| **Typical Errors** | 2-4 per project | 0 (prevented) | **100% reduction** |
-| **Setup Time** | 2-4 hours | 15-45 minutes | **~80% faster** |
-
----
-
-## 📚 Documentation
-
-| Document | Description |
-|----------|-------------|
-| [**START_HERE.md**](START_HERE.md) | Quick navigation guide |
-| [**MARKETPLACE.md**](MARKETPLACE.md) | Complete skill catalog with descriptions |
-| [**QUICK_WORKFLOW.md**](QUICK_WORKFLOW.md) | 5-minute skill creation guide |
-| [**ONE_PAGE_CHECKLIST.md**](ONE_PAGE_CHECKLIST.md) | Quality verification checklist |
-| [**CLAUDE.md**](CLAUDE.md) | Project context & guidelines |
-
----
-
-## 🛠️ Building New Skills
+Or browse and install from the marketplace:
 
 ```bash
-# 1. Create plugin structure
-mkdir -p plugins/my-new-skill/.claude-plugin
-mkdir -p plugins/my-new-skill/skills/my-new-skill
-
-# 2. Add required files
-#    - plugins/my-new-skill/skills/my-new-skill/SKILL.md (main documentation with YAML frontmatter)
-#    - plugins/my-new-skill/skills/my-new-skill/README.md (keywords for auto-discovery)
-
-# 3. Generate plugin manifest
-./scripts/sync-plugins.sh
-
-# 4. Test skill discovery
-#    Ask Claude to use your skill
-
-# 5. Submit
-git add plugins/my-new-skill .claude-plugin/marketplace.json
-git commit -m "Add my-new-skill for [use case]"
-git push
+claude-code marketplace browse
 ```
 
-See [QUICK_WORKFLOW.md](QUICK_WORKFLOW.md) for detailed guidelines.
+---
+
+## How It Works
+
+Skills automatically activate based on your project context. No manual invocation needed—just start working:
+
+- **"Create a new CAP service"** → `sap-cap-capire` activates
+- **"Set up Fiori Elements app"** → `sap-fiori-tools` activates
+- **"Deploy to BTP"** → `sap-btp-cloud-platform` activates
+- **"Write ABAP CDS view"** → `sap-abap-cds` activates
+- **"Create SAC planning model"** → `sap-sac-planning` activates
+
+Claude Code intelligently loads relevant skills when you need them, providing expert guidance without overwhelming your context.
 
 ---
 
-## 🤝 Contributing
+## Available Skills (33)
 
-Contributions welcome! Please:
+### 🔧 Tooling & Development (4)
 
-1. ✅ Follow the [skill structure standard](QUICK_WORKFLOW.md)
-2. ✅ Include auto-trigger keywords in README.md
-3. ✅ Provide working templates when applicable
-4. ✅ Test thoroughly before submitting PR
-5. ✅ Use `skill-review` for quality verification
+| Skill | Description |
+|-------|-------------|
+| **skill-review** | Comprehensive 14-phase audit process for skill quality assurance |
+| **sap-api-style** | API documentation standards following SAP guidelines |
+| **sap-hana-cli** | SAP HANA Developer CLI for database operations |
+| **sapui5-linter** | UI5 Linter for static code analysis |
 
----
+### ☁️ SAP BTP Platform (14)
 
-## 🔒 Branch Protection
+| Skill | Description |
+|-------|-------------|
+| **sap-btp-best-practices** | SAP BTP development best practices and patterns |
+| **sap-btp-build-work-zone-advanced** | SAP Build Work Zone (Advanced Edition) development |
+| **sap-btp-business-application-studio** | SAP Business Application Studio (BAS) development |
+| **sap-btp-cias** | Cloud Identity Access Service (CIAS) integration |
+| **sap-btp-cloud-logging** | SAP BTP Cloud Logging service |
+| **sap-btp-cloud-platform** | SAP Business Technology Platform core services |
+| **sap-btp-cloud-transport-management** | Cloud Transport Management (CTM) service |
+| **sap-btp-connectivity** | SAP BTP Connectivity service |
+| **sap-btp-developer-guide** | Comprehensive SAP BTP developer guide |
+| **sap-btp-integration-suite** | SAP Integration Suite development |
+| **sap-btp-intelligent-situation-automation** | Intelligent Situation Automation development |
+| **sap-btp-job-scheduling** | SAP BTP Job Scheduling service |
+| **sap-btp-master-data-integration** | Master Data Integration service |
+| **sap-btp-service-manager** | SAP BTP Service Manager operations |
 
-The `main` branch is protected to ensure code quality. All changes require:
+### 🎨 UI Development (4)
 
-**Automated Requirements:**
-- ✅ Code owner review (@secondsky)
-- ✅ All review comments resolved
+| Skill | Description |
+|-------|-------------|
+| **sap-fiori-tools** | SAP Fiori Tools development and deployment |
+| **sapui5** | SAPUI5 framework development |
+| **sapui5-cli** | SAPUI5 CLI tools and commands |
+| **sapui5-linter** | SAPUI5 code quality and linting |
 
-**Protected Actions:**
-- ❌ Direct pushes to main (use PRs)
-- ❌ Force pushes
-- ❌ Branch deletion
+### 📊 Data & Analytics (5)
 
-**Quality Validation:**
-- YAML frontmatter structure
-- GPL-3.0 license field presence
-- Required skill files (SKILL.md, README.md)
-- Internal link integrity
+| Skill | Description |
+|-------|-------------|
+| **sap-datasphere** | SAP Datasphere data modeling and management |
+| **sap-hana-cloud-data-intelligence** | SAP HANA Cloud Data Intelligence |
+| **sap-sac-custom-widget** | SAP Analytics Cloud custom widget development |
+| **sap-sac-planning** | SAP Analytics Cloud planning applications |
+| **sap-sac-scripting** | SAP Analytics Cloud scripting API |
 
-See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for the full PR workflow.
+### ⚙️ Core Technologies (6)
 
----
-
-## 🔗 Links
-
-### Platforms
-- [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) - Terminal coding assistant
-- [Claude Desktop](https://claude.ai/download) - Desktop application
-- [Factory Droid CLI](https://docs.factory.ai/) - Enterprise AI assistant
-
-### SAP Resources
-- [SAP Developer Center](https://developers.sap.com/)
-- [SAP Community](https://community.sap.com/)
-- [SAP Help Portal](https://help.sap.com/)
-- [SAP Business Accelerator Hub](https://api.sap.com/)
-
-### Project
-- [Issues](https://github.com/secondsky/sap-skills/issues)
-- [Discussions](https://github.com/secondsky/sap-skills/discussions)
-
----
-
-## 📄 License
-
-This project is licensed under the **GNU General Public License v3.0** (GPL-3.0).
-
-See [LICENSE](LICENSE) for the full license text.
-
-**What this means:**
-- ✅ Free to use, modify, and distribute
-- ✅ Must keep source code open
-- ✅ Derivative works must also be GPL-3.0
-- ✅ Patent protection included
+| Skill | Description |
+|-------|-------------|
+| **sap-abap** | ABAP development patterns and best practices |
+| **sap-abap-cds** | ABAP Core Data Services (CDS) views |
+| **sap-ai-core** | SAP AI Core machine learning development |
+| **sap-cap-capire** | SAP Cloud Application Programming Model (CAP) |
+| **sap-cloud-sdk-ai** | SAP Cloud SDK for AI development |
+| **sap-hana-ml** | SAP HANA Machine Learning (ML) library |
+| **sap-sqlscript** | SAP HANA SQLScript development |
 
 ---
 
-<div align="center">
+## Repository Structure
 
-**Built with ❤️ for the SAP developer community**
+This repository uses the **Claude Code plugin architecture**:
 
-[⬆ Back to Top](#sap-skills-collection)
+```
+sap-skills/
+├── .claude-plugin/
+│   └── marketplace.json          # Marketplace catalog
+│
+└── plugins/                       # All plugins (33)
+    └── [plugin-name]/
+        ├── .claude-plugin/
+        │   └── plugin.json       # Plugin manifest
+        │
+        ├── skills/
+        │   └── [skill-name]/
+        │       ├── SKILL.md      # Main skill content
+        │       ├── README.md     # Keywords for auto-discovery
+        │       └── references/   # Documentation files
+        │
+        ├── agents/               # Optional: Specialized agents
+        ├── commands/             # Optional: Slash commands
+        └── hooks/                # Optional: Event hooks
+```
 
-</div>
+**Key Features**:
+- **Dual-level manifests**: Plugin-level and skill-level `plugin.json` files
+- **Modular organization**: Each skill is self-contained with its own resources
+- **Advanced features**: 5 plugins include agents, commands, and hooks
+- **Cross-references**: 13 plugins have marketplace cross-references to related skills
+
+---
+
+## Building New Skills
+
+Want to contribute a new SAP skill? Follow the quick workflow:
+
+1. **Read the guides**:
+   - [START_HERE.md](START_HERE.md) - First-time contributor guide
+   - [QUICK_WORKFLOW.md](QUICK_WORKFLOW.md) - 5-minute skill creation
+   - [ONE_PAGE_CHECKLIST.md](ONE_PAGE_CHECKLIST.md) - Quality verification
+
+2. **Create the plugin structure**:
+   ```bash
+   mkdir -p plugins/your-skill/skills/your-skill/
+   ```
+
+3. **Add skill content**:
+   - `SKILL.md` - Main content with YAML frontmatter
+   - `README.md` - Keywords for discovery
+   - `references/` - Supporting documentation
+
+4. **Generate plugin manifests**:
+   ```bash
+   ./scripts/sync-plugins.sh
+   ```
+
+5. **Test and verify**:
+   - Use the `skill-review` skill for comprehensive quality audit
+   - Check [ONE_PAGE_CHECKLIST.md](ONE_PAGE_CHECKLIST.md)
+
+6. **Submit**:
+   ```bash
+   git add plugins/your-skill .claude-plugin/marketplace.json
+   git commit -m "Add your-skill for [use case]"
+   ```
+
+---
+
+## Documentation
+
+| Resource | Purpose |
+|----------|---------|
+| [START_HERE.md](START_HERE.md) | Entry point for new contributors |
+| [CLAUDE.md](CLAUDE.md) | Complete project context and guidelines |
+| [QUICK_WORKFLOW.md](QUICK_WORKFLOW.md) | Fast skill creation workflow |
+| [ONE_PAGE_CHECKLIST.md](ONE_PAGE_CHECKLIST.md) | Quality verification checklist |
+| [MARKETPLACE.md](MARKETPLACE.md) | Marketplace integration guide |
+| [CHANGELOG.md](CHANGELOG.md) | Version history and changes |
+
+---
+
+## Recent Changes
+
+### v2.1.0 - Plugin Structure Migration (2025-12-27)
+
+**BREAKING CHANGE**: Migrated from flat `skills/` directory to plugin-based architecture.
+
+**What's New**:
+- ✅ 33 plugins with dual-level manifests
+- ✅ 91 JSON manifest files auto-generated
+- ✅ 5 plugins with agents, commands, and hooks
+- ✅ 22 new reference files across plugins
+- ✅ Comprehensive marketplace cross-references
+
+See [CHANGELOG.md](CHANGELOG.md) for complete details.
+
+---
+
+## Contributing
+
+This repository is open source under the **GPL-3.0 License**. Contributions are welcome!
+
+**Ways to contribute**:
+- Report issues or suggest features via [GitHub Issues](https://github.com/secondsky/sap-skills/issues)
+- Submit new skills following [QUICK_WORKFLOW.md](QUICK_WORKFLOW.md)
+- Improve existing skills with updated docs or references
+- Help maintain package versions and dependencies
+
+**Quality Standards**:
+- All skills must be production-tested
+- Package versions must be current (verified quarterly)
+- Known issues must be documented with sources
+
+---
+
+## Success Metrics
+
+**Quality**:
+- ✅ 100% compliance with [Anthropic Skills Spec](https://github.com/anthropics/skills/blob/main/agent_skills_spec.md)
+- ✅ All skills production-tested
+- ✅ Package versions current (checked quarterly)
+
+**Efficiency**:
+- ✅ 100% error prevention vs. manual setup
+- ✅ Sub-5-minute skill creation with templates
+- ✅ 95%+ first-try skill discovery rate
+
+---
+
+## Support
+
+- **Documentation**: Browse guides in this repository
+- **Issues**: [GitHub Issues](https://github.com/secondsky/sap-skills/issues)
+- **SAP Resources**:
+  - [SAP Developer Center](https://developers.sap.com/)
+  - [SAP Community](https://community.sap.com/)
+  - [SAP Business Accelerator Hub](https://api.sap.com/)
+
+---
+
+## License
+
+This project is licensed under the **GNU General Public License v3.0** - see the [LICENSE](LICENSE) file for details.
+
+---
+
+**Maintained by**: SAP Skills Contributors
+**Repository**: [https://github.com/secondsky/sap-skills](https://github.com/secondsky/sap-skills)
+**Last Updated**: 2025-12-27 (v2.1.0)

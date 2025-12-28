@@ -1,6 +1,46 @@
-# SAP SAC Custom Widget Skill
+# SAP SAC Custom Widget Plugin
 
-Comprehensive Claude Code skill for developing custom widgets in SAP Analytics Cloud (SAC).
+Comprehensive Claude Code plugin for developing custom widgets in SAP Analytics Cloud (SAC). Includes specialized agents, slash commands, validation hooks, and production-ready templates.
+
+## Plugin Components
+
+### Agents
+
+| Agent | Purpose | Trigger Examples |
+|-------|---------|------------------|
+| **widget-architect** | Design widget structure, metadata, and integration patterns | "design custom widget", "plan widget architecture", "widget metadata design" |
+| **widget-debugger** | Troubleshoot loading, data binding, CORS, and runtime issues | "widget won't load", "CORS error", "data not binding", "debug widget" |
+| **widget-api-assistant** | Write JavaScript widget code, lifecycle functions, API integrations | "write widget code", "implement lifecycle functions", "widget events" |
+
+### Commands
+
+| Command | Usage | Description |
+|---------|-------|-------------|
+| `/widget-validate` | `/widget-validate [file]` | Validate widget.json schema and widget.js structure |
+| `/widget-generate` | `/widget-generate` | Interactively generate widget scaffold with JSON + JS |
+| `/widget-lint` | `/widget-lint [file]` | Performance, security, and best practices analysis |
+
+### Templates
+
+Ready-to-use scaffolds in `templates/` directory:
+
+| Template | Description |
+|----------|-------------|
+| `basic-widget.js` | Minimal Web Component with all lifecycle functions |
+| `data-bound-chart.js` | ECharts widget with SAC data binding |
+| `styling-panel.js` | Runtime customization panel |
+| `widget.json-minimal` | Bare-minimum metadata |
+| `widget.json-complete` | Full-featured metadata with all options |
+
+### Validation Hooks
+
+Automatic quality checks on Write/Edit operations:
+- **widget.json**: Required fields, tag naming, property types, data binding config
+- **widget.js**: Lifecycle functions, Shadow DOM, propertiesChanged dispatch
+- **Performance**: Resize debouncing, chart disposal, XSS prevention
+- **Context Reminders**: Template suggestions, command recommendations
+
+---
 
 ## Keywords for Discovery
 
@@ -62,11 +102,15 @@ This skill should be used when:
 
 | Property | Value |
 |----------|-------|
-| Skill Version | 1.2.0 |
+| Plugin Version | 2.2.0 |
+| Skill Version | 2.0.0 |
 | SAC Version | 2025.21 |
-| Last Verified | 2025-11-26 |
+| Last Verified | 2025-12-27 |
 | Token Savings | ~75% |
 | Errors Prevented | 25+ |
+| Agents | 3 |
+| Commands | 3 |
+| Templates | 5 |
 
 ## Official Documentation
 

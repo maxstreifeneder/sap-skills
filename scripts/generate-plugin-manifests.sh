@@ -7,7 +7,10 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
-SKILLS_DIR="$REPO_ROOT/skills"
+PLUGINS_DIR="$REPO_ROOT/plugins"
+
+# Source shared categorization function
+source "$SCRIPT_DIR/lib/categorize.sh"
 
 # Default values
 DRY_RUN=false
@@ -78,49 +81,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# Category detection based on skill name patterns
-categorize_skill() {
-  local skill_name="$1"
-
-  case "$skill_name" in
-    sap-abap*)
-      echo "abap"
-      ;;
-    sap-btp-*)
-      echo "btp"
-      ;;
-    sap-cap-*)
-      echo "cap"
-      ;;
-    sap-fiori-*)
-      echo "ui-development"
-      ;;
-    sapui5*)
-      echo "ui-development"
-      ;;
-    sap-hana-*)
-      echo "hana"
-      ;;
-    sap-sac-*)
-      echo "data-analytics"
-      ;;
-    sap-datasphere)
-      echo "data-analytics"
-      ;;
-    sap-ai-*|sap-cloud-sdk-ai)
-      echo "ai"
-      ;;
-    sap-api-*|sap-sqlscript)
-      echo "tooling"
-      ;;
-    skill-*)
-      echo "tooling"
-      ;;
-    *)
-      echo "tooling"
-      ;;
-  esac
-}
+# categorize_skill() is now sourced from lib/categorize.sh
 
 # Get category-specific keywords
 get_category_keywords() {
@@ -302,18 +263,29 @@ extract_yaml_field() {
 
 # Generate plugin.json for a skill
 generate_plugin_json() {
-  local skill_dir="$1"
-  local skill_name
-  skill_name=$(basename "$skill_dir")
-  local skill_md="$skill_dir/SKILL.md"
-  local plugin_dir="$skill_dir/.claude-plugin"
-  local plugin_json="$plugin_dir/plugin.json"
+  local plugin_dir="$1"
+  local plugin_name
+  plugin_name=$(basename "$plugin_dir")
+
+  # Check nested structure first: plugins/[name]/skills/[name]/SKILL.md
+  local skill_md="$plugin_dir/skills/$plugin_name/SKILL.md"
+  local skill_dir="$plugin_dir/skills/$plugin_name"
+
+  # Fallback to flat structure if nested not found: plugins/[name]/SKILL.md
+  if [ ! -f "$skill_md" ]; then
+    skill_md="$plugin_dir/SKILL.md"
+    skill_dir="$plugin_dir"
+  fi
 
   # Check if SKILL.md exists
   if [ ! -f "$skill_md" ]; then
-    echo -e "${YELLOW}  Warning: SKILL.md not found in $skill_name, skipping${NC}" >&2
+    echo -e "${YELLOW}  Warning: SKILL.md not found in $plugin_name, skipping${NC}" >&2
     return 1
   fi
+
+  # Use skill directory for agents/commands, plugin directory for .claude-plugin
+  local claude_plugin_dir="$skill_dir/.claude-plugin"
+  local plugin_json="$claude_plugin_dir/plugin.json"
 
   # Extract YAML fields
   local name
@@ -325,13 +297,13 @@ generate_plugin_json() {
 
   # Validate required fields
   if [ -z "$name" ] || [ -z "$description" ]; then
-    echo -e "${RED}  Error: Missing required YAML fields (name or description) in $skill_name${NC}" >&2
+    echo -e "${RED}  Error: Missing required YAML fields (name or description) in $plugin_name${NC}" >&2
     return 1
   fi
 
   # Auto-detect category
   local category
-  category=$(categorize_skill "$skill_name")
+  category=$(categorize_skill "$plugin_name")
 
   # Generate keywords
   local name_keywords
@@ -347,11 +319,11 @@ generate_plugin_json() {
   local keywords_json
   keywords_json=$(echo -n "$all_keywords" | jq -R -s -c 'split(",") | map(select(. != ""))')
 
-  # Scan for agents and commands
+  # Scan for agents and commands at plugin root level
   local agents_json
-  agents_json=$(scan_agents "$skill_dir")
+  agents_json=$(scan_agents "$plugin_dir")
   local commands_json
-  commands_json=$(scan_commands "$skill_dir")
+  commands_json=$(scan_commands "$plugin_dir")
 
   # Set default license if empty
   if [ -z "$license" ]; then
@@ -387,7 +359,7 @@ generate_plugin_json() {
 
   # Validate JSON
   if ! echo "$json_content" | jq . > /dev/null 2>&1; then
-    echo -e "${RED}  Error: Generated invalid JSON for $skill_name${NC}" >&2
+    echo -e "${RED}  Error: Generated invalid JSON for $plugin_name${NC}" >&2
     return 1
   fi
 
@@ -401,7 +373,7 @@ generate_plugin_json() {
     echo "  ..."
   else
     # Create plugin directory if it doesn't exist
-    mkdir -p "$plugin_dir"
+    mkdir -p "$claude_plugin_dir"
 
     # Write plugin.json
     echo "$formatted_json" > "$plugin_json"
@@ -422,9 +394,9 @@ main() {
   fi
   echo ""
 
-  # Check if skills directory exists
-  if [ ! -d "$SKILLS_DIR" ]; then
-    echo -e "${RED}Error: Skills directory not found: $SKILLS_DIR${NC}" >&2
+  # Check if plugins directory exists
+  if [ ! -d "$PLUGINS_DIR" ]; then
+    echo -e "${RED}Error: Plugins directory not found: $PLUGINS_DIR${NC}" >&2
     exit 1
   fi
 
@@ -432,24 +404,24 @@ main() {
   local success=0
   local failed=0
 
-  # Process each skill directory
-  for skill_dir in "$SKILLS_DIR"/*; do
-    if [ ! -d "$skill_dir" ]; then
+  # Process each plugin directory
+  for plugin_dir in "$PLUGINS_DIR"/*; do
+    if [ ! -d "$plugin_dir" ]; then
       continue
     fi
 
-    local skill_name
-    skill_name=$(basename "$skill_dir")
+    local plugin_name
+    plugin_name=$(basename "$plugin_dir")
 
-    # Filter by skill name if specified
-    if [ -n "$SKILL_FILTER" ] && [ "$skill_name" != "$SKILL_FILTER" ]; then
+    # Filter by plugin name if specified
+    if [ -n "$SKILL_FILTER" ] && [ "$plugin_name" != "$SKILL_FILTER" ]; then
       continue
     fi
 
-    echo "Processing: $skill_name"
+    echo "Processing: $plugin_name"
     count=$((count + 1))
 
-    if generate_plugin_json "$skill_dir"; then
+    if generate_plugin_json "$plugin_dir"; then
       success=$((success + 1))
     else
       failed=$((failed + 1))

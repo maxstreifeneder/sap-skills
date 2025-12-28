@@ -12,11 +12,11 @@
 
 ```bash
 cd ~/github-repos/sap-skills
-mkdir -p skills/my-skill-name/
-cd skills/my-skill-name/
+mkdir -p plugins/my-skill-name/skills/my-skill-name/
+cd plugins/my-skill-name/skills/my-skill-name/
 ```
 
-**Done when**: You have a `skills/my-skill-name/` directory
+**Done when**: You have a `plugins/my-skill-name/skills/my-skill-name/` directory
 
 ---
 
@@ -121,7 +121,7 @@ Ask Claude Code to use the skill:
 
 1. **Check existing skills**
    ```bash
-   ls skills/
+   ls plugins/
    # Is this skill already covered?
    ```
 
@@ -147,10 +147,15 @@ Ask Claude Code to use the skill:
 
 1. **Create directory**
    ```bash
-   mkdir -p skills/my-skill-name/
+   mkdir -p plugins/my-skill-name/skills/my-skill-name/
    ```
 
-2. **Create SKILL.md**
+2. **Create plugin manifest** (auto-generated via sync script)
+   - Run `./scripts/sync-plugins.sh` after creating SKILL.md
+   - Generates both plugin-level and skill-level `plugin.json` files
+   - Updates marketplace.json automatically
+
+3. **Create SKILL.md**
    - YAML frontmatter with name, description, license
    - Quick Start section
    - Critical Rules (what to do/avoid)
@@ -158,15 +163,18 @@ Ask Claude Code to use the skill:
    - Configuration examples
    - Common patterns
 
-3. **Create README.md**
+4. **Create README.md**
    - Primary (3-5): Exact tech names
    - Secondary (5-10): Related terms
    - Errors (2-5): Common error messages
 
-4. **Add resources** (if applicable)
+5. **Add resources** (if applicable)
    - `scripts/`: Executable code
    - `references/`: Documentation
-   - `assets/`: Templates, images
+   - `templates/`: Code templates
+   - `agents/`: Specialized agents (optional)
+   - `commands/`: Slash commands (optional)
+   - `hooks/`: Event hooks (optional)
 
 **Done when**: All required files created with real content
 
@@ -197,12 +205,12 @@ Ask Claude Code to use the skill:
 
 1. **Review changes**
    ```bash
-   git diff skills/my-skill-name/
+   git diff plugins/my-skill-name/
    ```
 
-2. **Add and commit**
+2. **Add and commit** (include both plugin files and marketplace)
    ```bash
-   git add skills/my-skill-name/
+   git add plugins/my-skill-name/ .claude-plugin/marketplace.json
    git commit -m "Add my-skill-name for [use case]
 
    - Provides [feature]
@@ -240,20 +248,25 @@ Ask Claude Code to use the skill:
 ## Quick Command Reference
 
 ```bash
-# Create skill directory
-mkdir -p skills/my-skill-name/
+# Create plugin directory structure
+mkdir -p plugins/my-skill-name/skills/my-skill-name/
 
 # Create required files
-touch skills/my-skill-name/SKILL.md
-touch skills/my-skill-name/README.md
+touch plugins/my-skill-name/skills/my-skill-name/SKILL.md
+touch plugins/my-skill-name/skills/my-skill-name/README.md
 
 # Optional resource directories
-mkdir -p skills/my-skill-name/templates/
-mkdir -p skills/my-skill-name/references/
-mkdir -p skills/my-skill-name/scripts/
+mkdir -p plugins/my-skill-name/skills/my-skill-name/templates/
+mkdir -p plugins/my-skill-name/skills/my-skill-name/references/
+mkdir -p plugins/my-skill-name/agents/
+mkdir -p plugins/my-skill-name/commands/
+mkdir -p plugins/my-skill-name/hooks/
 
-# Commit
-git add skills/my-skill-name/
+# Generate plugin manifests (after creating SKILL.md)
+./scripts/sync-plugins.sh
+
+# Commit (include marketplace)
+git add plugins/my-skill-name/ .claude-plugin/marketplace.json
 git commit -m "Add my-skill-name"
 
 # Push
@@ -268,8 +281,9 @@ git push
 
 Copy from `skill-review` as a starting point:
 ```bash
-cp -r skills/skill-review/ skills/my-new-skill/
+cp -r plugins/skill-review/skills/skill-review/ plugins/my-new-skill/skills/my-new-skill/
 # Then edit to update content
+# Run ./scripts/sync-plugins.sh to generate manifests
 ```
 
 ---
@@ -341,7 +355,7 @@ Everything else can be improved later.
 After building your first skill:
 
 1. Check [ONE_PAGE_CHECKLIST.md](ONE_PAGE_CHECKLIST.md)
-2. Study `skills/skill-review/` for a working example
+2. Study `plugins/skill-review/skills/skill-review/` for a working example
 3. Build second skill (will be much faster!)
 
 ---

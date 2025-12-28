@@ -1,11 +1,11 @@
 ---
 name: sap-datasphere
 description: |
-  Comprehensive guide for SAP Datasphere development including data acquisition, preparation, modeling, administration, connectivity, and integration. Use when building data warehouses on SAP BTP, creating analytic models, configuring data flows and replication flows, setting up connections to SAP and third-party systems, managing spaces and users, implementing data access controls, or monitoring data integration tasks. Covers Data Builder (graphical/SQL views, local/remote tables, transformation flows), Business Builder (business entities, consumption models), analytic models (dimensions, measures, hierarchies), 40+ connection types (SAP S/4HANA, BW/4HANA, HANA Cloud, AWS, Azure, GCP, Kafka), real-time replication, task chains, and content transport. Keywords: sap datasphere, data warehouse cloud, dwc, data builder, business builder, analytic model, graphical view, sql view, transformation flow, replication flow, data flow, task chain, remote table, local table, sap btp data warehouse, datasphere connection, datasphere space, data access control, elastic compute node, sap analytics cloud integration
+  Comprehensive plugin for SAP Datasphere development with 3 specialized agents, 4 slash commands, and validation hooks. Use when building data warehouses on SAP BTP, creating analytic models, configuring data flows and replication flows, setting up connections to SAP and third-party systems, managing spaces and users, implementing data access controls, using the datasphere CLI, creating data products for the marketplace, or monitoring data integration tasks. Covers Data Builder (graphical/SQL views, local/remote tables, transformation flows), Business Builder (business entities, consumption models), analytic models (dimensions, measures, hierarchies), 40+ connection types (SAP S/4HANA, BW/4HANA, HANA Cloud, AWS, Azure, GCP, Kafka, Generic HTTP), real-time replication, task chains, content transport, CLI automation, catalog governance, and data marketplace. Includes 2025 features: Generic HTTP connections, REST API tasks in task chains, SAP Business Data Cloud integration. Keywords: sap datasphere, data warehouse cloud, dwc, data builder, business builder, analytic model, graphical view, sql view, transformation flow, replication flow, data flow, task chain, remote table, local table, sap btp data warehouse, datasphere connection, datasphere space, data access control, elastic compute node, sap analytics cloud integration, datasphere cli, data products, data marketplace, catalog, governance
 license: GPL-3.0
 metadata:
-  version: 1.3.0
-  last_verified: 2025-11-26
+  version: 2.1.0
+  last_verified: 2025-12-28
 ---
 
 # SAP Datasphere Skill
@@ -28,8 +28,10 @@ metadata:
 - [Space Management](#space-management)
 - [Data Access Control](#data-access-control)
 - [Monitoring](#monitoring)
+- [CLI Reference](#cli-reference)
+- [Data Products & Marketplace](#data-products--marketplace)
+- [Catalog & Governance](#catalog--governance)
 - [Content Transport](#content-transport)
-- [Best Practices](#best-practices)
 - [Common Issues](#common-issues)
 - [Bundled Resources](#bundled-resources)
 - [Documentation Links](#documentation-links)
@@ -411,6 +413,103 @@ For monitoring details, see `references/data-integration-monitor.md`.
 
 ---
 
+## CLI Reference
+
+### Datasphere CLI Overview
+
+The `datasphere` CLI enables command-line administration and automation.
+
+**Installation**:
+```bash
+npm install -g @sap/datasphere-cli
+```
+
+**Authentication**:
+```bash
+# Interactive login
+datasphere config auth login
+
+# Service key (CI/CD)
+datasphere config auth login --service-key-path ./key.json
+```
+
+**Core Commands**:
+
+| Command | Purpose |
+|---------|---------|
+| `datasphere spaces list` | List all spaces |
+| `datasphere spaces create` | Create a space |
+| `datasphere objects export` | Export objects |
+| `datasphere objects import` | Import objects |
+| `datasphere tasks run` | Execute task chains |
+| `datasphere marketplace list` | List marketplace products |
+
+**CI/CD Integration**:
+```bash
+# Export and import workflow
+datasphere objects export --space DEV --output-file package.zip
+datasphere objects import --space PROD --input-file package.zip --overwrite
+```
+
+For complete CLI reference, see `references/cli-commands.md`.
+
+---
+
+## Data Products & Marketplace
+
+### Creating Data Products
+
+Package curated data for internal or external consumption:
+
+1. **Plan**: Define purpose, target consumers, contents
+2. **Prepare**: Create views/models, set semantic usage, document
+3. **Configure**: Set visibility, access controls, terms
+4. **Publish**: Make available in marketplace
+
+**Product Components**:
+- Core assets (views, models, entities)
+- Documentation and sample queries
+- Governance metadata (owner, quality score, SLA)
+
+### Data Marketplace
+
+Discover and consume published data products:
+
+- **Search**: Find by category, provider, quality
+- **Request Access**: Submit justification, await approval
+- **Consume**: Use in views or SAC stories
+
+For complete marketplace guidance, see `references/data-products-marketplace.md`.
+
+---
+
+## Catalog & Governance
+
+### Data Catalog Features
+
+Centralized discovery and governance:
+
+- **Asset Discovery**: Search all data objects with metadata
+- **Glossary**: Standardized business term definitions
+- **Data Quality**: Automated quality rules and scoring
+- **Lineage**: Trace data from source to consumption
+- **Classification**: Sensitivity levels and compliance tags
+
+### Governance Workflow
+
+```
+Create Object → Add Metadata → Link Terms → Quality Check → Approve → Publish
+```
+
+**Roles**:
+- **Data Owner**: Business accountability
+- **Data Steward**: Quality and metadata management
+- **Data Custodian**: Technical implementation
+
+For detailed governance guidance, see `references/catalog-governance.md`.
+
+---
+
 ## Data Access Controls
 
 Implement row-level security.
@@ -465,29 +564,127 @@ For transport procedures, see `references/content-transport.md`.
 ## Bundled Resources
 
 ### Reference Documentation
-1. **`references/data-acquisition-preparation.md`** - Complete guide to data flows, replication flows, transformation flows, and table management in Data Builder
-2. **`references/data-modeling.md`** - Comprehensive coverage of Business Builder entities, analytic models, dimensions, measures, and hierarchies
-3. **`references/graphical-sql-views.md`** - Detailed operations for graphical views, SQL views, E-R models, and intelligent lookups
+
+**Core Data Builder:**
+1. **`references/data-acquisition-preparation.md`** - Data flows, replication flows, transformation flows, and table management
+2. **`references/graphical-sql-views.md`** - Graphical views, SQL views, E-R models, and intelligent lookups
+3. **`references/data-modeling.md`** - Business Builder entities, analytic models, dimensions, measures, and hierarchies
+
+**Connectivity & Integration:**
 4. **`references/connectivity.md`** - All 40+ connection types including SAP systems, cloud providers, and streaming platforms
-5. **`references/administration.md`** - Tenant management, space configuration, user roles, and elastic compute nodes
-6. **`references/data-integration-monitor.md`** - Task scheduling, monitoring, real-time replication, and delta mechanisms
+5. **`references/data-integration-monitor.md`** - Task scheduling, monitoring, real-time replication, and delta mechanisms
+
+**Administration & Security:**
+6. **`references/administration.md`** - Tenant management, space configuration, user roles, and elastic compute nodes
 7. **`references/data-access-security.md`** - Row-level security, DAC configurations, and authorization scenarios
 8. **`references/content-transport.md`** - Package export/import, transport management, and tenant migration
 
+**CLI & Automation:**
+9. **`references/cli-commands.md`** - Complete CLI reference, authentication, CI/CD integration patterns
+
+**Marketplace & Governance:**
+10. **`references/data-products-marketplace.md`** - Creating and consuming data products, provider workflows, pricing
+11. **`references/catalog-governance.md`** - Data catalog, glossary, quality rules, lineage, classification
+
+**Best Practices & Updates:**
+12. **`references/best-practices-patterns.md`** - Architecture patterns, naming conventions, performance optimization, checklists
+13. **`references/whats-new-2025.md`** - Q1-Q4 2025 features, Generic HTTP, REST API tasks, deprecations
+
+**MCP Integration:**
+14. **`references/mcp-tools-reference.md`** - Complete MCP tool reference, 45 tools across 8 categories, API documentation, authentication patterns
+15. **`references/mcp-use-cases.md`** - 8 real-world use cases with personas, time savings, and ROI analysis ($159K+/year savings)
+
+### Plugin Components
+
+This plugin includes 3 specialized agents, 4 slash commands, and validation hooks:
+
+**Agents** (in `agents/`):
+- `datasphere-modeler` - Data Builder tasks, views, flows, analytic models
+- `datasphere-integration-advisor` - Connectivity, replication, data integration
+- `datasphere-admin-helper` - Space management, security, monitoring
+
+**Commands** (in `commands/`):
+- `/datasphere-space-template` - Generate space configurations
+- `/datasphere-view-template` - Generate view templates (graphical/SQL)
+- `/datasphere-connection-guide` - Step-by-step connection setup
+- `/datasphere-cli` - CLI command reference and examples
+
+**Hooks** (in `hooks/`):
+- PreToolUse validation for SQL/SQLScript code quality
+- PostToolUse suggestions for persistence and optimization
+
+## MCP Integration
+
+This skill integrates with the **SAP Datasphere MCP Server** (@mariodefe/sap-datasphere-mcp) providing 45 tools for live tenant interaction.
+
+### MCP Tools
+
+The MCP server enables:
+- **Direct Queries:** Execute SQL and smart queries on live data
+- **Metadata Access:** Inspect tables, views, and analytic models
+- **User Management:** Create, update, delete database users
+- **Catalog Search:** Find assets by name or column
+- **Connection Testing:** Verify connectivity and tenant info
+- **Data Profiling:** Analyze column distributions
+
+See `/datasphere-mcp-tools` command for complete tool list.
+
+### Authentication
+
+OAuth 2.0 Client Credentials with automatic token refresh.
+
+Required environment variables:
+- `DATASPHERE_BASE_URL`
+- `DATASPHERE_CLIENT_ID`
+- `DATASPHERE_CLIENT_SECRET`
+- `DATASPHERE_TOKEN_URL`
+
+### Performance
+
+- Sub-100ms metadata queries (cached)
+- 100-500ms catalog operations
+- 500-2,000ms OData queries
+- Batch processing up to 50,000 records
+
 ### File Structure
 ```
-skills/sap-datasphere/
-├── SKILL.md                              # Main skill file (468 lines)
-├── README.md                             # Quick reference and keywords
-└── references/
-    ├── data-acquisition-preparation.md   # Data flows, replication, tables
-    ├── data-modeling.md                  # Analytic models, Business Builder
-    ├── graphical-sql-views.md            # Views, E-R models, lookups
-    ├── administration.md                 # Tenant, spaces, users, monitoring
-    ├── connectivity.md                   # All connection types
-    ├── data-integration-monitor.md       # Monitoring, scheduling
-    ├── data-access-security.md           # Row-level security
-    └── content-transport.md              # Export, import, packages
+plugins/sap-datasphere/
+├── .claude-plugin/
+│   └── plugin.json
+├── .mcp.json                         # MCP server configuration
+├── agents/
+│   ├── datasphere-modeler.md
+│   ├── datasphere-integration-advisor.md
+│   └── datasphere-admin-helper.md
+├── commands/
+│   ├── datasphere-space-template.md
+│   ├── datasphere-view-template.md
+│   ├── datasphere-connection-guide.md
+│   ├── datasphere-cli.md
+│   └── datasphere-mcp-tools.md       # MCP tools reference
+├── hooks/
+│   └── hooks.json
+└── skills/
+    └── sap-datasphere/
+        ├── .claude-plugin/
+        │   └── plugin.json
+        ├── SKILL.md
+        ├── README.md
+        └── references/
+            ├── data-acquisition-preparation.md
+            ├── data-modeling.md
+            ├── graphical-sql-views.md
+            ├── connectivity.md
+            ├── administration.md
+            ├── data-integration-monitor.md
+            ├── data-access-security.md
+            ├── content-transport.md
+            ├── cli-commands.md
+            ├── data-products-marketplace.md
+            ├── catalog-governance.md
+            ├── best-practices-patterns.md
+            ├── whats-new-2025.md
+            └── mcp-tools-reference.md    # MCP technical reference
 ```
 
 ## Documentation Links
@@ -499,4 +696,4 @@ skills/sap-datasphere/
 
 ---
 
-**Version**: 1.3.0 | **Last Verified**: 2025-11-26
+**Version**: 2.1.0 | **Last Verified**: 2025-12-28
