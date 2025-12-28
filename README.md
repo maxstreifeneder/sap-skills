@@ -171,7 +171,7 @@ Want to contribute a new SAP skill? Follow the quick workflow:
    - Official Anthropic standards
 
 2. **Add SAP-specific elements**:
-   - Read [SAP_DEVELOPMENT_GUIDE.md](SAP_DEVELOPMENT_GUIDE.md) for:
+   - Read [Contributor Guide](docs/contributor-guide/) for:
      - SAP SDK version tracking
      - Production testing requirements
      - Error catalog patterns
@@ -184,7 +184,7 @@ Want to contribute a new SAP skill? Follow the quick workflow:
 
 4. **Test and verify**:
    - Use the `skill-review` skill for comprehensive quality audit
-   - Check [ONE_PAGE_CHECKLIST.md](ONE_PAGE_CHECKLIST.md)
+   - Check [Workflow Checklist](docs/contributor-guide/workflow-checklist.md)
 
 5. **Submit**:
    ```bash
@@ -203,9 +203,10 @@ Run: `/use plugin-dev:skill-development`, `plugin-dev:plugin-structure`, etc.
 
 | Resource | Purpose |
 |----------|---------|
-| [SAP_DEVELOPMENT_GUIDE.md](SAP_DEVELOPMENT_GUIDE.md) | SAP-specific patterns and marketplace infrastructure |
+| [Getting Started](docs/getting-started/) | Installation and quick reference |
+| [Contributor Guide](docs/contributor-guide/) | Comprehensive development guide |
+| [Workflow Checklist](docs/contributor-guide/workflow-checklist.md) | Quality verification checklist |
 | [CLAUDE.md](CLAUDE.md) | Project context and critical directives |
-| [ONE_PAGE_CHECKLIST.md](ONE_PAGE_CHECKLIST.md) | SAP-specific quality checklist |
 | [CHANGELOG.md](CHANGELOG.md) | Version history and changes |
 
 ---
@@ -234,7 +235,7 @@ This repository is open source under the **GPL-3.0 License**. Contributions are 
 
 **Ways to contribute**:
 - Report issues or suggest features via [GitHub Issues](https://github.com/secondsky/sap-skills/issues)
-- Submit new skills (use plugin-dev + [SAP_DEVELOPMENT_GUIDE.md](SAP_DEVELOPMENT_GUIDE.md))
+- Submit new skills (use plugin-dev + [Contributor Guide](docs/contributor-guide/))
 - Improve existing skills with updated docs or references
 - Help maintain package versions and dependencies
 

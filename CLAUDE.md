@@ -20,11 +20,41 @@ ABAP, Analytics, and more. Enables context-aware AI assistance for SAP developme
   - skill-development, plugin-structure, command-development, agent-development,
     hook-development, mcp-integration, plugin-settings
 
-**🔧 SAP-Specific Patterns?** → Read **SAP_DEVELOPMENT_GUIDE.md**
+**🔧 SAP-Specific Patterns?** → Read [**Contributor Guide**](docs/contributor-guide/)
   - Marketplace infrastructure, quality assurance, SDK versioning
 
 **✅ Verify Skill Quality?** → Use **skill-review plugin**
   - 14-phase comprehensive audit process
+
+---
+
+## Codebase Exploration
+
+**📖 For detailed project structure, see [project-structure.md](docs/architecture/project-structure.md)** (generated with codemap)
+
+Use the `codemap` CLI tool ([github.com/JordanCoin/codemap](https://github.com/JordanCoin/codemap)) to quickly understand the project structure:
+
+```bash
+# Generate project tree with file stats
+codemap .
+
+# Show dependency flow (imports/exports)
+codemap --deps .
+
+# Files changed vs main branch
+codemap --diff
+
+# Check impact of a file (who imports it)
+codemap --importers lib/accounting/ledger.ts
+
+# Limit tree depth
+codemap --depth 2 .
+
+# Filter by extension
+codemap --only ts,tsx .
+```
+
+Install: `brew tap JordanCoin/tap && brew install codemap`
 
 ---
 
@@ -147,7 +177,7 @@ metadata:
 → Use plugin-dev skills (official Anthropic)
 
 **SAP-Specific Patterns**:
-→ Read SAP_DEVELOPMENT_GUIDE.md
+→ Read [Contributor Guide](docs/contributor-guide/)
 
 **Quality Verification**:
 → Use skill-review plugin: `/review-skill <name>`
