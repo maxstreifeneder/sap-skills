@@ -4,9 +4,14 @@
 
 This checklist covers **SAP-specific quality standards** only.
 
+**Related Documentation**:
+- [Contributor Guide](README.md) - Comprehensive development guide
+- [Quality Assurance](quality-assurance.md) - Detailed 14-phase review process
+- [Common Mistakes](common-mistakes.md) - Patterns to avoid
+
 ---
 
-## Pre-Build Checklist
+## Pre-Build Checklist {#pre-build}
 
 **General Plugin Development** (use plugin-dev):
 - [ ] Used plugin-dev:skill-development for basic skill creation
@@ -20,7 +25,7 @@ This checklist covers **SAP-specific quality standards** only.
 
 ---
 
-## SAP SDK Version Tracking
+## SAP SDK Version Tracking {#version-tracking}
 
 **Package Versions**:
 - [ ] SAP SDK versions documented in metadata section
@@ -35,7 +40,7 @@ This checklist covers **SAP-specific quality standards** only.
 
 ---
 
-## Known Issues Documentation
+## Known Issues Documentation {#known-issues}
 
 **SAP-Specific Issues**:
 - [ ] Common SAP errors documented with error codes
@@ -52,7 +57,7 @@ This checklist covers **SAP-specific quality standards** only.
 
 ---
 
-## Production Testing
+## Production Testing {#production-testing}
 
 **Real SAP Environment Testing**:
 - [ ] Tested with actual SAP BTP account (not just localhost)
@@ -63,7 +68,7 @@ This checklist covers **SAP-specific quality standards** only.
 
 ---
 
-## Marketplace Integration
+## Marketplace Integration {#marketplace}
 
 **Cross-References**:
 - [ ] Related SAP skills identified and documented
@@ -82,7 +87,7 @@ This checklist covers **SAP-specific quality standards** only.
 
 ---
 
-## Error Catalog Pattern
+## Error Catalog Pattern {#error-catalog}
 
 **SAP Error Documentation**:
 - [ ] Common error messages documented
@@ -92,7 +97,7 @@ This checklist covers **SAP-specific quality standards** only.
 
 ---
 
-## Comprehensive Quality Review
+## Comprehensive Quality Review {#quality-review}
 
 **skill-review Plugin** (14-phase audit):
 - [ ] Run: `/review-skill <skill-name>`
@@ -107,9 +112,11 @@ This checklist covers **SAP-specific quality standards** only.
 - Dependency version checks
 - Anti-pattern detection
 
+**See**: [quality-assurance.md](quality-assurance.md) for detailed phase descriptions
+
 ---
 
-## Automation & Manifest Generation
+## Automation & Manifest Generation {#automation}
 
 **After Skill Creation**:
 - [ ] Run: `./scripts/sync-plugins.sh`
@@ -128,7 +135,7 @@ jq '.plugins | map(.name)' .claude-plugin/marketplace.json | grep <skill-name>
 
 ---
 
-## Git Commit Checklist
+## Git Commit Checklist {#git-commit}
 
 **Files to Include**:
 - [ ] plugins/<skill-name>/ (all skill files)
@@ -149,7 +156,7 @@ Production tested: [evidence]
 
 ---
 
-## Quarterly Maintenance
+## Quarterly Maintenance {#quarterly}
 
 **Every 3 Months**:
 - [ ] Check SAP SDK updates (npm outdated)
@@ -161,7 +168,7 @@ Production tested: [evidence]
 
 ---
 
-## Final Sign-Off
+## Final Sign-Off {#sign-off}
 
 ✅ **I certify**:
 - [ ] All SAP-specific checklists complete
@@ -182,3 +189,4 @@ Production tested: [evidence]
 ---
 
 **Last Updated**: 2025-12-28
+**Navigation**: [↑ Contributor Guide](README.md) | [Quality Assurance →](quality-assurance.md)

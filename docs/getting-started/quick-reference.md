@@ -1,4 +1,10 @@
-# Quick Workflow
+# Quick Reference: 6-Step Workflow
+
+Fast-track guide for creating and publishing SAP skills.
+
+**For detailed information**, see the [Contributor Guide](../contributor-guide/README.md).
+
+---
 
 ## Step 1: Use plugin-dev for Basics
 
@@ -10,11 +16,15 @@ Run: `/use plugin-dev:skill-development`
 - Resource organization (scripts/, references/, assets/)
 - Progressive disclosure patterns
 
+**See**: [plugin-dev documentation](https://github.com/anthropics/skills/tree/main/plugin-dev) for complete guidance
+
+---
+
 ## Step 2: Add SAP-Specific Elements
 
-See [SAP_DEVELOPMENT_GUIDE.md](SAP_DEVELOPMENT_GUIDE.md) for:
+See [Contributor Guide](../contributor-guide/README.md) for detailed patterns.
 
-**SDK Version Tracking**:
+### SDK Version Tracking
 ```yaml
 metadata:
   version: "2.1.0"
@@ -22,24 +32,26 @@ metadata:
   last_verified: "2025-12-28"
 ```
 
-**Marketplace Cross-References**:
+### Marketplace Cross-References
 ```markdown
 ## Related Skills
 - **sap-fiori-tools**: Use for UI layer development
 - **sap-btp-cloud-platform**: Use for deployment
 ```
 
-**Production Testing Requirements**:
+### Production Testing Requirements
 - Test with real SAP BTP account
 - Verify templates in production
 - Document error catalog with SAP Notes
 
-**Error Catalog Pattern**:
+### Error Catalog Pattern
 ```markdown
 | Error Code | Message | Solution | Source |
 |------------|---------|----------|--------|
 | D1_ERROR 1105 | Database error | Use batch API | SAP Note 3456789 |
 ```
+
+---
 
 ## Step 3: Generate Manifests
 
@@ -51,6 +63,8 @@ This auto-generates:
 - plugin.json files (plugin-level + skill-level)
 - Updates marketplace.json
 - Validates all 33 skills
+
+---
 
 ## Step 4: Quality Review
 
@@ -65,9 +79,22 @@ This auto-generates:
 - Template testing
 - Error catalog validation
 
+**See**: [quality-assurance.md](../contributor-guide/quality-assurance.md) for detailed review process
+
+---
+
 ## Step 5: Verify with Checklist
 
-See [ONE_PAGE_CHECKLIST.md](ONE_PAGE_CHECKLIST.md) for SAP-specific quality checks.
+Use the [Workflow Checklist](../contributor-guide/workflow-checklist.md) for SAP-specific quality checks.
+
+**Key verification points**:
+- [ ] SAP SDK versions documented
+- [ ] Production testing complete
+- [ ] Cross-references added
+- [ ] Error catalog validated
+- [ ] skill-review passed (all critical issues resolved)
+
+---
 
 ## Step 6: Commit
 
@@ -81,8 +108,16 @@ git commit -m "Add <skill-name> for [SAP technology]
 "
 ```
 
+**See**: [Git Commit Checklist](../contributor-guide/workflow-checklist.md#git-commit)
+
 ---
 
-**For Complete Guide**: See [SAP_DEVELOPMENT_GUIDE.md](SAP_DEVELOPMENT_GUIDE.md)
+## Navigation
+
+- **Detailed Guide**: [Contributor Guide](../contributor-guide/README.md)
+- **Quality Checklist**: [Workflow Checklist](../contributor-guide/workflow-checklist.md)
+- **Installation**: [Installation Guide](installation.md)
+
+---
 
 **Last Updated**: 2025-12-28
